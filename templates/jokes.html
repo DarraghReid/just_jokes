@@ -1,0 +1,16 @@
+<!-- extend boilerplate from base.html -->
+{% extends "base.html" %}
+
+<!-- inject contents into "block content" from base.html -->
+{% block content %}
+
+<!-- loop over, and display contents of, each joke item retrieved in get_jokes() function -->
+    {% for joke in jokes %}
+        {{ joke.joke_title }}<br>
+        {{ joke.joke_description }}<br>
+        {{ joke.joke_teller }}<br>
+        {{ joke.img_url }}<br>
+        {{ joke.for_children }}<br>
+    {% endfor %}
+
+{% endblock %}
