@@ -26,7 +26,8 @@ mongo = PyMongo(app)
 
 
 # decorator with route to get_jokes() function
-# it will redirect to this function when attached to a url
+# it will redirect to/call this function when attached to a url
+# this function renders jokes.html?
 @app.route("/")
 @app.route("/get_jokes")
 def get_jokes():

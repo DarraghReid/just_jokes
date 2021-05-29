@@ -12,6 +12,37 @@
     <title>JustJokes</title>
 </head>
 <body>
+    <header id="home">
+    <!-- navbar - Bootstrap -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+    <!-- logo -->
+                <a class="navbar-brand" href="{{ url_for('get_jokes') }}">JustJokes</a>
+    <!-- mobile-dropdown-toggle -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileDropdown" aria-controls="mobileDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+    <!-- menu-items -->
+                <div class="collapse navbar-collapse" id="mobileDropdown">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-end">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('get_jokes') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Add Joke</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login/Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     {% block content %}
     {% endblock %}
 
