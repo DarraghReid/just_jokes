@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="m-4 text-center">Sign Up</h1>
+    <!-- sign up form -->
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form method="POST" action="{{ url_for('sign_up') }}">
+    <!-- username -->
+                <div class="mb-4">
+                    <label for="username" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+    <!-- password -->
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+    <!-- date of birth -->
+                <div class="mb-5">
+                    <label class="form-label" for="date">Date of birth</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+    <!-- submit -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+{% endblock %}

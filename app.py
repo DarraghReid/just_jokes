@@ -2,12 +2,14 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-# need to import env package in order to use environment variables
-# import env only if the os can find an existing file path for
-# the env.py path itself (not pushed, Heroku won't be able to find it)
 from flask_pymongo import PyMongo
 # Needed to render object id. Mongodb stores its data in BSON format
 from bson.objectid import ObjectId
+# import password security features for registration page
+from werkzeug.security import generate_password_hash, check_password_hash
+# need to import env package in order to use environment variables
+# import env only if the os can find an existing file path for
+# the env.py path itself (not pushed, Heroku won't be able to find it)
 if os.path.exists("env.py"):
     import env
 
@@ -35,6 +37,12 @@ def get_jokes():
     jokes = mongo.db.jokes.find()
     # render jokes.html template, pass jokes variable into it
     return render_template("jokes.html", jokes=jokes)
+
+
+# GET is default
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up():
+    return render_template("register.html")
 
 
 # tell app how and where to run application
