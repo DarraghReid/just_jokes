@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="m-4 text-center">Sign Up</h1>
-    <!-- sign up form -->
+    <h1 class="m-4 text-center">Sign In</h1>
+    <!-- sign in form -->
     <div class="row">
         <div class="col-8 offset-2">
-            <form method="POST" action="{{ url_for('sign_up') }}">
+            <form method="POST" action="{{ url_for('sign_in') }}">
     <!-- username -->
                 <div class="mb-4">
                     <label for="username" class="form-label">Username</label>
@@ -16,20 +16,14 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" minlength="7" maxlength="17" pattern="^[a-zA-Z0-9]{7,17}$" required>
                 </div>
-    <!-- date of birth -->
-                <div class="mb-5">
-                    <label class="form-label" for="date">Date of birth</label>
-                    <input type="date" class="form-control" id="date" name="date">
-                </div>
-    <!-- sign up button -->
+    <!-- sign in button -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
                 </div>
                 <div class="text-center">
-                    <h3>Already have an account? <a href="{{ url_for('sign_in') }}">Sign in!</a></h3>
+                    <h3>Don't have an account? <a href="{{ url_for('sign_up') }}">Sign up!</a></h3>
                 </div>
             </form>
         </div>
     </div>
-
 {% endblock %}

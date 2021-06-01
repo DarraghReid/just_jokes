@@ -43,12 +43,12 @@ def get_jokes():
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
-        # check if username already exists
-        existing_user = mongo.db.users.find_one(
+        # check database for input username
+        user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         # inform user if username has been taken
-        if existing_user:
+        if user:
             flash("username already exists")
             return redirect(url_for("sign_up.html"))
 
@@ -67,6 +67,33 @@ def sign_up():
         flash("You're signed up!")
 
     return render_template("sign_up.html")
+
+
+@app.route("/sign_in", methods=["GET", "POST"])
+def sign_in():
+    if request.method == "POST":
+        # check mongodb for input username
+        user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        # if username exists, check if input password matches hashed password
+        if user:
+            if check_password_hash(
+                user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                # if passwords match, put user into session
+                flash("Welcome, {}!".format(request.form.get("username")))
+            # if passwords don't match, inform user and have them try again
+            else:
+                flash("Incorrect username and/or password")
+                return redirect(url_for("sign_in"))
+
+        # if username doesn't exist, inform user and have them try again
+        else:
+            flash("Incorrect username and/or password")
+            return redirect(url_for("sign_in"))
+
+    return render_template("sign_in.html")
 
 
 # tell app how and where to run application
