@@ -23,7 +23,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 # create instance of PyMongo and pass the app into it
-# to ensure app is communicating with DB
+# to ensure app is communicating with database
 mongo = PyMongo(app)
 
 
@@ -42,7 +42,31 @@ def get_jokes():
 # GET is default
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
-    return render_template("register.html")
+    if request.method == "POST":
+        # check if username already exists
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        # inform user if username has been taken
+        if existing_user:
+            flash("username already exists")
+            return redirect(url_for("sign_up.html"))
+
+        # compile dictionary of user's data
+        sign_up = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "date_of_birth": request.form.get("date")
+        }
+
+        # insert user into database
+        mongo.db.users.insert_one(sign_up)
+
+        # put new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("You're signed up!")
+
+    return render_template("sign_up.html")
 
 
 # tell app how and where to run application

@@ -49,6 +49,16 @@
         </nav>
     </header>
 
+    <section id="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-center">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
     {% block content %}
     {% endblock %}
 

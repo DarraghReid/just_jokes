@@ -8,13 +8,13 @@
             <form method="POST" action="{{ url_for('sign_up') }}">
     <!-- username -->
                 <div class="mb-4">
-                    <label for="username" class="form-label">Email address</label>
-                    <input type="text" class="form-control" id="username" name="username">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" minlength="4" maxlength="12" pattern="^[a-zA-Z0-9]{4,12}$" required>
                 </div>
     <!-- password -->
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" minlength="7" maxlength="17" pattern="^[a-zA-Z0-9]{7,17}$" required>
                 </div>
     <!-- date of birth -->
                 <div class="mb-5">
@@ -27,6 +27,5 @@
                 </div>
             </form>
         </div>
-        
     </div>
 {% endblock %}
