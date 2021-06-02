@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- username variable is username of session user, as set if profile() view in app.py -->
+    <h1 class="m-4 text-center">{{ username }}</h1>
+    <h2 class="m-4 text-center">Your Jokes</h2>
+{% endblock %}
