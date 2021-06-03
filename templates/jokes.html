@@ -6,19 +6,26 @@
 
 <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->
     {% for joke in jokes %}
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="{{ joke.img_url }}" class="card-img-top" alt="joke-related image">
-            <div class="card-body">
-              <h5 class="card-title">{{ joke.joke_title }}</h5>
-              <p class="card-text">{{ joke.joke_description }}</p>
-              <button type="button" class="btn btn-primary" style="float: right;">Expand</button>
-              <p class="card-text">By: {{ joke.joke_teller }}</p>
-            </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+              <div class="card h-100">
+                  <img src="{{ joke.img_url }}" class="card-img-top" alt="joke-related image">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ joke.joke_title }}</h5>
+                      <p class="card-text">{{ joke.joke_description }}</p>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-primary">Expand</button>
+                      </div>
+                      
+                      <p class="card-text">By: {{ joke.joke_teller }}</p>
+                  </div>
+                  <div class="card-footer">
+                      <i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i>
+                      <i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i>
+                  </div>
+              </div>
           </div>
-        </div>
-    </div>
+      </div>
     {% endfor %}
 
 {% endblock %}

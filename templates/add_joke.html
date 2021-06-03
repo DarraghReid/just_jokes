@@ -1,0 +1,38 @@
+<!-- extend boilerplate from base.html -->
+{% extends "base.html" %}
+
+<!-- inject contents into "block content" from base.html -->
+{% block content %}
+    <h1 class="m-4 text-center">Add Joke</h1>
+
+    <!-- add joke form -->
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form method="POST" action="{{ url_for('add_joke') }}">
+    <!-- joke title -->
+                <div class="mb-4">
+                    <label for="joke_title" class="form-label">Joke Title</label>
+                    <input type="text" class="form-control" id="joke_title" name="joke_title" minlength="4" maxlength="20" placeholder="Make it catchy!" pattern="^[a-zA-Z0-9]{4,12}$" required>
+                </div>
+    <!-- joke -->
+                <div class="mb-4">
+                    <label for="joke_description" class="form-label">Joke</label>
+                    <textarea type="text" class="form-control" id="joke_description" name="joke_description" minlength="4" maxlength="200" placeholder="200 characters max" pattern="^[a-zA-Z0-9]{4,12}$" data-default-image="https://i2.wp.com/antidotesforchimps.com/wp-content/uploads/2019/05/86fe066b8ed2eab07a9392a63db4625b.jpg?fit=800%2C798&ssl=1" required></textarea>
+                </div>
+    <!-- image -->
+                <div class="mb-4">
+                    <label for="img_url" class="form-label">Image URL</label>
+                    <input type="text" class="form-control" id="img_url" name="img_url" minlength="4" maxlength="200" placeholder="Any image that relates to the joke" pattern="^[a-zA-Z0-9]{4,12}$" required>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="for_children" name="for_children" checked>
+                    <label class="form-check-label" for="for_children">Suitable for children</label>
+                </div>
+    <!-- add joke button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Add Joke</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

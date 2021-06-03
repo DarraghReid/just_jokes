@@ -121,6 +121,11 @@ def sign_out():
     return redirect(url_for("sign_in"))
 
 
+@app.route("/add_joke", methods=["GET", "POST"])
+def add_joke():
+    return render_template("add_joke.html")
+
+
 # tell app how and where to run application
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
