@@ -123,6 +123,19 @@ def sign_out():
 
 @app.route("/add_joke", methods=["GET", "POST"])
 def add_joke():
+    if request.method == "POST":
+        for_children = "on" if request.form.get("for_children") else "off"
+        joke = {
+            "joke_title": request.form.get("joke_title"),
+            "joke_description": request.form.get("joke_description"),
+            "img_url": request.form.get("img_url"),
+            "for_children": for_children,
+            "joke_teller": session["user"]
+        }
+        mongo.db.jokes.insert_one(joke)
+        flash("Joke Added!")
+        return redirect(url_for("add_joke"))
+
     return render_template("add_joke.html")
 
 
