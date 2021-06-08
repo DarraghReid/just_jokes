@@ -144,6 +144,24 @@ def add_joke():
 
 @app.route("/edit_joke/<joke_id>", methods=["GET", "POST"])
 def edit_joke(joke_id):
+    if request.method == "POST":
+        # set for_children to "on" in db if for_children switch is truthy
+        for_children = "on" if request.form.get("for_children") else "off"
+        # compile dictionary of joke details
+        edited_joke = {
+            "joke_title": request.form.get("joke_title"),
+            "joke_description": request.form.get("joke_description"),
+            "img_url": request.form.get("img_url"),
+            "for_children": for_children,
+            "joke_teller": session["user"]
+        }
+        # insert dictionary into db
+        mongo.db.jokes.update({"_id": ObjectId(joke_id)}, edited_joke)
+        flash("Joke Edited!")
+        return redirect(url_for("get_jokes"))
+        # return redirect(url_for("add_joke(your_jokes"))
+
+    # find joke by id key in db, convert id to bson format
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
 
     return render_template("edit_joke.html", joke=joke)

@@ -16,12 +16,14 @@
                       <div class="text-center">
                         <button type="button" class="btn btn-primary">Expand</button>
                       </div>
-                      
                       <p class="card-text">By: {{ joke.joke_teller }}</p>
                   </div>
                   <div class="card-footer">
-                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
+<!-- only joke's teller and admin can edit or delete joke -->
+                      {% if session.user|lower == joke.joke_teller|lower %}
+                        <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                        <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
+                      {% endif %}
                       <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                       <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
                   </div>

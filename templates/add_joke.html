@@ -29,8 +29,9 @@
                     <input class="form-check-input" type="checkbox" id="for_children" name="for_children" checked>
                     <label class="form-check-label" for="for_children">Suitable for children</label>
                 </div>
-    <!-- add joke button -->
+    <!-- add joke/cancel buttons -->
                 <div class="text-center">
+                    <a href="{{ url_for('get_jokes') }}">Cancel</a>
                     <button type="submit" class="btn btn-primary">Add Joke</button>
                 </div>
             </form>
