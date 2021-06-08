@@ -124,7 +124,9 @@ def sign_out():
 @app.route("/add_joke", methods=["GET", "POST"])
 def add_joke():
     if request.method == "POST":
+        # set for_children to "on" in db if for_children switch is truthy
         for_children = "on" if request.form.get("for_children") else "off"
+        # compile dictionary of joke details
         joke = {
             "joke_title": request.form.get("joke_title"),
             "joke_description": request.form.get("joke_description"),
@@ -132,11 +134,19 @@ def add_joke():
             "for_children": for_children,
             "joke_teller": session["user"]
         }
+        # insert dictionary into db
         mongo.db.jokes.insert_one(joke)
         flash("Joke Added!")
         return redirect(url_for("add_joke"))
 
     return render_template("add_joke.html")
+
+
+@app.route("/edit_joke/<joke_id>", methods=["GET", "POST"])
+def edit_joke(joke_id):
+    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
+    return render_template("edit_joke.html", joke=joke)
 
 
 # tell app how and where to run application

@@ -20,8 +20,10 @@
                       <p class="card-text">By: {{ joke.joke_teller }}</p>
                   </div>
                   <div class="card-footer">
-                      <i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i>
-                      <i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i>
+                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
+                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                      <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
                   </div>
               </div>
           </div>
