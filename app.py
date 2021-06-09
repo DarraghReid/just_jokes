@@ -34,7 +34,16 @@ mongo = PyMongo(app)
 @app.route("/get_jokes")
 def get_jokes():
     # find all docs from jokes collection in MongoDB
-    jokes = mongo.db.jokes.find()
+    jokes = list(mongo.db.jokes.find())
+    # render jokes.html template, pass jokes variable into it
+    return render_template("jokes.html", jokes=jokes)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    search = request.form.get("search")
+    # find all docs from jokes collection in MongoDB
+    jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
     # render jokes.html template, pass jokes variable into it
     return render_template("jokes.html", jokes=jokes)
 
