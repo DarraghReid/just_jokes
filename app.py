@@ -182,6 +182,7 @@ def delete_joke(joke_id):
     flash("Joke removed")
     return redirect(url_for("get_jokes"))
 
+
 # tell app how and where to run application
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

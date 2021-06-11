@@ -4,53 +4,78 @@
 <!-- inject contents into "block content" from base.html -->
 {% block content %}
 
-<!-- search form -->
-<div class="row">
-    <div class="col-8 offset-2">
-        <form method="POST" action="{{ url_for('search') }}">
-  <!-- username -->
-            <div class="mb-4">
-                <label for="search" class="form-label">Search Jokes</label>
-                <input type="text" class="form-control" id="search" name="search" required>
-            </div>
-  <!-- sign in button -->
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </form>
-    </div>
-</div>
+    <h1 class="m-4 text-center">JustJokes</h1>
 
-  {% if jokes|length > 0 %}
-  <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->
-      {% for joke in jokes %}
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{ joke.img_url }}" class="card-img-top" alt="joke-related image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ joke.joke_title }}</h5>
-                        <p class="card-text">{{ joke.joke_description }}</p>
-                        <div class="text-center">
-                          <button type="button" class="btn btn-primary">Expand</button>
-                        </div>
-                        <p class="card-text">By: {{ joke.joke_teller }}</p>
+    <!-- search controls -->
+    <div class="search-controls mb-4">
+        <div class="row">
+            <!-- sort by dropdown -->
+            <div class="dropdown col-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">All</a></li>
+                    <li><a class="dropdown-item" href="#">Oldest first</a></li>
+                    <li><a class="dropdown-item" href="#">Newest first</a></li>
+                </ul>
+            </div>
+            <!-- search bar -->
+            <div class="col-6">
+                <form method="POST" action="{{ url_for('search') }}">
+            <!-- search word input -->
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Search jokes" required>
                     </div>
-                    <div class="card-footer">
-  <!-- only joke's teller and admin can edit or delete joke -->
-                        {% if session.user|lower == joke.joke_teller|lower %}
-                          <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                          <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
-                        {% endif %}
-                        <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                        <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+            <!-- search button -->
+                    <div class="text-center mb-2">
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-                </div>
+                </form>
+            </div>
+            <!-- add joke button -->
+            <div class="col-3">
+                <i class="fas fa-plus-circle"></i>
             </div>
         </div>
-      {% endfor %}
-  {% else %}
-        <h3>no results</h3>
-  {% endif %}
+    </div>
 
+    <section class="jokes-container">
+        {% if jokes|length > 0 %}
+        <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->
+                <div class="container">
+                    <div class="row">
+                    {% for joke in jokes %}
+                        <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2">
+                            <div class="card mb-4 text-center">
+                                <img src="{{ joke.img_url }}" class="card-img-top" alt="joke-related image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ joke.joke_title }}</h5>
+                                    <div class="joke_description mb-3">
+                                        <p class="card-text">{{ joke.joke_description | truncate(50) }}</p>
+                                    </div>
+                                    <div class="text-center mb-3">
+                                        <button type="button" class="btn btn-primary">Expand</button>
+                                    </div>
+                                    <p class="card-text">By: {{ joke.joke_teller }}</p>
+                                    {% if session.user|lower == joke.joke_teller|lower %}
+                                        <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                        <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
+                                    {% endif %}
+                                    <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                    <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+                                </div>
+                                
+            <!-- only joke's teller and admin can edit or delete joke -->
+                                    
+                            </div>
+                        </div>
+                    {% endfor %}            
+                    </div>
+                </div>
+            
+        {% else %}
+                <h3>no results</h3>
+        {% endif %}
+    </section>
 {% endblock %}
