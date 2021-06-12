@@ -1,0 +1,58 @@
+<!-- button to display full joke on modal -->
+<button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Expand</button>
+<!-- modal to display full joke -->
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- modal joke title -->
+                <h5 class="modal-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- modal joke description -->
+                <p>{{ modal_description }}</p>
+                <!-- user who posted joke -->
+                <p class="card-text">Posted by: {{ joke.joke_teller }}</p>
+                <!-- only display delete and edit buttons to user who posted joke -->
+                {% if session.user|lower == joke.joke_teller|lower %}
+                    <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                    <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
+                {% endif %}
+                <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+document.querySelectorAll(".modal-btn").forEach(btn => btn.addEventListener("mousedown", modalDescription));
+
+function modalDescription(e) {
+    if (e.target.className = "modal-btn") {
+        console.log(e)
+
+        // elements displayed on card
+        cardImg = e.target.offsetParent.children[0];
+        cardTitle = e.target.offsetParent.children[1].children[0];
+        cardDesc = e.target.offsetParent.children[1].children[1].children[0];
+        cardUser = e.target.offsetParent.children[1].children[3];
+
+        // corresponding elements displayed on modal
+        modalTitle = e.target.nextElementSibling.children[0].children[0].children[0].children[0];
+        modalDesc = e.target.nextElementSibling.children[0].children[0].children[1].children[0];
+        modalUser = e.target.nextElementSibling.children[0].children[0].children[1].children[1];
+
+        modalDesc.innerHTML = cardDesc.innerHTML;
+        console.log(modalDesc.innerHTML);
+
+
+        console.log(cardImg);
+        console.log(cardTitle);
+        console.log(cardDesc);
+        console.log(cardUser);
+        console.log(modalTitle);
+        console.log(modalDesc);
+        console.log(modalUser);
+    };
+};
