@@ -118,73 +118,32 @@ def profile(username):
     # find all docs from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find())
 
-    # render template only if session user is truthy
+    # find all favourites from user_favourites collection in MongoDB
+    fav_jokes = list(mongo.db.user_favourites.find())
+
+    # render template with above variables only if session user is truthy
     if session["user"]:
-        return render_template("profile.html", username=username, jokes=jokes)
+        return render_template("profile.html", username=username, jokes=jokes, fav_jokes=fav_jokes)
 
     return redirect(url_for("sign_in"))
 
 
-"""@app.route("/add_fav/<joke_id>")
-def add_fav(joke_id):
-    # Check if ObjectId is valid
-    if ObjectId.is_valid(game_id):
-        joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-    else:
-        joke = mongo.db.jokes.find_one({"joke_title": joke_id})
-
-    # Construct new dicitonary
-    fav_joke = {
-        "joke_title": joke.get("joke_title"),
-        "joke_description": joke.get("joke_description"),
-        "img_url": joke.get("img_url"),
-        "for_children": joke.get("for_children"),
-        "joke_teller": joke.get("joke_teller"),
-    }
-
-    # Check if a user has already added a game with the same to the db
-    existing_data = mongo.db.users.find_one(
-        {"$and": [{"username": session["user"]},
-                  {"joke_title": joke.get("joke_title")}]})
-
-    if existing_data is None:
-        mongo.db.users.update(
-            {"_id": ObjectId(joke_id)},
-            {"$push": {"Favs": fav_joke}}
-        )
-        flash("Joke added to favourites")
-
-    elif existing_data:
-        flash("You've favourited this game,")
-
-    else:
-        mongo.db.users.update(
-            {"_id": ObjectId(joke_id)},
-            {"$push": {"Favs": fav_joke}}
-        )
-        flash("Joke added to favourites")
-
-    return redirect(url_for("profile"))
-"""
-
-
 @app.route("/add_fav/<joke_id>", methods=["GET", "POST"])
 def add_fav(joke_id):
-    if request.method == "POST":
-        joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-        # compile dictionary of joke details
-        fav_joke = {
-            "joke_title": joke.joke_title,
-            "joke_description": joke.joke_description,
-            "img_url": joke.img_url,
-            "for_children": joke.for_children,
-            "joke_teller": joke.joke_teller,
-            "favouriter": session["user"]
-        }
-        # insert dictionary into db
-        mongo.db.user_favourites.insert_one(fav_joke)
-        flash("Joke favourited!")
-        return redirect(url_for("get_jokes"))
+    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    # compile dictionary of joke details
+    fav_joke = {
+        "joke_title": joke["joke_title"],
+        "joke_description": joke["joke_description"],
+        "img_url": joke["img_url"],
+        "for_children": joke["for_children"],
+        "joke_teller": joke["joke_teller"],
+        "favouriter": session["user"]
+     }
+    # insert dictionary into db
+    mongo.db.user_favourites.insert_one(fav_joke)
+    flash("Joke favourited!")
+    return redirect(url_for("get_jokes"))
 
     return render_template("jokes.html")
 

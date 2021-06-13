@@ -40,12 +40,12 @@
     position: relative;
 }
 
-.modal-joke-title {
+.modal-joke-title, .fav-modal-joke-title {
     width: 100%;
     text-align: center;
 }
 
-.modal-joke-description {
+.modal-joke-description, .fav-modal-joke-description {
     width: 100%;
     text-align: center;
 }
@@ -58,4 +58,8 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+}
+
+.see-favs {
+    text-align: center;
 }

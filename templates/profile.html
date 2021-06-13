@@ -1,15 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- username variable is username of session user, as set if profile() view in app.py -->
+    <!-- username variable is username of session user, as set if profile() view in app.py -->
     <h1 class="m-4 text-center">{{ username }}</h1>
-    <h2 class="m-4 text-center">Your Jokes</h2>
+    <!-- display toggle. Toggle between user's own jokes and user's favourites -->
+    <section class="display-toggle">
+        <!-- header for user's own joke -->
+        <div class="own-jokes mb-3">
+            <h2 class="mt-4 mb-0 text-center">Your Jokes</h2>
+            <div class="text-center">
+                <a class="see-favs" href="#">See Favourites</a>
+            </div>
+        </div>
+        <!-- header for user's own joke. Default display is none -->
+        <div class="fav-jokes mb-3" style="display: none;">
+            <h2 class="mt-4 mb-0 text-center">Your Favourites</h2>
+            <div class="text-center">
+                <a class="see-own" href="#">See your jokes</a>
+            </div>
+        </div>    
+    </section>
 
+    
+    <!-- display all user's own jokes -->
     <section class="user-jokes-container">
         {% if jokes|length > 0 %}
                 <div class="container">
                     <div class="row">
-        <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->                
+                    <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->                
                     {% for joke in jokes %}
                         {% if session.user|lower == joke.joke_teller|lower %}
                             <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2">
@@ -73,13 +91,15 @@
                 <h3>no results</h3>
         {% endif %}
     </section>
-    <section class="user-favourites-container">
-        {% if jokes|length > 0 %}
+
+    <!-- display all user's favourited jokes. Default display is none -->
+    <section class="user-favourites-container" style="display: none;">
+        {% if fav_jokes|length > 0 %}
                 <div class="container">
                     <div class="row">
-        <!-- loop over each joke item retrieved in get_jokes() function, insert in card -->                
-                    {% for joke in jokes %}
-                        {% if session.user|lower == joke.joke_teller|lower %}
+                    <!-- loop over each joke item retrieved in fav_jokes() function, insert in card -->                
+                    {% for joke in fav_jokes %}
+                        {% if session.user|lower == joke.favouriter|lower %}
                             <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2">
                                 <div class="card mb-4 text-center">
                                     <!-- joke image -->
@@ -94,19 +114,19 @@
                                             <p class="alt-desc">{{ joke.joke_description }}</p>
                                         </div>
                                         <!-- button to display full joke on modal -->
-                                        <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
+                                        <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" onclick="displayModal('{{joke.joke_title}}', '{{joke.joke_description}}', '{{joke.joke_teller}}')">Expand</button>
                                         <!-- modal to display full joke -->
-                                        <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <!-- modal: joke title -->
-                                                        <h5 class="modal-joke-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
+                                                        <h5 class="fav-modal-joke-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- modal: joke description -->
-                                                        <p class="modal-joke-description">{{ modal_description }}</p>
+                                                        <p class="fav-modal-joke-description">{{ modal_description }}</p>
                                                         <!-- modal: user who posted joke -->
                                                         <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
                                                         <!-- modal: only display delete and edit buttons to user who posted joke -->

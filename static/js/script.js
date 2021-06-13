@@ -4,56 +4,64 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-/*// add click event listener on card expand buttons, call display modal function
-let expandBtns = document.querySelectorAll(".expand");
-expandBtns.forEach(expandBtn => expandBtn.addEventListener("click", displayModal));
 
-// add click event listener on modal exit button & background, call hide modal function
-document.querySelector(".exit").addEventListener("click", hideModal);
-document.querySelector(".modal-bg").addEventListener("click", hideModal);
+/*-----------------------------modals*/
 
-// display modal to user, display info specific to clicked card
-function displayModal() {
-  let display = document.querySelector(".modal-bg");
-  display.style.display = "flex";
-
-  // elements displayed on card
-  //cardImg = document.querySelector(".card-img-top");
-  cardTitle = document.querySelector(".card-title");
-  cardDesc = document.querySelector(".alt-desc");
-  cardUser = document.querySelector(".teller");
-
-  // corresponding elements displayed on modal
-  modalTitle = document.querySelector(".modal-title");
-  modalDesc = document.querySelector(".modal-text");
-  modalUser = document.querySelector(".modal-user");
-
-  // insert card info into modal elements
-  modalDesc.innerHTML = cardDesc.innerHTML;
-  modalTitle.innerHTML = cardTitle.innerHTML;
-  modalUser.innerHTML = cardUser.innerHTML;
-}
-
-
-}*/
-
-/*// add click event listener on modal exit button & background, call hide modal function
-document.querySelector(".exit").addEventListener("click", hideModal);
-document.querySelector(".modal-bg").addEventListener("click", hideModal);
-
-// hide modal
-function hideModal() {
-  let hide = document.querySelector(".modal-bg");
-  hide.style.display = "none";
-}*/
-
+// ensure correct information is displayed on modal
 function displayModal(title, description, teller) {
 
+  // store modal elements in variables
   modalTitle = document.querySelector(".modal-joke-title");
   modalDesc = document.querySelector(".modal-joke-description");
   postedBy = document.querySelector(".modal-joke-teller");
 
-  modalDesc.innerHTML = description;
+  // store modal elements in variables
+  favmodalTitle = document.querySelector(".fav-modal-joke-title");
+  favmodalDesc = document.querySelector(".fav-modal-joke-description");
+  favpostedBy = document.querySelector(".fav-modal-joke-teller");
+
+  // set innerHTML of modal elements to that of card elemets passed into displayModal()
   modalTitle.innerHTML = title;
+  modalDesc.innerHTML = description;
   postedBy.innerHTML = `Posted by: ${teller}`;
+
+  favmodalTitle.innerHTML = title;
+  favmodalDesc.innerHTML = description;
+  favpostedBy.innerHTML = `Posted by: ${teller}`;
+}
+
+
+/*-----------------------------profile*/
+
+// profile toggle
+// set click event listeners on "See Favourites" and "Your Jokes" links, call profileToggle() function
+document.querySelector(".see-own").addEventListener("click", profileToggle);
+document.querySelector(".see-favs").addEventListener("click", profileToggle);
+
+// See either user's favourites or user's own joke at a time. "Your Jokes" is the default
+function profileToggle(e) {
+  // store "Your Jokes" and "Your Favourites" headings in variables
+  let favsHead =  document.querySelector(".fav-jokes");
+  let jokesHead = document.querySelector(".own-jokes");
+
+  // store "Your Jokes" and "Your Favourites" sections in variables
+  let favs =  document.querySelector(".user-favourites-container");
+  let jokes= document.querySelector(".user-jokes-container");
+
+  // ensure that only one heading at a time is displayed
+  if (e.target.className == "see-own") {
+    favsHead.style.display = "none";
+    jokesHead.style.display = "block";
+
+    favs.style.display = "none";
+    jokes.style.display = "block";
+  }
+  // ensure that only the corresponding section of the heading is displayed
+  else if (e.target.className == "see-favs") {
+    jokesHead.style.display = "none";
+    favsHead.style.display = "block";
+
+    jokes.style.display = "none";
+    favs.style.display = "block";
+  }
 }
