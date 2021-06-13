@@ -40,12 +40,12 @@
     position: relative;
 }
 
-.modal-title {
+.modal-joke-title {
     width: 100%;
     text-align: center;
 }
 
-.modal_description {
+.modal-joke-description {
     width: 100%;
     text-align: center;
 }

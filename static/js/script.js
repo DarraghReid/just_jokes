@@ -4,7 +4,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-// add click event listener on card expand buttons, call display modal function
+/*// add click event listener on card expand buttons, call display modal function
 let expandBtns = document.querySelectorAll(".expand");
 expandBtns.forEach(expandBtn => expandBtn.addEventListener("click", displayModal));
 
@@ -34,8 +34,26 @@ function displayModal() {
   modalUser.innerHTML = cardUser.innerHTML;
 }
 
+
+}*/
+
+/*// add click event listener on modal exit button & background, call hide modal function
+document.querySelector(".exit").addEventListener("click", hideModal);
+document.querySelector(".modal-bg").addEventListener("click", hideModal);
+
 // hide modal
 function hideModal() {
   let hide = document.querySelector(".modal-bg");
   hide.style.display = "none";
+}*/
+
+function displayModal(title, description, teller) {
+
+  modalTitle = document.querySelector(".modal-joke-title");
+  modalDesc = document.querySelector(".modal-joke-description");
+  postedBy = document.querySelector(".modal-joke-teller");
+
+  modalDesc.innerHTML = description;
+  modalTitle.innerHTML = title;
+  postedBy.innerHTML = `Posted by: ${teller}`;
 }
