@@ -56,8 +56,6 @@ def get_jokes():
             (today.month, today.day) < (born.month, born.day))
 
     user_age = calculate_age(dob)
-    message = "User is " + str(user_age)
-    print(message)
 
     # find all jokes from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find())
