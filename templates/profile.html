@@ -65,7 +65,7 @@
                                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                                         {% endif %}
                                                         <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                        <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                        <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,7 +78,7 @@
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
                                             <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                            <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+                                            <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                                         {% endif %}
                                                         <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                        <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                        <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,8 +147,8 @@
                                             <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
-                                            <a href=""><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                            <a href=""><i class="fas fa-thumbs-up" data-bs-toggle="tooltip" title="Like"></i></a>
+                                        <a href="{{ url_for('remove_fav', joke_id=joke._id) }}"><i class="fas fa-minus-circle" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
+                                        <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                         {% endif %}
                                     </div>
                                 </div>

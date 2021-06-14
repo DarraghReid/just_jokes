@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -27,23 +28,59 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# decorator with route to get_jokes() function
-# it will redirect to/call this function when attached to a url
-# this function renders jokes.html?
 @app.route("/")
 @app.route("/get_jokes")
 def get_jokes():
-    # find all docs from jokes collection in MongoDB
+
+    # find user's date of birth from the database
+    db_dob = mongo.db.users.find_one(
+        {"username": session["user"]})["date_of_birth"]
+
+    # get user's year of birth from db_dob
+    user_y = int(db_dob[0:4])
+
+    # get user's month of birth from db_dob
+    user_m = int(db_dob[5:7])
+
+    # get user's day of birth from db_dob
+    user_d = int(db_dob[8:])
+
+    # make datetime object out of dob info
+    dob = datetime.date(user_y, user_m, user_d)
+
+    # calculate user's dob
+    def calculate_age(born):
+        # today's date
+        today = datetime.datetime.today()
+        return today.year - born.year - (
+            (today.month, today.day) < (born.month, born.day))
+
+    user_age = calculate_age(dob)
+    message = "User is " + str(user_age)
+    print(message)
+
+    # find all jokes from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find())
+
+    # find all age appropriate jokes from jokes collection in MongoDB
+    age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+
+    # find all favourites from user_favourites collection in MongoDB
+    fav_jokes = list(mongo.db.user_favourites.find())
+
     # render jokes.html template, pass jokes variable into it
-    return render_template("jokes.html", jokes=jokes)
+    return render_template(
+        "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
+        age_app_jokes=age_app_jokes)
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     search = request.form.get("search")
+
     # find all docs from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
+
     # render jokes.html template, pass jokes variable into it
     return render_template("jokes.html", jokes=jokes)
 
@@ -123,14 +160,18 @@ def profile(username):
 
     # render template with above variables only if session user is truthy
     if session["user"]:
-        return render_template("profile.html", username=username, jokes=jokes, fav_jokes=fav_jokes)
+        return render_template(
+            "profile.html",
+            username=username, jokes=jokes, fav_jokes=fav_jokes)
 
     return redirect(url_for("sign_in"))
 
 
 @app.route("/add_fav/<joke_id>", methods=["GET", "POST"])
 def add_fav(joke_id):
+    # search users for joke passed into view
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
     # compile dictionary of joke details
     fav_joke = {
         "joke_title": joke["joke_title"],
@@ -140,12 +181,30 @@ def add_fav(joke_id):
         "joke_teller": joke["joke_teller"],
         "favouriter": session["user"]
      }
-    # insert dictionary into db
-    mongo.db.user_favourites.insert_one(fav_joke)
-    flash("Joke favourited!")
-    return redirect(url_for("get_jokes"))
+
+    # search user_favourites for indentical joke
+    already_favd = mongo.db.user_favourites.find_one(
+        {"joke_description": joke["joke_description"]})
+
+    # if jokes match, inform user they have already favourited this joke
+    if joke["joke_description"] == already_favd["joke_description"]:
+        flash("Joke already favourited")
+        return redirect(url_for("get_jokes"))
+    # otherwise, insert fav_joke into dictionary
+    else:
+        mongo.db.user_favourites.insert_one(fav_joke)
+        flash("Joke favourited!")
+        return redirect(url_for("get_jokes"))
 
     return render_template("jokes.html")
+
+
+@app.route("/remove_fav/<joke_id>")
+def remove_fav(joke_id):
+    mongo.db.user_favourites.remove({"_id": ObjectId(joke_id)})
+    flash("Removed from favourites")
+    return redirect(url_for(
+            "profile", username=session["user"]))
 
 
 @app.route("/sign_out")

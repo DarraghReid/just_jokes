@@ -72,3 +72,73 @@ function modalDescription(e) {
         <p class="modal-user text-center">Posted by:</p>
     </div>
 </div>
+
+<!-- sort by dropdown -->
+<div class="dropdown col-3">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Sort by
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">All</a></li>
+        <li><a class="dropdown-item" href="#">Oldest first</a></li>
+        <li><a class="dropdown-item" href="#">Newest first</a></li>
+    </ul>
+</div>
+
+"""
+    # calculate current date
+    current_y = int(date.today().year)
+    current_m = int(date.today().month)
+    current_d = int(date.today().day)
+
+    print(current_y)
+    print(current_m)
+    print(current_d)
+
+    # find user's date of birth from the database
+    db_dob = mongo.db.users.find_one(
+        {"username": session["user"]})["date_of_birth"]
+    print(db_dob)
+
+    # get user's year of birth from db_dob
+    user_y = int(db_dob[0:4])
+    print(user_y)
+
+    # get user's month of birth from db_dob
+    user_m = int(db_dob[5:7])
+    print(user_m)
+
+    # get user's day of birth from db_dob
+    user_d = int(db_dob[8:])
+    print(user_d)
+
+    year_diff = current_y - user_y
+
+    if year_diff >= 19:
+        year_ok = True
+    elif year_diff == 18:
+        year_exact = True
+    else:
+        year_ok = False
+        year_exact = False
+
+    if user_m >= current_m:
+        month_ok = True
+    else:
+        month_ok = False
+
+    if user_d >= current_d:
+        day_ok = True
+    else:
+        day_ok = False
+
+    if year_ok:
+        joker = "adult"
+    elif year_exact:
+        if day_ok and month_ok:
+            joker = "adult"
+    else:
+        joker = "child"
+
+    print(joker)
+    """
