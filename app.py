@@ -74,8 +74,8 @@ def get_jokes():
             age_app_jokes=age_app_jokes)
 
     else:
-        flash("Sign in the view jokes!")
-        return redirect(url_for("sign_up.html"))
+        flash("Sign in to view jokes!")
+        return redirect(url_for(sign_up))
 
 
 # takes search word from search input, display list of jokes with that word
