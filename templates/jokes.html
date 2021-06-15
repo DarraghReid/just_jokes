@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <!-- if user is an adult, display all jokes -->
     {% if user_age|int >= 18 %}
         <section class="jokes-container">
@@ -48,9 +49,9 @@
                                         <h5 class="card-title">{{ joke.joke_title }}</h5>
                                         <div class="joke_description mb-3">
                                             <!-- first 50 characters of joke description -->
-                                            <p class="card-text" style="display: none;">{{ joke.joke_description|truncate(50) }}</p>
+                                            <p class="card-text">{{ joke.joke_description|truncate(50) }}</p>
                                             <!-- hidden, untruncated so modal can display full description -->
-                                            <p class="alt-desc">{{ joke.joke_description }}</p>
+                                            <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                         </div>
                                         <!-- button to display full joke on modal -->
                                         <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
@@ -68,13 +69,6 @@
                                                         <p class="modal-joke-description">{{ modal_description }}</p>
                                                         <!-- modal: user who posted joke -->
                                                         <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
-                                                        <!-- modal: only display delete and edit buttons to user who posted joke -->
-                                                        {% if session.user|lower == joke.joke_teller|lower %}
-                                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                                                            <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
-                                                        {% endif %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                        <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,10 +77,33 @@
                                         <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
                                         <!-- only display delete and edit buttons to user who posted joke -->
                                         {% if session.user|lower == joke.joke_teller|lower %}
-                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!-- confirmation message -->
+                                                            <h5 class="modal-joke-title" id="exampleModalLabel">Are you sure you want to delete this joke?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- modal: joke title -->
+                                                            <h5 class="modal-joke-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
+                                                            <!-- modal: joke description -->
+                                                            <p class="modal-joke-description">{{ joke.joke_title}}</p>
+                                                            <!-- modal: user who posted joke -->
+                                                            <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
-                                            <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
+                                            <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears like" data-bs-toggle="tooltip" title="Like"></i></a>
                                             <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>                           
                                         {% endif %}
                                     </div>
@@ -117,9 +134,9 @@
                                         <h5 class="card-title">{{ joke.joke_title }}</h5>
                                         <div class="joke_description mb-3">
                                             <!-- first 50 characters of joke description -->
-                                            <p class="card-text" style="display: none;">{{ joke.joke_description|truncate(50) }}</p>
+                                            <p class="card-text">{{ joke.joke_description|truncate(50) }}</p>
                                             <!-- hidden, untruncated so modal can display full description -->
-                                            <p class="alt-desc">{{ joke.joke_description }}</p>
+                                            <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                         </div>
                                         <!-- button to display full joke on modal -->
                                         <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
@@ -137,13 +154,6 @@
                                                         <p class="modal-joke-description">{{ joke.joke_description }}</p>
                                                         <!-- modal: user who posted joke -->
                                                         <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
-                                                        <!-- modal: only display delete and edit buttons to user who posted joke -->
-                                                        {% if session.user|lower == joke.joke_teller|lower %}
-                                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                                                            <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
-                                                        {% endif %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                        <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,7 +162,30 @@
                                         <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
                                         <!-- only display delete and edit buttons to user who posted joke -->
                                         {% if session.user|lower == joke.joke_teller|lower %}
-                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#deleteModal2"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                            <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!-- confirmation message -->
+                                                            <h5 class="modal-joke-title" id="exampleModalLabel">Are you sure you want to delete this joke?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- modal: joke title -->
+                                                            <h5 class="modal-joke-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
+                                                            <!-- modal: joke description -->
+                                                            <p class="modal-joke-description">{{ joke.joke_title}}</p>
+                                                            <!-- modal: user who posted joke -->
+                                                            <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
                                             <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>

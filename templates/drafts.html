@@ -144,6 +144,10 @@ function modalDescription(e) {
     """
 
     """
+
+    already_liked = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    print(already_liked)
+
     # find all docs from jokes collection in MongoDB
     child_jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
 
@@ -155,3 +159,94 @@ function modalDescription(e) {
     
     print(jokes_list)
     """
+
+
+
+    # if jokes match, inform user they have already favourited this joke
+    if already_liked:
+        flash("You've already liked this joke")
+        return redirect(url_for("get_jokes"))
+    # otherwise, insert fav_joke into dictionary
+    else:
+        # insert dictionary into db
+        mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+        flash("You've liked this joke!")
+        return redirect(url_for("get_jokes"))
+        # return redirect(url_for("add_joke(your_jokes"))
+
+        """
+        # if user's name is in the liked_by array
+        if name == session['user']:
+            if liked_by_array.index(liked_by) >= 0:
+                # inform user they have already liked this joke.
+                flash("You've already liked this joke")
+                return redirect(url_for("get_jokes"))
+                # if the user's name is not in the liked_by array
+            else:
+                # insert user's name into the liked_by array
+                liked_by_array.append(session['user'])
+
+                # compile dictionary of joke details
+                liked_joke = {
+                    "joke_title": joke["joke_title"],
+                    "joke_description": joke["joke_description"],
+                    "img_url": joke["img_url"],
+                    "for_children": joke["for_children"],
+                    "joke_teller": joke["joke_teller"],
+                    "likes": new_likes,
+                    "liked_by": liked_by_array
+                }
+
+                # insert dictionary into db
+                mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+                flash("You've liked this joke!")
+                return redirect(url_for("get_jokes"))
+        else:
+            # insert user's name into the liked_by array
+            liked_by_array.append(session['user'])
+
+            # compile dictionary of joke details
+            liked_joke = {
+                "joke_title": joke["joke_title"],
+                "joke_description": joke["joke_description"],
+                "img_url": joke["img_url"],
+                "for_children": joke["for_children"],
+                "joke_teller": joke["joke_teller"],
+                "likes": new_likes,
+                "liked_by": liked_by_array
+            }
+
+            # insert dictionary into db
+            mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+            flash("You've liked this joke!")
+            return redirect(url_for("get_jokes"))
+            """
+
+            <!-- seen only if joke has been liked -->
+            <a href="{{ url_for('unlike_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears unlike" style="display: none;" data-bs-toggle="tooltip" title="Unlike"></i></a>
+
+            // like button toggle
+// set click event listeners on "like" and "unlike" buttons, call likeToggle() function
+document.addEventListener("click", likeToggle);
+document.addEventListener("click", likeToggle);
+
+// See either "like" or "unlike" button at a time. "like" is the default
+function likeToggle(e) {
+  console.log(e.target)
+  // store "like" button in a variable
+  let like =  document.querySelector(".like");
+
+  // store "unlike" button in a variable
+  let unlike =  document.querySelector(".unlike");
+
+  // ensure that only one heading at a time is displayed
+  if (e.target.className.contains == "like") {
+    like.style.display = "none";
+    unlike.style.display = "inline";
+  }
+  // ensure that only the corresponding section of the heading is displayed
+  else if (e.target.className.contains == "unlike") {
+    like.style.display = "inline";
+    unlike.style.display = "none";
+  }
+}

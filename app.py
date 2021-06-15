@@ -213,12 +213,90 @@ def add_fav(joke_id):
     return render_template("jokes.html")
 
 
+@app.route("/like_joke/<joke_id>", methods=["GET", "POST"])
+def like_joke(joke_id):
+    # search users for joke passed into view
+    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
+    # determine how many like the joke currently has
+    prev_likes = joke["likes"]
+
+    # increment joke's likes by 1
+    new_likes = prev_likes + 1
+
+    # determine who is liking the joke
+    liked_by = session['user']
+
+    # get the array of users who like the joke
+    liked_by_array = joke["liked_by"]
+
+    # loop through array to check if user has already liked the joke
+    for name in liked_by_array:
+        # if user's name is in the array, not_liked is False, otherwise it's True
+        # use negative values to avoid duplication
+        if name == session["user"]:
+            not_liked = False
+        elif name != session["user"]:
+            not_liked = True
+
+    # if the user hasn't liked the joke, add user's name to array of users who liked the joke
+    if not_liked:
+        # insert user's name into the liked_by array
+        liked_by_array.append(session['user'])
+
+        # compile dictionary of joke details
+        liked_joke = {
+            "joke_title": joke["joke_title"],
+            "joke_description": joke["joke_description"],
+            "img_url": joke["img_url"],
+            "for_children": joke["for_children"],
+            "joke_teller": joke["joke_teller"],
+            "likes": new_likes,
+            "liked_by": liked_by_array
+        }
+
+        # insert dictionary into db
+        mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+        flash("You've liked this joke!")
+        return redirect(url_for("get_jokes"))
+
+    # if user hasn't liked the joke
+    else:
+        # inform user they have already liked this joke.
+        flash("You've already liked this joke")
+        return redirect(url_for("get_jokes"))
+
+
 @app.route("/remove_fav/<joke_id>")
 def remove_fav(joke_id):
     mongo.db.user_favourites.remove({"_id": ObjectId(joke_id)})
     flash("Removed from favourites")
     return redirect(url_for(
             "profile", username=session["user"]))
+
+
+@app.route("/unlike_joke/<joke_id>")
+def unlike_joke(joke_id):
+    # search users for joke passed into view
+    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
+    prev_likes = joke["likes"]
+    new_likes = prev_likes - 1
+
+    # compile dictionary of joke details
+    liked_joke = {
+        "joke_title": joke["joke_title"],
+        "joke_description": joke["joke_description"],
+        "img_url": joke["img_url"],
+        "for_children": joke["for_children"],
+        "joke_teller": joke["joke_teller"],
+        "likes": new_likes
+    }
+
+    # insert dictionary into db
+    mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+    flash("You've unliked this joke")
+    return redirect(url_for("get_jokes"))
 
 
 @app.route("/sign_out")
@@ -234,13 +312,16 @@ def add_joke():
     if request.method == "POST":
         # set for_children to "on" in db if for_children switch is truthy
         for_children = "on" if request.form.get("for_children") else "off"
+
         # compile dictionary of joke details
         joke = {
             "joke_title": request.form.get("joke_title"),
             "joke_description": request.form.get("joke_description"),
             "img_url": request.form.get("img_url"),
             "for_children": for_children,
-            "joke_teller": session["user"]
+            "joke_teller": session["user"],
+            "likes": 0,
+            "liked_by": ["name"]
         }
         # insert dictionary into db
         mongo.db.jokes.insert_one(joke)

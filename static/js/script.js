@@ -38,7 +38,7 @@ function displayModal(title, description, teller) {
 document.querySelector(".see-own").addEventListener("click", profileToggle);
 document.querySelector(".see-favs").addEventListener("click", profileToggle);
 
-// See either user's favourites or user's own joke at a time. "Your Jokes" is the default
+// See either user's favourites or user's own jokes at a time. "Your Jokes" is the default
 function profileToggle(e) {
   // store "Your Jokes" and "Your Favourites" headings in variables
   let favsHead =  document.querySelector(".fav-jokes");

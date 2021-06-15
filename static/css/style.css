@@ -2,6 +2,14 @@ body {
     background-image: linear-gradient(to right, rgb(245, 180, 60), rgb(245, 188, 31), rgb(245, 180, 60));
     color: black;
 }
+/*---------------------------------------------------site wide features*/
+
+.btn {
+    background-color: rgba(0, 0, 0);
+    border: rgba(0, 0, 0);
+}
+
+/*---------------------------------------------------header*/
 
 .navbar {
     background-image: linear-gradient(to right, rgb(245, 180, 60), rgb(245, 188, 31), rgb(245, 180, 60));
@@ -12,19 +20,20 @@ body {
     color: black;
 }
 
-.btn {
-    background-color: rgba(0, 0, 0);
-    border: rgba(0, 0, 0);
-}
-
 .fas, .navbar-brand, .nav-link, .nav-item, h1, h2, h5, a {
     color: rgba(0, 0, 0);
 }
+
+/*---------------------------------------------------search controls*/
 
 .jj-head {
     margin: 0;
     padding: 25px;
     color: black;
+}
+
+.flash {
+    background-color: white;
 }
 
 .search-controls {
@@ -38,6 +47,8 @@ body {
 .fa-plus-circle {
     font-size: 32px;
 }
+
+/*---------------------------------------------------cards*/
 
 .card {
     min-height: 450px;
@@ -92,16 +103,10 @@ body {
     text-align: center;
 }
 
-.exit {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 5px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
 .see-favs {
     text-align: center;
+}
+
+.unlike {
+    color: blue;
 }
