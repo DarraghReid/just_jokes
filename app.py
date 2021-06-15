@@ -28,11 +28,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# gets all jokes, age appropriate jokes, renders jokes.html
-@app.route("/")
-@app.route("/get_jokes")
-def get_jokes():
-
+# calculates user's age
+def get_age():
     if "user" in session:
         # find user's date of birth from the database
         db_dob = mongo.db.users.find_one(
@@ -58,24 +55,30 @@ def get_jokes():
                 (today.month, today.day) < (born.month, born.day))
 
         user_age = calculate_age(dob)
+        return user_age
 
-        # find all jokes from jokes collection in MongoDB
-        jokes = list(mongo.db.jokes.find())
 
-        # find all age appropriate jokes from jokes collection in MongoDB
-        age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+# gets all jokes, age appropriate jokes, renders jokes.html
+@app.route("/")
+@app.route("/get_jokes")
+def get_jokes():
 
-        # find all favourites from user_favourites collection in MongoDB
-        fav_jokes = list(mongo.db.user_favourites.find())
+    # get user's age from get_age()
+    user_age = get_age()
 
-        # render jokes.html template, pass jokes variable into it
-        return render_template(
-            "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
-            age_app_jokes=age_app_jokes)
+    # find all jokes from jokes collection in MongoDB
+    jokes = list(mongo.db.jokes.find())
 
-    else:
-        flash("Sign in to view jokes!")
-        return redirect(url_for(sign_up))
+    # find all age appropriate jokes from jokes collection in MongoDB
+    age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+
+    # find all favourites from user_favourites collection in MongoDB
+    fav_jokes = list(mongo.db.user_favourites.find())
+
+    # render jokes.html template, pass variables into it
+    return render_template(
+        "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
+        age_app_jokes=age_app_jokes)
 
 
 # takes search word from search input, display list of jokes with that word
@@ -84,7 +87,8 @@ def get_jokes():
 def search():
     search = request.form.get("search")
 
-    user_age = get_jokes()
+    # get user's age from get_age()
+    user_age = get_age()
 
     # find all age appropriate jokes from jokes collection in MongoDB
     # age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
@@ -106,7 +110,7 @@ def sign_up():
         # inform user if username has been taken
         if user:
             flash("username already exists")
-            return redirect(url_for("sign_up.html"))
+            return redirect(url_for("sign_up"))
 
         # compile dictionary of user's data
         sign_up = {
