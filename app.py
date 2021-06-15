@@ -33,56 +33,58 @@ mongo = PyMongo(app)
 @app.route("/get_jokes")
 def get_jokes():
 
-    # find user's date of birth from the database
-    db_dob = mongo.db.users.find_one(
-        {"username": session["user"]})["date_of_birth"]
+    if "user" in session:
+        # find user's date of birth from the database
+        db_dob = mongo.db.users.find_one(
+            {"username": session["user"]})["date_of_birth"]
 
-    # get user's year of birth from db_dob
-    user_y = int(db_dob[0:4])
+        # get user's year of birth from db_dob
+        user_y = int(db_dob[0:4])
 
-    # get user's month of birth from db_dob
-    user_m = int(db_dob[5:7])
+        # get user's month of birth from db_dob
+        user_m = int(db_dob[5:7])
 
-    # get user's day of birth from db_dob
-    user_d = int(db_dob[8:])
+        # get user's day of birth from db_dob
+        user_d = int(db_dob[8:])
 
-    # make datetime object out of dob info
-    dob = datetime.date(user_y, user_m, user_d)
+        # make datetime object out of dob info
+        dob = datetime.date(user_y, user_m, user_d)
 
-    # calculate user's dob
-    def calculate_age(born):
-        # today's date
-        today = datetime.datetime.today()
-        return today.year - born.year - (
-            (today.month, today.day) < (born.month, born.day))
+        # calculate user's dob
+        def calculate_age(born):
+            # today's date
+            today = datetime.datetime.today()
+            return today.year - born.year - (
+                (today.month, today.day) < (born.month, born.day))
 
-    user_age = calculate_age(dob)
+        user_age = calculate_age(dob)
 
-    # find all jokes from jokes collection in MongoDB
-    jokes = list(mongo.db.jokes.find())
+        # find all jokes from jokes collection in MongoDB
+        jokes = list(mongo.db.jokes.find())
 
-    # find all age appropriate jokes from jokes collection in MongoDB
-    age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+        # find all age appropriate jokes from jokes collection in MongoDB
+        age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
 
-    # find all favourites from user_favourites collection in MongoDB
-    fav_jokes = list(mongo.db.user_favourites.find())
+        # find all favourites from user_favourites collection in MongoDB
+        fav_jokes = list(mongo.db.user_favourites.find())
 
-    # render jokes.html template, pass jokes variable into it
-    return render_template(
-        "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
-        age_app_jokes=age_app_jokes)
+        # render jokes.html template, pass jokes variable into it
+        return render_template(
+            "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
+            age_app_jokes=age_app_jokes)
 
-    # pass user_age to search() view
-    search(user_age)
+    else:
+        flash("Sign in the view jokes!")
+        return redirect(url_for("sign_up.html"))
 
 
 # takes search word from search input, display list of jokes with that word
 @app.route("/search", methods=["GET", "POST"])
 # take user_age from get_jokes() view
-def search(user_age):
+def search():
     search = request.form.get("search")
 
-    print(user_age)
+    user_age = get_jokes()
 
     # find all age appropriate jokes from jokes collection in MongoDB
     # age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
@@ -91,7 +93,7 @@ def search(user_age):
     jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
 
     # render jokes.html template, pass jokes variable into it
-    return render_template("jokes.html", jokes=jokes)
+    return render_template("jokes.html", jokes=jokes, user_age=user_age)
 
 
 @app.route("/sign_up", methods=["GET", "POST"])

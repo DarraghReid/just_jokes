@@ -32,7 +32,7 @@
         </div>
     </div>
     <!-- if user is an adult, display all jokes -->
-    {% if user_age >= 18 %}
+    {% if user_age|int >= 18 %}
         <section class="jokes-container">
             {% if jokes|length > 0 %}
                 <div class="container">
