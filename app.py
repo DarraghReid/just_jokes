@@ -28,6 +28,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# gets all jokes, age appropriate jokes, renders jokes.html
 @app.route("/")
 @app.route("/get_jokes")
 def get_jokes():
@@ -71,10 +72,20 @@ def get_jokes():
         "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
         age_app_jokes=age_app_jokes)
 
+    # pass user_age to search() view
+    search(user_age)
 
+
+# takes search word from search input, display list of jokes with that word
 @app.route("/search", methods=["GET", "POST"])
-def search():
+# take user_age from get_jokes() view
+def search(user_age):
     search = request.form.get("search")
+
+    print(user_age)
+
+    # find all age appropriate jokes from jokes collection in MongoDB
+    # age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
 
     # find all docs from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
@@ -83,7 +94,6 @@ def search():
     return render_template("jokes.html", jokes=jokes)
 
 
-# GET is default
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -185,7 +195,7 @@ def add_fav(joke_id):
         {"joke_description": joke["joke_description"]})
 
     # if jokes match, inform user they have already favourited this joke
-    if joke["joke_description"] == already_favd["joke_description"]:
+    if already_favd:
         flash("Joke already favourited")
         return redirect(url_for("get_jokes"))
     # otherwise, insert fav_joke into dictionary

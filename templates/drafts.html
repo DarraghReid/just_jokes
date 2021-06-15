@@ -142,3 +142,16 @@ function modalDescription(e) {
 
     print(joker)
     """
+
+    """
+    # find all docs from jokes collection in MongoDB
+    child_jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
+
+    jokes_list = []
+
+    for joke in child_jokes:
+        if joke["for_children"] == "on":
+            jokes_list.append(joke)
+    
+    print(jokes_list)
+    """
