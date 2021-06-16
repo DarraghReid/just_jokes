@@ -20,7 +20,7 @@ if os.path.exists("env.py"):
     import env
 
 # Pagination activity limit
-PER_PAGE = 10
+PER_PAGE = 8
 
 # create instance of Flask in variable 'app'
 app = Flask(__name__)
@@ -144,7 +144,11 @@ def search():
     jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
 
     # render jokes.html template, pass jokes variable into it
-    return render_template("jokes.html", jokes=jokes, user_age=user_age)
+    return render_template(
+        "jokes.html",
+        jokes=jokes,
+        user_age=user_age
+        )
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -224,17 +228,10 @@ def profile(username):
         for name in favourites:
             if name == session["user"]:
                 fav_jokes.append(joke)
-                # print(joke)
-                # print(name)
-
-    print(fav_jokes)
-
-    # find all favourites from user_favourites collection in MongoDB
-    # fav_jokes = list(mongo.db.user_favourites.find())
 
     # pagination of favourite jokes
-    # fav_jokes_paginated = paginated(fav_jokes)
-    # pagination = pagination_args(fav_jokes)
+    fav_jokes_paginated = paginated(fav_jokes)
+    pagination = pagination_args(fav_jokes)
 
     # render template with above variables only if session user is truthy
     if session["user"]:
@@ -242,7 +239,9 @@ def profile(username):
             "profile.html",
             username=username,
             jokes=jokes,
-            fav_jokes=fav_jokes)
+            fav_jokes=fav_jokes_paginated,
+            pagination=pagination
+            )
 
     return redirect(url_for("sign_in"))
 
@@ -408,27 +407,35 @@ def add_joke():
 
 @app.route("/edit_joke/<joke_id>", methods=["GET", "POST"])
 def edit_joke(joke_id):
+
+    # find joke by id key in db
+    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
     if request.method == "POST":
         # set for_children to "on" in db if for_children switch is truthy
         for_children = "on" if request.form.get("for_children") else "off"
+
         # compile dictionary of joke details
         edited_joke = {
             "joke_title": request.form.get("joke_title"),
             "joke_description": request.form.get("joke_description"),
             "img_url": request.form.get("img_url"),
             "for_children": for_children,
-            "joke_teller": session["user"]
+            "joke_teller": session["user"],
+            "likes": joke["likes"],
+            "liked_by": joke["liked_by"],
+            "favouriter": joke["favouriter"]
         }
         # insert dictionary into db
         mongo.db.jokes.update({"_id": ObjectId(joke_id)}, edited_joke)
         flash("Joke Edited!")
         return redirect(url_for("get_jokes"))
-        # return redirect(url_for("add_joke(your_jokes"))
+        # return redirect(url_for("profile(your_jokes"))
 
-    # find joke by id key in db, convert id to bson format
-    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-
-    return render_template("edit_joke.html", joke=joke)
+    return render_template(
+        "edit_joke.html",
+        joke=joke
+        )
 
 
 @app.route("/delete_joke/<joke_id>")

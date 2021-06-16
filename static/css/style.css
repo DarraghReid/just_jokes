@@ -69,7 +69,8 @@ body {
 }
 
 .joke_description {
-    max-height: 50px;
+    max-height: 42px;
+    min-height: 42px;
     overflow: hidden;
 }
 
@@ -83,6 +84,10 @@ body {
     justify-content: center;
     align-items: center;
     display: none;
+}
+
+.likes {
+    margin-bottom: 4px;
 }
 
 .joke-modal {

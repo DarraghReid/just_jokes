@@ -103,8 +103,9 @@
                                             </div>
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
+                                            <p class="modal-text likes">{{ joke.likes }} liked this joke</p>
                                             <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears like" data-bs-toggle="tooltip" title="Like"></i></a>
-                                            <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>                           
+                                            <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -190,8 +191,9 @@
                                             </div>
                                             <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
                                         {% else %}
-                                            <a href=""><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
-                                            <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>                           
+                                            <p class="modal-text likes">{{ joke.likes }} liked this joke</p>
+                                            <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears like-fav" data-bs-toggle="tooltip" title="Like"></i></a>
+                                            <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart like-fav" data-bs-toggle="tooltip" title="Add to favourites"></i></a>                           
                                         {% endif %}
                                     </div>
                                 </div>

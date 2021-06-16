@@ -101,6 +101,11 @@
                         {% endif %}
                     {% endfor %}            
                     </div>
+                    {% for joke in jokes %}
+                        {% if session.user|lower == joke.joke_teller|lower %}
+                            {{ pagination.links }}
+                        {% endif %}
+                    {% endfor %}
                 </div>
         {% else %}
                 <h3>no results</h3>
@@ -208,6 +213,7 @@
                             </div>
                     {% endfor %}            
                     </div>
+                    {{ pagination.links }}
                 </div>
         {% else %}
                 <h3>no results</h3>
