@@ -1,10 +1,15 @@
 import os
+# to calculate user's age
 import datetime
+# for app functionality
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+# for pagination
+from flask_paginate import Pagination, get_page_args
+# to work with MongoDB
 from flask_pymongo import PyMongo
-# Needed to render object id. Mongodb stores its data in BSON format
+# to render object id. Mongodb stores its data in BSON format
 from bson.objectid import ObjectId
 # import password security features for registration page
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +19,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+# Pagination activity limit
+PER_PAGE = 10
 
 # create instance of Flask in variable 'app'
 app = Flask(__name__)
@@ -26,6 +33,24 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # create instance of PyMongo and pass the app into it
 # to ensure app is communicating with database
 mongo = PyMongo(app)
+
+
+# Pagination
+# https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+def paginated(jokes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+
+    return jokes[offset: offset + PER_PAGE]
+
+
+def pagination_args(jokes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(jokes)
+
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
 # calculates user's age
@@ -66,19 +91,41 @@ def get_jokes():
     # get user's age from get_age()
     user_age = get_age()
 
-    # find all jokes from jokes collection in MongoDB
-    jokes = list(mongo.db.jokes.find())
-
-    # find all age appropriate jokes from jokes collection in MongoDB
-    age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
-
     # find all favourites from user_favourites collection in MongoDB
     fav_jokes = list(mongo.db.user_favourites.find())
 
-    # render jokes.html template, pass variables into it
-    return render_template(
-        "jokes.html", jokes=jokes, fav_jokes=fav_jokes, user_age=user_age,
-        age_app_jokes=age_app_jokes)
+    if int(user_age) >= 18:
+        # find all jokes from jokes collection in MongoDB
+        jokes = list(mongo.db.jokes.find())
+
+        # pagination of jokes
+        jokes_paginated = paginated(jokes)
+        pagination = pagination_args(jokes)
+
+        # render jokes.html template, pass variables into it
+        return render_template(
+            "jokes.html",
+            jokes=jokes_paginated,
+            fav_jokes=fav_jokes,
+            user_age=user_age,
+            pagination=pagination,
+            )
+    else:
+        # find all age appropriate jokes from jokes collection in MongoDB
+        age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+
+        # pagination of age appropriate jokes
+        age_app_jokes_paginated = paginated(age_app_jokes)
+        pagination = pagination_args(age_app_jokes)
+
+        # render jokes.html template, pass variables into it
+        return render_template(
+            "jokes.html",
+            fav_jokes=fav_jokes,
+            user_age=user_age,
+            age_app_jokes=age_app_jokes_paginated,
+            pagination=pagination,
+            )
 
 
 # takes search word from search input, display list of jokes with that word
@@ -166,17 +213,36 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    fav_jokes = []
+
     # find all docs from jokes collection in MongoDB
     jokes = list(mongo.db.jokes.find())
 
+    # find all jokes that user has favourited
+    for joke in jokes:
+        favourites = joke["favouriter"]
+        for name in favourites:
+            if name == session["user"]:
+                fav_jokes.append(joke)
+                # print(joke)
+                # print(name)
+
+    print(fav_jokes)
+
     # find all favourites from user_favourites collection in MongoDB
-    fav_jokes = list(mongo.db.user_favourites.find())
+    # fav_jokes = list(mongo.db.user_favourites.find())
+
+    # pagination of favourite jokes
+    # fav_jokes_paginated = paginated(fav_jokes)
+    # pagination = pagination_args(fav_jokes)
 
     # render template with above variables only if session user is truthy
     if session["user"]:
         return render_template(
             "profile.html",
-            username=username, jokes=jokes, fav_jokes=fav_jokes)
+            username=username,
+            jokes=jokes,
+            fav_jokes=fav_jokes)
 
     return redirect(url_for("sign_in"))
 
@@ -186,28 +252,37 @@ def add_fav(joke_id):
     # search users for joke passed into view
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
 
-    # compile dictionary of joke details
-    fav_joke = {
-        "joke_title": joke["joke_title"],
-        "joke_description": joke["joke_description"],
-        "img_url": joke["img_url"],
-        "for_children": joke["for_children"],
-        "joke_teller": joke["joke_teller"],
-        "favouriter": session["user"]
-     }
+    # get the array of users who favourited the joke
+    favouriter_array = joke["favouriter"]
 
-    # search user_favourites for indentical joke
-    already_favd = mongo.db.user_favourites.find_one(
-        {"joke_description": joke["joke_description"]})
+    # loop through array to check if user has already liked the joke
+    for name in favouriter_array:
+        # if user's name is in the array,
+        # not_favourited is False, otherwise it's True
+        # use negative values to avoid duplication
+        if name == session["user"]:
+            not_favourited = False
+        elif name != session["user"]:
+            not_favourited = True
 
-    # if jokes match, inform user they have already favourited this joke
-    if already_favd:
-        flash("Joke already favourited")
-        return redirect(url_for("get_jokes"))
-    # otherwise, insert fav_joke into dictionary
-    else:
-        mongo.db.user_favourites.insert_one(fav_joke)
+    # if the user hasn't favourited the joke, add user's
+    # name to array of users who favourited the joke
+    if not_favourited:
+        # insert user's name into the favouriter_array array
+        favouriter_array.append(session['user'])
+
+        # update db with dictionary
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"favouriter": favouriter_array}})
+
         flash("Joke favourited!")
+        return redirect(url_for("get_jokes"))
+
+    # if user has favourited the joke
+    else:
+        # inform user they have already favou this joke.
+        flash("Joke already favourited")
         return redirect(url_for("get_jokes"))
 
     return render_template("jokes.html")
@@ -222,41 +297,38 @@ def like_joke(joke_id):
     prev_likes = joke["likes"]
 
     # increment joke's likes by 1
-    new_likes = prev_likes + 1
-
-    # determine who is liking the joke
-    liked_by = session['user']
+    new_likes = int(prev_likes) + 1
 
     # get the array of users who like the joke
     liked_by_array = joke["liked_by"]
 
     # loop through array to check if user has already liked the joke
     for name in liked_by_array:
-        # if user's name is in the array, not_liked is False, otherwise it's True
+        # if user's name is in the array,
+        # not_liked is False, otherwise it's True
         # use negative values to avoid duplication
         if name == session["user"]:
             not_liked = False
         elif name != session["user"]:
             not_liked = True
 
-    # if the user hasn't liked the joke, add user's name to array of users who liked the joke
+
+    # if the user hasn't liked the joke, add user's
+    # name to array of users who liked the joke
     if not_liked:
         # insert user's name into the liked_by array
         liked_by_array.append(session['user'])
 
-        # compile dictionary of joke details
-        liked_joke = {
-            "joke_title": joke["joke_title"],
-            "joke_description": joke["joke_description"],
-            "img_url": joke["img_url"],
-            "for_children": joke["for_children"],
-            "joke_teller": joke["joke_teller"],
-            "likes": new_likes,
-            "liked_by": liked_by_array
-        }
+        # update array in db
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"liked_by": liked_by_array}})
 
-        # insert dictionary into db
-        mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
+        # update "likes" in db
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"likes": new_likes}})
+
         flash("You've liked this joke!")
         return redirect(url_for("get_jokes"))
 
@@ -265,6 +337,8 @@ def like_joke(joke_id):
         # inform user they have already liked this joke.
         flash("You've already liked this joke")
         return redirect(url_for("get_jokes"))
+
+    return render_template("jokes.html")
 
 
 @app.route("/remove_fav/<joke_id>")
@@ -321,7 +395,8 @@ def add_joke():
             "for_children": for_children,
             "joke_teller": session["user"],
             "likes": 0,
-            "liked_by": ["name"]
+            "liked_by": ["name"],
+            "favouriter": ["name"]
         }
         # insert dictionary into db
         mongo.db.jokes.insert_one(joke)

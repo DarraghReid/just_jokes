@@ -111,11 +111,13 @@
                             </div>
                         {% endfor %}            
                     </div>
+                    {{ pagination.links }}
                 </div>
             {% else %}
                 <h3>no results</h3>
             {% endif %}
         </section>
+
 
     <!-- if user is under 19, display jokes that are marked suitable "for_children" in the db -->
     {% else %}
@@ -197,6 +199,7 @@
                         {% endfor %}            
                     </div>
                 </div>
+            {{ pagination.links }}
             {% else %}
                 <h3 class="text-center">no results</h3>
             {% endif %}

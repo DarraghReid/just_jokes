@@ -110,3 +110,22 @@ body {
 .unlike {
     color: blue;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination ul {
+    list-style-type: none;
+}
+
+.pagination ul li {
+    display:inline;
+    padding: 10px;
+}
+
+.pagination li.active {
+    background-color: black;
+    color: white;
+}

@@ -114,7 +114,6 @@
                     <div class="row">
                     <!-- loop over each joke item retrieved in fav_jokes() function, insert in card -->                
                     {% for joke in fav_jokes %}
-                        {% if session.user|lower == joke.favouriter|lower %}
                             <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2">
                                 <div class="card mb-4 text-center">
                                     <!-- joke image -->
@@ -207,7 +206,6 @@
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
                     {% endfor %}            
                     </div>
                 </div>
