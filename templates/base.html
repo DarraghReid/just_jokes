@@ -28,10 +28,15 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ url_for('get_jokes') }}">Home</a>
                         </li>
-                        {% if session.user %}
+                        {% if session.user or session.user|lower == "admin" %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                             </li>
+                            {% if session.user|lower == "admin" %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('get_users') }}">Users</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('add_joke') }}">Add Joke</a>
                             </li>

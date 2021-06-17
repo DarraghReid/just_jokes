@@ -1,0 +1,77 @@
+<!-- extend boilerplate from base.html -->
+{% extends "base.html" %}
+
+<!-- inject contents into "block content" from base.html -->
+{% block content %}
+
+    <h1 class="text-center jj-head">JustJokes</h1>
+
+    <!-- search controls -->
+    <div class="search-controls">
+        <div class="row">
+            <!-- search bar -->
+            <div class="col-6 offset-3">
+                <form method="POST" action="{{ url_for('search') }}">
+                  <!-- search word input -->
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Search users" required>
+                    </div>
+                    <!-- search button -->
+                    <div class="text-center mb-2">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <a href="{{ url_for('get_users') }}" class="btn btn-primary">Clear</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="users-container">
+        {% if users|length > 0 %}
+            <div class="container">
+                <div class="row">
+                    <!-- loop over each user item retrieved in get_users() function, insert in card -->                
+                    {% for user in users %}
+                        <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2 joke-card">
+                            <div class="card mb-4 text-center">
+                                <div class="card-body">
+                                    <!-- user title -->
+                                    <h5 class="card-title">Username: {{ user.username }}</h5>
+                                    <p class="card-text">Id: {{ user._id }}</p>
+                                    <p class="card-text">DOB: {{ user.date_of_birth }}</p>
+                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <!-- confirmation message -->
+                                                    <h5 class="modal-joke-title" id="exampleModalLabel">Are you sure you want to delete this user?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- modal: user name -->
+                                                    <h5 class="modal-joke-title" id="exampleModalLabel">Username: {{ user.username }}</h5>
+                                                    <!-- modal: user id -->
+                                                    <p class="modal-joke-description">Id: {{ user._id }}</p>
+                                                    <!-- modal: user date of birth -->
+                                                    <p class="modal-text modal-joke-teller">DOB: {{ user.date_of_birth }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <a href="{{ url_for('delete_user', user_id=user._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}  
+                </div>
+            </div>
+        {{ pagination.links }}
+        {% else %}
+            <h3 class="text-center">no results</h3>
+        {% endif %}
+    </section>        
+{% endblock %}

@@ -55,6 +55,7 @@ def pagination_args(jokes):
 
 # calculates user's age
 def get_age():
+    user_age = -1
     if "user" in session:
         # find user's date of birth from the database
         db_dob = mongo.db.users.find_one(
@@ -80,6 +81,9 @@ def get_age():
                 (today.month, today.day) < (born.month, born.day))
 
         user_age = calculate_age(dob)
+        return user_age
+    else:
+        user_age == -1
         return user_age
 
 
@@ -128,6 +132,31 @@ def get_jokes():
             )
 
 
+@app.route("/get_users")
+def get_users():
+    # find all users from users collection in MongoDB
+    users = list(mongo.db.users.find())
+    # print(users_)
+
+    # pagination of jokes
+    users_paginated = paginated(users)
+    pagination = pagination_args(users)
+
+    # render jokes.html template, pass variables into it
+    return render_template(
+        "users.html",
+        users=users_paginated,
+        pagination=pagination
+        )
+
+
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    flash("User removed")
+    return redirect(url_for("get_users"))
+
+
 # takes search word from search input, display list of jokes with that word
 @app.route("/search", methods=["GET", "POST"])
 # take user_age from get_jokes() view
@@ -137,18 +166,42 @@ def search():
     # get user's age from get_age()
     user_age = get_age()
 
-    # find all age appropriate jokes from jokes collection in MongoDB
-    # age_app_jokes = list(mongo.db.jokes.find({"for_children": "on"}))
+    if int(user_age) >= 18:
+        # find all docs from jokes collection in MongoDB
+        jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
 
-    # find all docs from jokes collection in MongoDB
-    jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
+        # pagination of jokes
+        jokes_paginated = paginated(jokes)
+        pagination = pagination_args(jokes)
 
-    # render jokes.html template, pass jokes variable into it
-    return render_template(
-        "jokes.html",
-        jokes=jokes,
-        user_age=user_age
-        )
+        # render jokes.html template, pass jokes variable into it
+        return render_template(
+            "jokes.html",
+            jokes=jokes_paginated,
+            user_age=user_age,
+            pagination=pagination
+            )
+    else:
+        age_app_jokes = []
+
+        # find all docs from jokes collection in MongoDB
+        jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
+
+        for joke in jokes:
+            if joke["for_children"] == "on":
+                age_app_jokes.append(joke)
+
+        # pagination of age_app_jokes
+        age_app_jokes_paginated = paginated(age_app_jokes)
+        pagination = pagination_args(age_app_jokes)
+
+        # render jokes.html template, pass jokes variable into it
+        return render_template(
+            "jokes.html",
+            user_age=user_age,
+            age_app_jokes=age_app_jokes_paginated,
+            pagination=pagination
+            )
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
