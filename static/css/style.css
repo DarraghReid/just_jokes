@@ -7,7 +7,26 @@ body {
 
 .btn {
     background-color: rgba(0, 0, 0);
-    border: rgba(0, 0, 0);
+    transition: .7s;
+    border: black;
+}
+
+.btn:hover {
+    background-image: linear-gradient(to bottom right, rgb(243, 160, 6), rgb(245, 220, 153), rgb(243, 160, 6));
+    color: black;
+}
+
+a {
+    color: red;
+}
+
+.fas {
+    transition: .7s;
+}
+
+.fas:hover {
+    transform: rotate(360deg);
+    font-size: 20px;
 }
 
 /*---------------------------------------------------header*/
@@ -49,6 +68,10 @@ body {
     font-size: 32px;
 }
 
+.fa-plus-circle:hover {
+    font-size: 35px;
+}
+
 /*---------------------------------------------------cards*/
 
 .card {
@@ -83,6 +106,14 @@ body {
     color: blue;
 }
 
+.liked, .favd, .card-title, .likes {
+    color: rgb(245, 180, 60);
+}
+
+.card-title, .likes {
+    font-weight: bold;
+}
+
 /*---------------------------------------------------modals*/
 
 .modal-bg {
@@ -113,6 +144,15 @@ body {
 .modal-joke-description, .fav-modal-joke-description {
     width: 100%;
     text-align: center;
+}
+
+.modal-text {
+    margin: 0;
+}
+
+.modal-btn {
+    background-color: rgb(245, 180, 60);
+    color: black;
 }
 
 /*---------------------------------------------------profile*/

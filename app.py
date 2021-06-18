@@ -98,6 +98,11 @@ def get_age():
 @app.route("/")
 @app.route("/get_jokes")
 def get_jokes():
+    # if joke is liked, like button is styled with CSS "liked" class
+    like_button = "liked"
+
+    # if joke is favourited, favourite button is styled with CSS "liked" class
+    favd_button = "favd"
 
     # get user's age from get_age()
     user_age = get_age()
@@ -121,6 +126,8 @@ def get_jokes():
             fav_jokes=fav_jokes,
             user_age=user_age,
             pagination=pagination,
+            like_button=like_button,
+            favd_button=favd_button
             )
         # if the user is under 18, only age appropriate jokes are available
     else:
@@ -292,6 +299,12 @@ def sign_in():
 # displays user's profile, their own jokes, and favourite jokes
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    # if joke is liked, like button styled is with CSS "liked" class
+    like_button = "liked"
+
+    # if joke is favourited, favourite button is styled with CSS "favd" class
+    favd_button = "favd"
+
     # set username variable equal to username of session user
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -306,11 +319,9 @@ def profile(username):
     for joke in jokes:
         # find the "favouriter" field in each db joke
         favourites = joke["favouriter"]
-        for name in favourites:
-            # check to see if user has favourited that joke
-            if name == session["user"]:
-                # if so, insert them into fav_jokes list
-                fav_jokes.append(joke)
+        if session["user"] in favourites:
+            # if so, insert joke into fav_jokes list
+            fav_jokes.append(joke)
 
     # pagination of favourite jokes
     fav_jokes_paginated = paginated(fav_jokes)
@@ -323,49 +334,59 @@ def profile(username):
             username=username,
             jokes=jokes,
             fav_jokes=fav_jokes_paginated,
-            pagination=pagination
+            pagination=pagination,
+            like_button=like_button,
+            favd_button=favd_button
             )
 
 
-# allows user to add joke to their favourites
+# allows user to add joke to / remove joke from their favourites
 @app.route("/add_fav/<joke_id>", methods=["GET", "POST"])
 def add_fav(joke_id):
-    # search users for joke passed into view
+    # search jokes for joke passed into view
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
 
-    # get the array of users who favourited the joke
-    favouriter_array = joke["favouriter"]
+    # get the list of users who favourited the joke
+    favouriter_list = joke["favouriter"]
 
     # loop through list to check if user has already liked the joke
-    for name in favouriter_array:
+    if session["user"] in favouriter_list:
         # if user's name is in the list,
         # not_favourited is False, otherwise it's True
-        # use negative values to avoid duplication
-        if name == session["user"]:
-            not_favourited = False
-        elif name != session["user"]:
-            not_favourited = True
+        not_favourited = False
+    else:
+        not_favourited = True
 
     # if the user hasn't favourited the joke, add user's
     # name to list of users who favourited the joke
     if not_favourited:
-        # insert user's name into the favouriter_array list
-        favouriter_array.append(session['user'])
+        # insert user's name into the favouriter_list list
+        favouriter_list.append(session['user'])
 
         # update list in db
         mongo.db.jokes.update_one(
             {"_id": ObjectId(joke_id)},
-            {"$set": {"favouriter": favouriter_array}})
+            {"$set": {"favouriter": favouriter_list}})
 
         # confirmation message
         flash("Joke favourited!")
+
         # redirect user to home
         return redirect(url_for("get_jokes"))
 
     # if user has favourited the joke
     else:
-        # inform user they have already favou this joke.
-        flash("Joke already favourited")
+        # remove user's name from list
+        favouriter_list.remove(session["user"])
+
+        # update list in db
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"favouriter": favouriter_list}})
+
+        # confirmation message
+        flash("Joke removed from your favourites")
+
         # redirect user to home
         return redirect(url_for("get_jokes"))
 
@@ -373,7 +394,7 @@ def add_fav(joke_id):
     return render_template("jokes.html")
 
 
-# allows user to like a joke
+# allows user to like and unlike a joke
 @app.route("/like_joke/<joke_id>", methods=["GET", "POST"])
 def like_joke(joke_id):
     # search users for joke passed into view
@@ -382,32 +403,31 @@ def like_joke(joke_id):
     # determine how many like the joke currently has
     prev_likes = joke["likes"]
 
-    # increment joke's likes by 1
-    new_likes = int(prev_likes) + 1
-
     # get the list of users who like the joke
-    liked_by_array = joke["liked_by"]
+    liked_by_list = joke["liked_by"]
 
     # loop through list to check if user has already liked the joke
-    for name in liked_by_array:
+    if session["user"] in liked_by_list:
         # if user's name is in the list,
         # not_liked is False, otherwise it's True
-        # use negative values to avoid duplication
-        if name == session["user"]:
-            not_liked = False
-        elif name != session["user"]:
-            not_liked = True
+        not_liked = False
+    else:
+        not_liked = True
 
     # if the user hasn't liked the joke, add user's
     # name to list of users who liked the joke
+    # increment the joke's likes by 1
     if not_liked:
         # insert user's name into the liked_by list
-        liked_by_array.append(session['user'])
+        liked_by_list.append(session['user'])
+
+        # increment joke's likes by 1
+        new_likes = int(prev_likes) + 1
 
         # update list in db
         mongo.db.jokes.update_one(
             {"_id": ObjectId(joke_id)},
-            {"$set": {"liked_by": liked_by_array}})
+            {"$set": {"liked_by": liked_by_list}})
 
         # update "likes" in db
         mongo.db.jokes.update_one(
@@ -416,13 +436,31 @@ def like_joke(joke_id):
 
         # confirmation message
         flash("You've liked this joke!")
+
         # redirect user to home
         return redirect(url_for("get_jokes"))
 
-    # if user hasn't liked the joke
+    # if user has liked the joke
     else:
-        # inform user they have already liked this joke.
-        flash("You've already liked this joke")
+        # remove user's name from the liked_by list
+        liked_by_list.remove(session["user"])
+
+        # decrement joke's likes by 1
+        new_likes = prev_likes - 1
+
+        # update list in db
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"liked_by": liked_by_list}})
+
+        # update "likes" in db
+        mongo.db.jokes.update_one(
+            {"_id": ObjectId(joke_id)},
+            {"$set": {"likes": new_likes}})
+
+        # confirmation message
+        flash("You've unliked this joke")
+
         # redirect user to home
         return redirect(url_for("get_jokes"))
 
@@ -430,77 +468,15 @@ def like_joke(joke_id):
     return render_template("jokes.html")
 
 
-# allows user to remove a jokes from their favourites
-@app.route("/remove_fav/<joke_id>")
-def remove_fav(joke_id):
-    # search jokes for joke passed into view
-    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-
-    # get the jokes of users who favourited the joke
-    favouriter_array = joke["favouriter"]
-
-    # loop through list to check if user has already liked the joke
-    for name in favouriter_array:
-        # if user's name is in the list,
-        # not_favourited is False, otherwise it's True
-        # use negative values to avoid duplication
-        if name == session["user"]:
-            not_favourited = False
-        elif name != session["user"]:
-            not_favourited = True
-
-    # if the user hasn't favourited the joke, add user's
-    # name to list of users who favourited the joke
-    if not_favourited:
-        # insert user's name into the favouriter_array list
-        favouriter_array.append(session['user'])
-
-        # update list in db
-        mongo.db.jokes.update_one(
-            {"_id": ObjectId(joke_id)},
-            {"$set": {"favouriter": favouriter_array}})
-
-        # confirmation message
-        flash("Joke favourited!")
-        # redirect user to home
-        return redirect(url_for("get_jokes"))
-
-
-# allows user to unlike joke
-@app.route("/unlike_joke/<joke_id>")
-def unlike_joke(joke_id):
-    # search db for joke passed into view
-    joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-
-    # determine the number of likes the joke currently has
-    prev_likes = joke["likes"]
-    # decrement joke's likes by 1
-    new_likes = prev_likes - 1
-
-    # compile dictionary of joke details
-    liked_joke = {
-        "joke_title": joke["joke_title"],
-        "joke_description": joke["joke_description"],
-        "img_url": joke["img_url"],
-        "for_children": joke["for_children"],
-        "joke_teller": joke["joke_teller"],
-        "likes": new_likes
-    }
-
-    # insert dictionary into db
-    mongo.db.jokes.update({"_id": ObjectId(joke_id)}, liked_joke)
-    # confirmation message
-    flash("You've unliked this joke")
-    return redirect(url_for("get_jokes"))
-
-
 # signs user out
 @app.route("/sign_out")
 def sign_out():
-    # confirmation message
-    flash("Signed out")
     # remove user from session cookies
     session.pop("user")
+
+    # confirmation message
+    flash("Signed out")
+
     # redirect user to sign in form
     return redirect(url_for("sign_in"))
 
@@ -508,7 +484,7 @@ def sign_out():
 # allows user to add a joke to the db
 @app.route("/add_joke", methods=["GET", "POST"])
 def add_joke():
-    # if request is POSt, add joke to db
+    # if request is POST, add joke to db
     if request.method == "POST":
         # set for_children to "on" in db if for_children switch is truthy
         for_children = "on" if request.form.get("for_children") else "off"
