@@ -3,7 +3,7 @@
 
 <!-- inject contents into "block content" from base.html -->
 {% block content %}
-
+    <!-- heading -->
     <h1 class="text-center jj-head">JustJokes</h1>
 
     <!-- search controls -->
@@ -16,9 +16,10 @@
                     <div class="mb-2">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Search users" required>
                     </div>
-                    <!-- search button -->
                     <div class="text-center mb-2">
+                        <!-- search button -->
                         <button type="submit" class="btn btn-primary">Search</button>
+                        <!-- clear button -->
                         <a href="{{ url_for('get_users') }}" class="btn btn-primary">Clear</a>
                     </div>
                 </form>
@@ -27,19 +28,25 @@
     </div>
 
     <section class="users-container">
+        <!-- if there were users found in the db -->
         {% if users|length > 0 %}
             <div class="container">
                 <div class="row">
-                    <!-- loop over each user item retrieved in get_users() function, insert in card -->                
+                    <!-- loop over each user item retrieved in get_users() function, insert in card -->
+                    <!-- re-use joke card classes -->                
                     {% for user in users %}
                         <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2 joke-card">
                             <div class="card mb-4 text-center">
                                 <div class="card-body">
-                                    <!-- user title -->
+                                    <!-- user's username -->
                                     <h5 class="card-title">Username: {{ user.username }}</h5>
+                                    <!-- user's id -->
                                     <p class="card-text">Id: {{ user._id }}</p>
+                                    <!-- user's date of birth -->
                                     <p class="card-text">DOB: {{ user.date_of_birth }}</p>
+                                    <!-- delete user button, triggers modal to confirm deletion -->
                                     <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
+                                    <!-- modal to confirm deletion of user -->
                                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
@@ -57,7 +64,9 @@
                                                     <p class="modal-text modal-joke-teller">DOB: {{ user.date_of_birth }}</p>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!-- cancel deletion button -->
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <!-- confirm deletion button -->
                                                     <a href="{{ url_for('delete_user', user_id=user._id) }}" type="button" class="btn btn-primary">Delete</a>
                                                 </div>
                                             </div>
@@ -69,7 +78,9 @@
                     {% endfor %}  
                 </div>
             </div>
+        <!-- display pagination buttons -->
         {{ pagination.links }}
+        <!-- if no user's were found in the db -->
         {% else %}
             <h3 class="text-center">no results</h3>
         {% endif %}

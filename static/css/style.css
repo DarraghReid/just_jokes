@@ -1,8 +1,9 @@
+/*---------------------------------------------------site wide features*/
+
 body {
     background-image: linear-gradient(to right, rgb(245, 180, 60), rgb(245, 188, 31), rgb(245, 180, 60));
     color: black;
 }
-/*---------------------------------------------------site wide features*/
 
 .btn {
     background-color: rgba(0, 0, 0);
@@ -74,6 +75,16 @@ body {
     overflow: hidden;
 }
 
+.likes {
+    margin-bottom: 4px;
+}
+
+.unlike {
+    color: blue;
+}
+
+/*---------------------------------------------------modals*/
+
 .modal-bg {
     width: 100%;
     height: 100%;
@@ -84,10 +95,6 @@ body {
     justify-content: center;
     align-items: center;
     display: none;
-}
-
-.likes {
-    margin-bottom: 4px;
 }
 
 .joke-modal {
@@ -108,13 +115,13 @@ body {
     text-align: center;
 }
 
+/*---------------------------------------------------profile*/
+
 .see-favs {
     text-align: center;
 }
 
-.unlike {
-    color: blue;
-}
+/*---------------------------------------------------pagination*/
 
 .pagination {
     display: flex;
@@ -133,4 +140,31 @@ body {
 .pagination li.active {
     background-color: black;
     color: white;
+}
+
+/*---------------------------------------------------error pages*/
+
+.error-body {
+    max-height: 100vh;
+}
+
+.section-error {
+    height: 90vh;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.directions {
+    margin: auto;
+}
+
+.directions a {
+    font-size: 40px;
+    transition: .3s;
+}
+
+.directions a:hover {
+    font-size: 50px;
+    opacity: .7;
 }

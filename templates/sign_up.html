@@ -1,31 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- heaing -->
     <h1 class="m-4 text-center">Sign Up</h1>
+    
     <!-- sign up form -->
     <div class="row">
         <div class="col-8 offset-2">
             <form method="POST" action="{{ url_for('sign_up') }}">
-    <!-- username -->
+                <!-- username -->
                 <div class="mb-4">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" minlength="4" maxlength="12" pattern="^[a-zA-Z0-9]{4,12}$" required>
                 </div>
-    <!-- password -->
+                <!-- password -->
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" minlength="7" maxlength="17" pattern="^[a-zA-Z0-9]{7,17}$" required>
                 </div>
-    <!-- date of birth -->
+                <!-- date of birth -->
                 <div class="mb-5">
                     <label class="form-label" for="date">Date of birth</label>
                     <input type="date" class="form-control" id="date" name="date">
                 </div>
-    <!-- sign up button -->
+                <!-- sign up button -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
+                <!-- if user already has an account, allow them to sign in -->
                 <div class="text-center">
+                    <!-- button to sign in -->
                     <h3>Already have an account? <a href="{{ url_for('sign_in') }}">Sign in!</a></h3>
                 </div>
             </form>

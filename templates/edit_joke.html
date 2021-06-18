@@ -3,40 +3,46 @@
 
 <!-- inject contents into "block content" from base.html -->
 {% block content %}
+    <!-- heading -->
     <h1 class="m-4 text-center">Edit Joke</h1>
 
-    <!-- edit joke form with values pre-populated with data of joke selected to be edited -->
+    <!-- edit joke form, with values pre-populated with data of joke selected to be edited -->
     <div class="row">
         <div class="col-8 offset-2">
             <form method="POST" action="{{ url_for('edit_joke', joke_id=joke._id) }}">
-    <!-- joke title -->
+                <!-- joke title -->
                 <div class="mb-4">
                     <label for="joke_title" class="form-label">Joke Title</label>
                     <input type="text" class="form-control" id="joke_title" name="joke_title" value="{{joke.joke_title}}" required>
                 </div>
-    <!-- joke -->
+                <!-- joke -->
                 <div class="mb-4">
                     <label for="joke_description" class="form-label">Joke</label>
                     <textarea type="text" class="form-control" id="joke_description" name="joke_description" minlength="4" maxlength="200" required>{{ joke.joke_description }}</textarea>
                 </div>
-    <!-- image -->
+                <!-- image -->
                 <div class="mb-4">
                     <label for="img_url" class="form-label">Image URL</label>
                     <input type="text" class="form-control" id="img_url" name="img_url" value="{{joke.img_url}}" data-default-image="https://i2.wp.com/antidotesforchimps.com/wp-content/uploads/2019/05/86fe066b8ed2eab07a9392a63db4625b.jpg?fit=800%2C798&ssl=1" required>
                 </div>
-    <!-- switch -->
+                <!-- switch -->
                 <div class="form-check form-switch">
+                    <!-- if the joke's "for_children" field in db is set to on, switch is checked -->
                     {% if joke.for_children == "on" %}
                         <input class="form-check-input" type="checkbox" id="for_children" name="for_children" checked>
+                    <!-- otherwise, switch is unchecked -->
                     {% else %}
                         <input class="form-check-input" type="checkbox" id="for_children" name="for_children">
                     {% endif %}
                     <label class="form-check-label" for="for_children">Suitable for children</label>
                 </div>
-    <!-- edit joke/cancel buttons -->
+                <!-- edit joke/cancel/clear buttons -->
                 <div class="text-center">
+                    <!-- cancel button -->
                     <a href="{{ url_for('get_jokes') }}">Cancel</a>
+                    <!-- clear button -->
                     <a href="{{ url_for('edit_joke', joke_id=joke._id) }}">Clear</a>
+                    <!-- edit joke button -->
                     <button type="submit" class="btn btn-primary">Edit Joke</button>
                 </div>
             </form>
