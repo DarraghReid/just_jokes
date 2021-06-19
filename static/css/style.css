@@ -244,6 +244,11 @@ a {
 
 footer {
     width: 100%;
+    background-image: linear-gradient(to right, rgb(245, 180, 60), rgb(245, 188, 31), rgb(245, 180, 60));
+    color: black;
+    box-shadow: 1px 0 10px;
+    display: flex;
+    align-items: center;
 }
 
 #social-links {
