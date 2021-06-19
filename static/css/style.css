@@ -44,6 +44,16 @@ a {
     color: rgba(0, 0, 0);
 }
 
+.nav-link:hover, .nav-item:hover {
+    font-size: 15px;
+    color: black;
+}
+
+.navbar-brand:hover {
+    font-size: 19px;
+    color: black;
+}
+
 /*---------------------------------------------------search controls*/
 
 .jj-head {
@@ -70,6 +80,11 @@ a {
 
 .fa-plus-circle:hover {
     font-size: 35px;
+    color: rgb(245, 220, 153);
+}
+
+.search-bar {
+    margin-bottom: 30px;
 }
 
 /*---------------------------------------------------cards*/
@@ -85,11 +100,13 @@ a {
 .card img {
     min-height: 200px;
     max-height: 200px;
+    border-bottom: 1px solid rgb(245, 180, 60);
 }
 
 .card-body {
     min-height: 250px;
     max-height: 250px;
+    background-color: rgb(253, 253, 253)
 }
 
 .joke_description {
@@ -112,6 +129,10 @@ a {
 
 .card-title, .likes {
     font-weight: bold;
+}
+
+.card-title {
+    font-size: 105%;
 }
 
 /*---------------------------------------------------modals*/
@@ -151,8 +172,16 @@ a {
 }
 
 .modal-btn {
-    background-color: rgb(245, 180, 60);
+    background-image: linear-gradient(to bottom right, rgb(245, 220, 153), rgb(243, 173, 44), rgb(245, 220, 153));
     color: black;
+}
+
+.modal-joke-teller {
+    font-size: 90%;
+}
+
+.cancel-confirm {
+    margin: auto;
 }
 
 /*---------------------------------------------------profile*/
@@ -180,6 +209,22 @@ a {
 .pagination li.active {
     background-color: black;
     color: white;
+}
+
+/*---------------------------------------------------sign up/sign in pages*/
+
+.form-directon {
+    font-size: 10px;
+}
+
+.user-card {
+    max-width: 275px;
+    margin: auto;
+    box-shadow: 0 5px 10px;
+}
+
+.user-card-text {
+    font-size: 75%;
 }
 
 /*---------------------------------------------------error pages*/

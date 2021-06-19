@@ -92,10 +92,12 @@
                                                         <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <!-- cancel button -->
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <!-- confirm button -->
-                                                        <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                        <div class="cancel-confirm">
+                                                            <!-- cancel button -->
+                                                            <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</a>
+                                                            <!-- confirm button -->
+                                                            <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

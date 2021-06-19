@@ -10,21 +10,21 @@
             <form method="POST" action="{{ url_for('sign_up') }}">
                 <!-- username -->
                 <div class="mb-4">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username <span class="form-directon">(Between 4 and 12 alphanumeric chatacters)</span></label>
                     <input type="text" class="form-control" id="username" name="username" minlength="4" maxlength="12" pattern="^[a-zA-Z0-9]{4,12}$" required>
                 </div>
                 <!-- password -->
                 <div class="mb-4">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Password <span class="form-directon">(Between 7 and 17 alphanumeric chatacters)</span></label>
                     <input type="password" class="form-control" id="password" name="password" minlength="7" maxlength="17" pattern="^[a-zA-Z0-9]{7,17}$" required>
                 </div>
                 <!-- date of birth -->
                 <div class="mb-5">
-                    <label class="form-label" for="date">Date of birth</label>
+                    <label class="form-label" for="date">Date of birth <span class="form-directon">(Enter manually, or click on the calendar icon below)</label>
                     <input type="date" class="form-control" id="date" name="date">
                 </div>
                 <!-- sign up button -->
-                <div class="text-center">
+                <div class="text-center mb-5">
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
                 <!-- if user already has an account, allow them to sign in -->

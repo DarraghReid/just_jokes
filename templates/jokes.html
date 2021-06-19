@@ -14,7 +14,7 @@
             <div class="col-6 offset-3">
                 <form method="POST" action="{{ url_for('search') }}">
                   <!-- search word input -->
-                    <div class="mb-2">
+                    <div class="search-bar">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Search jokes" required>
                     </div>
                     <!-- search button -->
@@ -81,21 +81,21 @@
                                                 </div>
                                             </div>
                                             <!-- user who posted joke -->
-                                            <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
+                                            <p class="card-text mt-2 modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
                                             <!-- if user is admin, display all controls -->
                                             {% if session.user|lower == "admin" %}
                                                 <!-- number of people who liked joke -->
                                                 <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                                 <!-- like button -->
                                                 {% if session.user|lower in joke.liked_by %}
-                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
                                                 {% else %}
                                                     <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                 {% endif %}
                                                 
                                                 <!-- add to favourites button -->
                                                 {% if session.user|lower in joke.favouriter %}
-                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
                                                 {% else %}
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
@@ -169,14 +169,14 @@
                                                     <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                                     <!-- like button -->
                                                     {% if session.user|lower in joke.liked_by %}
-                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
                                                     {% else %}
                                                         <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     {% endif %}
 
                                                     <!-- add to favourites button -->
                                                     {% if session.user|lower in joke.favouriter %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
                                                     {% else %}
                                                         <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                     {% endif %}
@@ -240,21 +240,21 @@
                                                 </div>
                                             </div>
                                             <!-- user who posted joke -->
-                                            <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
+                                            <p class="card-text mt-2 modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
                                             <!-- if user is admin, display all controls -->
                                             {% if session.user|lower == "admin" %}
                                                 <!-- number of people who liked the joke -->
                                                 <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                                 <!-- like button -->
                                                 {% if session.user|lower in joke.liked_by %}
-                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
                                                 {% else %}
                                                     <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                 {% endif %}
 
                                                 <!-- add to favourites button -->
                                                 {% if session.user|lower in joke.favouriter %}
-                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
                                                 {% else %}
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
@@ -327,13 +327,13 @@
                                                     <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                                     <!-- like button -->
                                                     {% if session.user|lower in joke.liked_by %}
-                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
                                                     {% else %}
                                                         <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
                                                     {% endif %}
                                                     <!-- add to favourites button -->
                                                     {% if session.user|lower in joke.favouriter %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
                                                     {% else %}
                                                         <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                     {% endif %}
@@ -385,7 +385,7 @@
                                                     <div class="modal-header">
                                                         <!-- modal heading -->
                                                         <h5 class="modal-joke-title" id="exampleModalLabel1">Want to see the full joke?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- sign in button -->
@@ -397,9 +397,9 @@
                                             </div>
                                         </div>
                                         <!-- user who posted joke -->
-                                        <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
+                                        <p class="card-text mt-2 modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
                                         <!-- number of people who liked the joke -->
-                                        <p class="card-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
+                                        <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                         <!-- like button, triggers modal to display sign in message on on modal -->
                                         <a data-bs-toggle="modal" data-bs-target="#like-sign-in"><i class="fas fa-grin-squint-tears like-fav" data-bs-toggle="tooltip" title="Like"></i></a>
                                         <!-- bootstrap modal to display sign in message -->
@@ -411,7 +411,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- modal: joke title -->
-                                                        <h5 class="modal-joke-title" id="exampleModalLabel">Sign in to like this jone</h5>
+                                                        <h5 class="modal-joke-title" id="exampleModalLabel">Sign in to like this joke</h5>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- sign in button -->

@@ -12,19 +12,19 @@
             <form method="POST" action="{{ url_for('add_joke') }}">
                 <!-- joke title -->
                 <div class="mb-4">
-                    <label for="joke_title" class="form-label">Joke Title</label>
-                    <input type="text" class="form-control" id="joke_title" name="joke_title" placeholder="Make it catchy!" required>
+                    <label for="joke_title" class="form-label">Joke Title <span class="form-directon">(Make it short 'n' sweet!)</span></label>
+                    <input type="text" class="form-control" id="joke_title" name="joke_title" required>
                 </div>
                 <!-- joke -->
                 <div class="mb-4">
-                    <label for="joke_description" class="form-label">Joke</label>
+                    <label for="joke_description" class="form-label">Joke <span class="form-directon">(Please ensure the joke is all on one line)</span></label>
                     <!-- request user to write joke on one line -->
-                    <textarea type="text" class="form-control" id="joke_description" name="joke_description" minlength="4" maxlength="200" placeholder="Please ensure joke is all on one line" required></textarea>
+                    <textarea type="text" class="form-control" id="joke_description" name="joke_description" minlength="4" maxlength="200" required></textarea>
                 </div>
                 <!-- image -->
                 <div class="mb-4">
-                    <label for="img_url" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" id="img_url" name="img_url" placeholder="Any image that relates to the joke" required>
+                    <label for="img_url" class="form-label">Image URL <span class="form-directon">(Any image related to the joke)</span></label>
+                    <input type="text" class="form-control" id="img_url" name="img_url" placeholder="eg: https://i.pinimg.com/474x/05/80/89/0580895d26cc99686c807c4896df5f80.jpg" required>
                 </div>
                 <!-- switch, checked by default -->
                 <div class="form-check form-switch">

@@ -36,14 +36,15 @@
                     <!-- re-use joke card classes -->                
                     {% for user in users %}
                         <div class="col-xs col-sm-6 col-md-4 col-lg-3 col-xxl-2 joke-card">
-                            <div class="card mb-4 text-center">
+                            <div class="user-card mb-4 text-center">
                                 <div class="card-body">
                                     <!-- user's username -->
-                                    <h5 class="card-title">Username: {{ user.username }}</h5>
+                                    <h5 class="card-title mb-4">{{ user.username }}</h5>
                                     <!-- user's id -->
-                                    <p class="card-text">Id: {{ user._id }}</p>
+                                    <p class="card-text">Id:</p>
+                                    <p class="text-center user-card-text">{{ user._id }}</p>
                                     <!-- user's date of birth -->
-                                    <p class="card-text">DOB: {{ user.date_of_birth }}</p>
+                                    <p class="card-text m-3">DOB: {{ user.date_of_birth }}</p>
                                     <!-- delete user button, triggers modal to confirm deletion -->
                                     <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
                                     <!-- modal to confirm deletion of user -->
@@ -64,10 +65,12 @@
                                                     <p class="modal-text modal-joke-teller">DOB: {{ user.date_of_birth }}</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <!-- cancel deletion button -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <!-- confirm deletion button -->
-                                                    <a href="{{ url_for('delete_user', user_id=user._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                    <div class="cancel-confirm">
+                                                        <!-- cancel deletion button -->
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <!-- confirm deletion button -->
+                                                        <a href="{{ url_for('delete_user', user_id=user._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

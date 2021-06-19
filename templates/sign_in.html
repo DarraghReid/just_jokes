@@ -2,24 +2,24 @@
 
 {% block content %}
     <!-- heading -->
-    <h1 class="m-4 text-center">Sign In</h1>
+    <h1 class="m-5 text-center">Sign In</h1>
 
     <!-- sign in form -->
     <div class="row">
         <div class="col-8 offset-2">
             <form method="POST" action="{{ url_for('sign_in') }}">
                 <!-- username -->
-                <div class="mb-4">
+                <div class="mb-5">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" minlength="4" maxlength="12" pattern="^[a-zA-Z0-9]{4,12}$" required>
                 </div>
                  <!-- password -->
-                <div class="mb-4">
+                <div class="mb-5">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" minlength="7" maxlength="17" pattern="^[a-zA-Z0-9]{7,17}$" required>
                 </div>
                 <!-- sign in button -->
-                <div class="text-center">
+                <div class="text-center mb-5">
                     <button type="submit" class="btn btn-primary">Sign In</button>
                 </div>
                 <!-- if user doesn't have an account, allow them to sign up -->
