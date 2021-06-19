@@ -99,40 +99,15 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
         The font was sourced from [Google Fonts](https://fonts.google.com/)
 
 * Imagery
-    * All images were sourced from websites which provide images for free. These websites are listed below along with the images that were sourced from them, as well as photographer details (where applicable):
-        * [pngjoy.com](https://www.pngjoy.com/)
-            * https://www.pngjoy.com/preview/w3z5l3p1l6j9b4_palm-palm-tree-top-view-png-hd-png/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/u9f1d4c1b0f6v1_hanging-plants-scientific-names-of-plants-animals-and/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/u5r5n3a6e7k8f7_white-rose-white-and-yellow-roses-png-transparent/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/f2k8p5x5a2p7j0_flower-crown-png-tumblr-white-flower-crown-transpa/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/z7m2e9e9x6z4h5_stone-path-nail-polish-transparent-png/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/z1l9n7s4a8p6r8_bush-bush-png-transparent-png/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/x1k3u4f2u0q7r8_tree-top-mango-tree-top-view-transparent-png/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/m5y3d1u8d3q6r2_bush-bushes-png-png-download/ (photographer unnamed)
-            * https://www.pngjoy.com/preview/f3t5j5r2f9h7g0_tree-plan-fruit-tree-top-view-png-png/ (photographer unnamed)
-            
-        * [freeimages.com](https://www.freeimages.com/)
-            * https://www.freeimages.com/photo/grass-1508240 (photographer: Philipp Pilz)
-            * https://www.freeimages.com/photo/fresh-soil-1468423 (photographer: Mike Berg)
-            * https://www.freeimages.com/photo/old-wood-texture-1154441 (photographer: Petr Kovar)
-            
-        * [pixaboy.com](https://pixabay.com/)
-            * https://pixabay.com/photos/pebbles-decking-texture-model-3212192/ (photographer: _Alicja_)
-            * https://pixabay.com/photos/flower-tropical-bougainvillea-3271195/ (photographer: Buntysmum)
-    
-    * Some images were edited by the developer to suit the needs of the site. The images that were edited include:
-        * grass-2.png was edited from https://www.freeimages.com/photo/grass-1508240 (photographer: Philipp Pilz)
-        * gravel-4.png was edited from https://pixabay.com/photos/pebbles-decking-texture-model-3212192/ (photographer: _Alicja_)
-        * soil-1.png was edited from https://www.freeimages.com/photo/fresh-soil-1468423 (photographer: Mike Berg)
+    * the only images displayed on the site are uploaded by users themselves and are displayed alongside the uploaded joke in a card format.
 
-        These images were edited by cutting and pasting different parts of the images to create a larger image using [Google Slides](https://www.google.com/slides/about/).
-    
-    * It was important to find png images without any backgrounds in order for users to seamlessly place images on top of one another
-    to give the impression that the garden elements are real.
+    * Images are uploaded to the site via url, using the image url input in the "Add Joke" form. Having users add images to their jokes adds an extra fun element. It makes the user experience more enjoyable and makes the site more interesting. Memes are also very popular in other social media websites.
+
+        The images are chosen at the discretion of the user. The user is, however, instructed to ensure that the image is somewhat related to the joke. This can be moderated by the admin, who can remove jokes at their discretion.
 
 ## Wireframes
 * Wireframe of Home Page
-![Wireframe of Home Page](assets/images/readme-imgs/wireframe-home-page.png)
+![Wireframe of Home Page](static/images/jj-wireframes.png)
 
 * Wireframe of Studio
 ![Wireframe of Studio](assets/images/readme-imgs/wireframe-studio.png)
@@ -141,66 +116,65 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 ![Wireframe of Studio](assets/images/readme-imgs/wireframe-tutorial.png)
 
 ### Differences Between Wireframes and Final Product
-* The most obvious difference between the wireframes and the final product is that the Tutorial section in the final product has been omitted. I had originally planned to record a tutorial of how to use the software. Upon completion of the software, however, I found that it was intuitive enough that a tutorial was not required. 
+* On the home screen, I decided to omit the sort by dropdown as I didn't feel it would contribute to the project according to the guidelines set out in the Assessment Handbook. Also, I had already included a dropdown in the Profile page where users are presented with a range of options.
 
-    I felt a tutorial section would have been of no benefit to the product and would not have contributed to the requirements set out 
-    in the Assessment Handbook.
+* Having dropped the dropdown, I decided I would include the number of user's who had liked a particular joke in the card display. This feature adds to the UX of the site.
 
-    This omission had a minor impact on the Home Page where the "Watch Tutorial" call-to-action button and the "Tutorial" link 
-    in the navbar are not present in the final product.
+* I had orginally planned on manipulating the card to show the full joke, if the joke's characters exeeded the characters able to be displayed on the card. I felt a modal displaying the full joke would be a better design a lead to a better user experience. Bootstrap modals are a prominant feature throughout the site.
 
-* Another difference between the wireframe and the final product is the menu in the Studio section. The wireframe displays a 
-text-based menu where each menu item would have a drop down menu of related images of garden elements.
+* As discussed above, the links to toggle between the user's uploaded jokes and the user's favourite jokes, were replaced with a dropdown menu with the additional option to sign out. I felt this was more of an intuitive layout that users would be used to from social media platforms.
 
-    I felt it was more intuitive to lead with images rather than text. I felt that this is more in line with modern design software
-    such as Balsamiq, for example.
+* Icons were omitted from the forms. I had intentionally left them to do if I had time, as I didn't think they were very important. In the end, time didn't allow to include them.
 
-    The text is only present when the user hovers over the image-based menu item.
-
-* Finally, I chose to omit the social links from the footer as they would have served no purpose to the site and would not have 
-contributed to the requirements set out in the Assessment Handbook.
+* In sign in form, instead of a switch indicating whether the user was an adult or not, I opted for a calandar input. I sliced the information I needed from the user's DOB string and calculated their ages. Different features are available to users based on their age, as will be discussed in the [Features](#Features) section.
 
 ## Features
-#### Home Page
+    Different features are available to users based on their age and the type of account they have, ie; a general user, or an admin. I will discuss these features in relation to these criteria.
 
-The Home Page is where the user is introduced to the site and takes up 100vh.
-* The Home Page includes a responsive Bootstrap navbar displaying the logo as well as links to the two sections of the site. These links collapse into a dropdown button on smaller screens. The button that is seen on smaller screens is represented by a fontawesome icon, as the original button was having trouble displaying.
+#### Admin
 
-    These links, along with all clickable links throughout the site, highlight upon hover.
+* All features are available to the admin. The Home, Profile, Users, Add Jokes, and Sign Out pages are visible on the admin's navbar.
 
-* The main feature of the Home Page is the background image of a garden that gradually builds itself on page load. The scene is comprised of multiple good resolution images. Therefore, when the site is first loaded (without cache), the images may not have fully loaded by the time they are brought onto the screen. However, this transition effect is seamless upon further reloads.
+* On the Home page, the admin can see all jokes that are stored in the jokes collection in mongo db. The jokes are displayed on Bootstrap cards that display detail of the joke including the image, title, description, who posted the joke, and the number of likes it has.
 
-    The self-building image of a garden was designed with user intuition in mind. The user should immediately understand the purpose of the site upon seeing it. It is designed to be an exciting introduction to the Eden site.
+    They can like, unlike, add to favourites, remove from favourites, edit, and delete any joke they choose, without restriction. Liking the joke will add 1 to the "likes" field of the joke and add the user's name to the list of other users who liked the array, which is the joke's "liked_by" array field in the database. Unliking the joke will reverse this action
 
-    The garden scene is also responsive. The images change change in size and position depending on the screen size. On particularly small screens, the tree is replaced with a bush.
+    Adding a joke to the user's favourites will result in the user's name being added to a list of other users who added the joke to their favourites, which is the joke's "liked_by" array field in the database. The joke will then be displayed in the "Your Favourites" section of their profile. Removing the joke from their favourites will reverse this action.
 
-    NOTE: 
-    * Each image in the garden scene has a different CSS transition period. Therefore, when resizing in Dev Tools, allow a few seconds for each image to transition to its appropriate size and position.
+    A user can tell if they have liked or removed a joke from their favourites by the colour change in their respective icon. Yellow means the joked has been liked or favourited, while black means it has not be liked or favourited.
 
-* The callout, which along with the call-to-action button, is brought on screen by the transition mentioned above, and provides further affirmation as to the purpose of the site.
+    The admin can also click the "Expand" button on the joke card, which will trigger a modal that will display the full joke. The joke on the card is capped at 50 characters.
 
-* The call-to-action button brings the user straight to the Studio section where they can immediately begin designing.
+    The admin can also search all jokes from the Home page using the search bar at the top of the page.
 
-#### Studio Section
+* Beside the search bar, there is an "add" icon which will lead them to the Add Joke page, where they can upload a joke to the site. This page can also be accessed from the sticky navbar at any time.
 
-The Studio section is where users can design their gardens. It takes up 90vh, with the remaining 10vh being occupied by the footer.
-* At the very top of the Studio section is the header, which introduces and concisely details the purpose of the section.
+    As seen in the [Wireframes](#Wireframes) section, the Add Joke page is comprised of a form that takes information about the joke. This information includes the jokes, title, description, an images, related to the joke, and whether or not it is suitable for under 18s. 
+    
+    This information, along with additional information is then inserted into the jokes collection in MongoDB. The additional fields include the user who uploaded the joke, and the "likes", "liked_by", and "favouriter" fields discussed above.
 
-* Beneath the header is a visually appealing, scrollable, image-based menu comprised of images of each of the garden elements available for the user to experiment with.
+* In their profile, the admin can access the jokes that they have uploaded themselves, as well as the jokes that they have added to their favourited via a dropdown menu. The dropdown menu also allows users to sign out.
 
-    This menu was designed to be intuitive for the user. The user should immediately understand that these images are clickable. Once clicked, the image displayed on that menu item should appear on the canvas below, ready to be manipulated.
+* The Admin user also has access to a Users page, where they can view all users who have signed up to the site. They can see all available information about the user, including their ID, username, and date of birth. Here, the admin can also chose to delete a user at their own discretion.
 
-    The menu is responsive. On larger screens the menu items are centred within the menu section. On smaller screens, it is laterally scrollable.
+#### General User
 
-    This menu was inspired by a [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_menu_hor_scroll) scrollable menu, which underwent a good deal of editing due to significant differences in the site menu and the w3School example.
+* The general user has a more restricted version of the site available to them. They can access all the pages available to the admin user, except for the Users page
 
-    Aside from all classes and ids being renamed, there are major structural differences. For example, the w3schools example is simply a list of anchor tags. Each menu item in the Studio section of Eden is comprised of four different elements including a two divs, and anchor tag, an image, and a paragraph tag. This required significantly more editing in style.css.
+* All other pages are identical to the admin's version, except for the actions available to them. They can only edit or deleted a joke that they have uploaded themselves. 
 
-* The canvas section of the Studio is where users can manipulate the various garden elements that they have selected from the menu above. Each element that appears on the canvas is removable, moveable, and resizable. This allows the user to be creative in their designs. The canvas section has an overflow of hidden, thus the images cannot be moved onto other sections of the site.
+    If the joke as been uploaded by another user, the only options available to them is the ability to like a joke or add a joke to their favourites.
 
-#### Footer
+    If they have uploaded the joke themselves, the only available options are to edit or delete the joke
 
-The footer occupies the remaining 10vh and is comprised of two links, the Logo, and a back-to-top link, which encompasses an "up" fontawesome arrow icon. These links are located at the left and right of the footer, respectively. Both links lead to the Home Page.
+#### Under 18 User
+
+* Users under 18 years of age have an almost identical account as a general user. The only difference between the accounts is that users that are under 18 years of age may only see jokes that were marked "Suitable for children" in the Add Joke form.
+
+#### Signed Out User
+* A user who has not signed up or has not signed in, can access the most restricted version of the site. They have the Home, Sign up and Sign in pages available to them.
+
+* Their access to the Home page is similar to the Under 18 user's. Like users under 18 years of age, they may only see jokes suitable for children. However, unlike other users, if they try to take any action, such as trying to see the full joke, liking, or adding the joke to their favourites, the will be presented with a modal providing them with the option of signing in. They can agree or decline.
 
 #### Potential Future Features
 Although the initial goal of creating a platform on which users can create rough garden designs has been achieved, a few possible additional features 
