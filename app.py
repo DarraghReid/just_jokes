@@ -145,6 +145,8 @@ def get_jokes():
             user_age=user_age,
             age_app_jokes=age_app_jokes_paginated,
             pagination=pagination,
+            like_button=like_button,
+            favd_button=favd_button
             )
 
 
@@ -169,9 +171,12 @@ def get_users():
 # deletes selected user from db
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
+    # remove user from the database
     mongo.db.users.remove({"_id": ObjectId(user_id)})
+
     # confirmation message
     flash("User removed")
+
     return redirect(url_for("get_users"))
 
 

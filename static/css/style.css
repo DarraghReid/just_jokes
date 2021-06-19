@@ -76,11 +76,14 @@ a {
 
 .fa-plus-circle {
     font-size: 32px;
+    border-radius: 50%;
 }
 
 .fa-plus-circle:hover {
     font-size: 35px;
-    color: rgb(245, 220, 153);
+    color: rgb(243, 160, 6);
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 .search-bar {
@@ -186,8 +189,9 @@ a {
 
 /*---------------------------------------------------profile*/
 
-.see-favs {
+.see-favs, .see-own {
     text-align: center;
+    text-decoration: none;
 }
 
 /*---------------------------------------------------pagination*/

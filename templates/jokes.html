@@ -195,8 +195,8 @@
                 {% endif %}
             </section>
 
-        <!-- if user is under 19, display jokes that are marked suitable "for_children" in the db -->
-        {% else %}
+        <!-- if user is under 18, display jokes that are marked suitable "for_children" in the db -->
+        {% elif user_age|int <= 17 %}
             <section class="jokes-container">
                 <!-- if jokes were found in the db -->
                 {% if age_app_jokes|length > 0 %}
@@ -241,28 +241,10 @@
                                             </div>
                                             <!-- user who posted joke -->
                                             <p class="card-text mt-2 modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
-                                            <!-- if user is admin, display all controls -->
-                                            {% if session.user|lower == "admin" %}
-                                                <!-- number of people who liked the joke -->
-                                                <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
-                                                <!-- like button -->
-                                                {% if session.user|lower in joke.liked_by %}
-                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
-                                                {% else %}
-                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
-                                                {% endif %}
-
-                                                <!-- add to favourites button -->
-                                                {% if session.user|lower in joke.favouriter %}
-                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
-                                                {% else %}
-                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                {% endif %}
-                                                
-                                                <!-- delete button, triggers modal to confirm deletion -->
-                                                <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                                                <!-- modal to confirm deletion -->
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <!-- only display delete and edit buttons to user who posted joke -->
+                                            {% if session.user|lower == joke.joke_teller|lower %}
+                                                <a data-bs-toggle="modal" data-bs-target="#deleteModal2"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -289,54 +271,21 @@
                                                 </div>
                                                 <!-- edit joke button -->
                                                 <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
-                                            <!-- if the user is not an admin -->
+                                            <!-- if user didn't post this joke -->
                                             {% else %}
-                                                <!-- only display delete and edit buttons to user who posted joke -->
-                                                {% if session.user|lower == joke.joke_teller|lower %}
-                                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal2"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                                                    <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <!-- confirmation message -->
-                                                                    <h5 class="modal-joke-title" id="exampleModalLabel">Are you sure you want to delete this joke?</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- modal: joke title -->
-                                                                    <h5 class="modal-joke-title" id="exampleModalLabel">{{ joke.joke_title }}</h5>
-                                                                    <!-- modal: joke description -->
-                                                                    <p class="modal-joke-description">{{ joke.joke_title}}</p>
-                                                                    <!-- modal: user who posted joke -->
-                                                                    <p class="modal-text modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <!-- cancel deletion button -->
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                    <!-- confirm deletion button -->
-                                                                    <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- edit joke button -->
-                                                    <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
-                                                <!-- if user didn't post this joke -->
+                                                <!-- number of people who liked the joke -->
+                                                <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
+                                                <!-- like button -->
+                                                {% if session.user|lower in joke.liked_by %}
+                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
                                                 {% else %}
-                                                    <!-- number of people who liked the joke -->
-                                                    <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
-                                                    <!-- like button -->
-                                                    {% if session.user|lower in joke.liked_by %}
-                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears {{ like_button }}" data-bs-toggle="tooltip" title="Unlike"></i></a>
-                                                    {% else %}
-                                                        <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
-                                                    {% endif %}
-                                                    <!-- add to favourites button -->
-                                                    {% if session.user|lower in joke.favouriter %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
-                                                    {% else %}
-                                                        <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
-                                                    {% endif %}
+                                                    <a href="{{ url_for('like_joke', joke_id=joke._id) }}"><i class="fas fa-grin-squint-tears" data-bs-toggle="tooltip" title="Like"></i></a>
+                                                {% endif %}
+                                                <!-- add to favourites button -->
+                                                {% if session.user|lower in joke.favouriter %}
+                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart {{ favd_button }}" data-bs-toggle="tooltip" title="Remove from favourites"></i></a>
+                                                {% else %}
+                                                    <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
                                             {% endif %}
                                         </div>

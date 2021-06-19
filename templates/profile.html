@@ -5,28 +5,23 @@
     <h1 class="m-4 text-center">{{ username }}</h1>
     <!-- display toggle - toggle between user's own jokes and user's favourites -->
     <section class="display-toggle">
-        <!-- header for user's own joke -->
-        <div class="own-jokes mb-3">
-            <!-- title -->
-            <h2 class="mt-4 mb-0 text-center">Your Jokes</h2>
-            <div class="text-center">
-                <!-- click to see user's favourite jokes -->
-                <a class="see-favs" href="#">See Favourites</a>
+            <div class="dropdown text-center mb-4">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li class="dropdown-item"><a class="see-favs" href="#">See Favourites</a></li>
+                    <li class="dropdown-item"><a class="see-own" href="#">See your jokes</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">Sign out</a></li>
+                </ul>
             </div>
-        </div>
-        <!-- header for user's own joke. Default display is none -->
-        <div class="fav-jokes mb-3" style="display: none;">
-            <!-- title -->
-            <h2 class="mt-4 mb-0 text-center">Your Favourites</h2>
-            <div class="text-center">
-                <!-- click to see user's own jokes -->
-                <a class="see-own" href="#">See your jokes</a>
-            </div>
-        </div>    
     </section>
 
     <!-- display all user's own jokes -->
     <section class="user-jokes-container">
+        <!-- favourites heading -->
+        <h2 class="text-center mb-5">Your Jokes</h2>
+
         <!-- if jokes were found in the db -->
         {% if jokes|length > 0 %}
             <div class="container">
@@ -125,6 +120,9 @@
 
     <!-- display all user's favourited jokes - default display is none -->
     <section class="user-favourites-container" style="display: none;">
+        <!-- favourites heading -->
+        <h2 class="text-center mb-5">Your Favourites</h2>
+
         <!-- if jokes were found in the db -->
         {% if fav_jokes|length > 0 %}
             <div class="container">

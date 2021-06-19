@@ -42,32 +42,25 @@ document.querySelector(".see-favs").addEventListener("mousedown", profileToggle)
 
 // See either user's favourites or user's own jokes at a time. "Your Jokes" is the default
 function profileToggle(e) {
-  // store "Your Jokes" and "Your Favourites" headings in variables
-  let favsHead =  document.querySelector(".fav-jokes");
-  let jokesHead = document.querySelector(".own-jokes");
-
+  
   // store "Your Jokes" and "Your Favourites" sections in variables
   let favs =  document.querySelector(".user-favourites-container");
   let jokes= document.querySelector(".user-jokes-container");
 
-  // ensure that only one heading at a time is displayed
-  if (e.target.className == "see-own") {
-    // if "Your Jokes" is showing, "Your Favourites" is hidden
-    favsHead.style.display = "none";
-    jokesHead.style.display = "block";
-
-    // if "Your Favourites" is showing, "Your Jokes" is hidden
-    favs.style.display = "none";
-    jokes.style.display = "block";
-  }
   // ensure that only the corresponding section of the heading is displayed
-  else if (e.target.className == "see-favs") {
-    // if user's favourite jokes are showing, their own jokes are hidden
-    jokesHead.style.display = "none";
-    favsHead.style.display = "block";
+  if (e.target.className == "see-favs") {
 
     // if user's own jokes are showing, their favourite jokes are hidden
     jokes.style.display = "none";
     favs.style.display = "block";
+
+  }  
+  else if (e.target.className == "see-own") {
+
+    // if user's own jokes are showing, their favourite jokes are hidden
+    favs.style.display = "none";
+    jokes.style.display = "block";
+
   }
+  
 }
