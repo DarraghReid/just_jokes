@@ -176,7 +176,7 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 
 * Their access to the Home page is similar to the Under 18 user's. Like users under 18 years of age, they may only see jokes suitable for children. However, unlike other users, if they try to take any action, such as trying to see the full joke, liking, or adding the joke to their favourites, the will be presented with a modal providing them with the option of signing in. They can agree or decline.
 
-* If the agree, they are led to the Sign Up page, where they enter their username, password and date of birth. Upon completing this action, they are uploaded to the users collection in the database. They are then considered a general user and redirected to their Profile page.
+* If the agree, they are led to the Sign Up page, where they enter their username, password and date of birth. Upon completing this action, they are uploaded to the users collection in the database. They are then considered a general user and redirected to their Profile page. Thanks to [Werkzeug](https://palletsprojects.com/p/werkzeug/), their password are securely stored and checked upon signing in.
 
 ## Potential Future Features
 #### Categories
@@ -202,17 +202,25 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 * [CSS3](https://en.wikipedia.org/wiki/CSS)
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 * [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
-    * [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework))
+    * [Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
 
 ### Frameworks, Libraries & Programs Used
 * [Balsamiq](https://balsamiq.com/)
     * Balsamiq was used to make the wireframes for the project
 
 * [Bootstrap 5.0.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-    * Bootstrap was used in conjunction with [jQuery](https://jquery.com/) on the Navbar to make it responsive and to collapse the menu items into a single button at smaller screen sizes. Some edits were made to successfully implement the navbar into the site. For examplem me-auto was replaced with ms-auto to push the menu items to the right of the screen, .navbar-collapse was targeted in [style.css](assets/css/style.css) to push the dropdown menu items to the right, and bg-light was also removed to ensure the navbar was transparent.
+    * Bootstrap was used in conjunction with [jQuery](https://jquery.com/) extensively throughout the site.
+    
+        It was used on the Navbar to make it responsive and to collapse the menu items into a single button at smaller screen sizes.
+
+        Initialized with [jQuery](https://jquery.com/), the tooltips on all icons throughout the site are Bootstrap features 
+
+        More prominantly it was used to create the card elements that the jokes were displayed on. Bootstrap is also responsible for all modals seen throughout the site. Bootstrap classes were often used instead of CSS on other elements to assist with centering and positioning.
+
+        Of course, extensive editing had to be carried out on all Bootstrap elements throughout the site to get it functioning a looking the way it currently is. 
 
 * [Fontawesome](https://fontawesome.com/)
-    * As mentioned in the [Features Section](#features), the dropdown menu button in the navbar is represented by a fontawesome icon. There is also a fontawesome icon used in the "back to top" link in the footer.
+    * All icons seen throughout the site were sourced from Fontawesome, including the dropdown menu button in the navbar.
     
 * [Git](https://git-scm.com/)
     * The Gitpod terminal was used to commit to Git and push to Github.
@@ -221,19 +229,25 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
     * Github was used to store the code from the project.
 
 * [Google Dev Tools](https://developer.chrome.com/docs/devtools/)
-    * Google Dev Tools was extensively used throughout the project, especially for testing code, and addressing bug.
+    * Google Dev Tools was extensively used throughout the project, especially for testing code, and addressing bugs.
 
 * [Google Fonts](https://fonts.google.com/)
-    * The two fonts used in the project (Roboto and Great Vibes) were imported from Google Fonts.
+    * Noto Sans, the font used throughout the site, was sourced from Google Fonts.
 
 * [jQuery](https://jquery.com/)
-    * jQuery was used in conjunction with Bootstrap on the Navbar.
+    * jQuery was used in conjunction with Bootstrap on various elements througout the site.
+
+* [MongoDB](https://www.mongodb.com/)
+    * MongoDB was used to creates collections within a database to store data about the sites registered users and jokes uploaded by them.
+
+* [Flask Paginate](https://pythonhosted.org/Flask-paginate/)
+    * Flask paginate was used for pagination in the Home and Profile pages.
+
+* [Coolers.co](https://coolors.co/)
+    * Coolers was used to help choose the colour palette seen throughout the site.
 
 * [Am I Responsive](http://ami.responsivedesign.is/)
     * Am I Responsive was used to produce the image displaying the website on different screen sizes at the beginning of this document.
-
-* [Babel](https://babeljs.io/) compiler was used while trouble-shooting a bug where the site functionality wouldn't work on
-Apple devices. I used babel to convert my JavaScript code ES5. This was unsuccessful in solving the issue, and the ES5 code was ultimately removed.
 
 * [Autoprefixer](http://autoprefixer.github.io/) was used for the same reason as babel. I used Autoprefixer to add vendor prefixes to make it more compatible with various browsers and devices. It was also unsuccessful in addressing the bug. As well as this, as you will see in the Known Bugs section of [TESTING.md](/TESTING.md), it caused errors when put through the W3C CSS Validator. For these reasons, the prefixes were removed.
 
@@ -286,8 +300,6 @@ To do this, follow these steps:
 ## Credits
 
 ### Code 
-* As discussed in the [Features Section](#Features), the scrollable menu in the Studio section was inspired by a [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_menu_hor_scroll) scrollable menu, and was heavily edited.
-
 * I would also like to credit YouTuber [Jonas Grøndahl](https://www.youtube.com/channel/UCVrchtz0z4it4JZjIS1D03A) whose videos on creating moveable and resizable divs I watched. 
 
     Jonas' videos can be viewed here:
