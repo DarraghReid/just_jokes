@@ -62,5 +62,4 @@ function profileToggle(e) {
     jokes.style.display = "block";
 
   }
-  
 }

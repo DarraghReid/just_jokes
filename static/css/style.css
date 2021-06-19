@@ -54,6 +54,10 @@ a {
     color: black;
 }
 
+.flash {
+    margin-top: 56px;
+}
+
 /*---------------------------------------------------search controls*/
 
 .jj-head {
@@ -88,6 +92,11 @@ a {
 
 .search-bar {
     margin-bottom: 30px;
+}
+
+.sign-in-message {
+    font-weight: 300;
+    margin-top: -25px;
 }
 
 /*---------------------------------------------------cards*/
@@ -229,6 +238,38 @@ a {
 
 .user-card-text {
     font-size: 75%;
+}
+
+/*---------------------------------------------------footer*/
+
+footer {
+    width: 100%;
+}
+
+#social-links {
+    width: 20%;
+}
+
+#social-links div {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    margin: 3px;
+}
+
+#social-links div a {
+    font-size: 20px;
+}
+
+#social-links div a:hover {
+    color: rgba(243, 178, 114, .6);
+}
+
+.ftr-element {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*---------------------------------------------------error pages*/
