@@ -31,14 +31,14 @@
 
 # Eden
 
-![Eden Wbsite](assets/images/readme-imgs/amiresponsive1.png)
+![Eden Wbsite](static/images/amiresponsive.png)
 
-View the live project [here](https://darraghreid.github.io/eden/)
+View the live project [here](http://just-jokes.herokuapp.com/get_jokes)
 
-This website was created for Code Institute's Milestone 2 Project as part of the Diploma in Full Stack Web Development. The purpose of this project is to demonstrate the student's knowledge and skills acquired thus far in the course. This includes skills in HTML, CSS, JavaScript as well as other User Centric Design skills as outlined in the [Technologies Used](#Technologies-Used) section.
-This project marks the developer's first time writing JavaScript.
+This website was created for Code Institute's Milestone 3 Project as part of the Diploma in Full Stack Web Development. The purpose of this project is to demonstrate the student's knowledge and skills acquired thus far in the course. This includes skills in HTML, CSS, JavaScript, Python, Flask as well as other technologies as outlined in the [Technologies Used](#Technologies-Used) section. The focus of this project is to demonstrate the student's ability to carry out CRUD functionality
+This project marks the developer's first time writing Python and working with databases.
 
-The purpose of this site is to be a platform on which users can experiment with garden designs. The idea was inspired by landscape gardening student who expressed a desirefor an application on which he could make rough garden designs in front of customers in real time. I decided to create [Eden](https://darraghreid.github.io/eden/) with him in mind as the site owner, where both he and potential customers could use this software to experiment with their ideas.
+The purpose of this site is to provide users with a platform on which they create, read, update, and delete jokes. These features, as well as other features. such as liking jokes and adding jokes to favourites will be discussed in the [Features](#Features) section of this README.md. I decided that using jokes was fun way to explore CRUD functionality. With myself in mind as the site owner/admin, I began creating user stories.
 
 ## UX
 ### User Stories
@@ -46,44 +46,57 @@ The purpose of this site is to be a platform on which users can experiment with 
 #### First Time User Goals 
 1. As a first time user, I want to immediately understand the purpose of the site.
 2. As a first time user, I want to be able to easily navigate through the site to find what I'm looking for.
-3. As a first time user, I want to instinctively know what to do in order to get started on designing my garden.
-4. As a first time user, I want to have a selection of different garden elements to experiment with.
-5. As a first time user, I want to be able select and manipulate different garden elements in order to create my own design.
-6. As a first time user, I want to have the choice of adding and removing different garden elements from my design.
-7. As a first time user, I want to be able to move and resize different garden elements.
+3. As a first time user, I want to instinctively know what to do in order to get started creating and interacting with jokes
+4. As a first time user, I want to be able to read jokes.
+5. As a first time user, I want to be able upload jokes.
+6. As a first time user, I want to be able to edit my jokes.
+7. As a first time user, I want to be able to delete my jokes.
+8. As a first time user, I want to be able to "like" jokes.
+9. As a first time user, I want to be able to add jokes to a list of my favourites.
 
 #### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
-2. As a returning user, I want to be able to make new designs.
+2. As a returning user, I want to be able to upload new jokes.
+3. As a returning user, I want to be able to access the jokes I have uploaded.
+5. As a returning user, I want to be able to access the jokes in my list of favourites.
+6. As a returning user, I want to be able to remove jokes from my list of favourites.
+7. As a returning user, I want to be able to "unlike" jokes.
 
 #### Site Owner Goals
 1. As the site owner, I want to be able to design gardens in real time for potential customers.
-2. As the site owner, I want potential customers to be able to design their own gardens and express their own ideas.
-3. As the site owner, I want to have a selection of garden elements so both I and users can create varying designs.
-4. As the site owner, I want the garden elements to be able to be manipulated in size and position so both I and the user can create designs with ease.
-5. As the site owner, I want the site to be simple, intuitive, and user-friendly.
-6. As the site owner, I want the design of the site the reflect its purpose.
+2. As the site owner, I want to be able to carry out all of the operations available to users.
+3. As the site owner, I want to be able to carry additional operations than other users.
+4. As the site owner, I want to be able to carry out all operations on all jokes, even if they are not my own.
+5. As the site owner, I want to be able to be able to access information on all users.
+6. As the site owner, I want to be able to be able to remove users from the platform, at my own discretion.
+7. As the site owner, I want to be able to be able to restrict access to users who are under 18 years of age.
+8. As the site owner, I want to be able to be able to restrict access to users who are not signed in or registered.
 
 ## Structure
-The site is designed as a single webpage with two sections; the Home Page and the Studio.
-Both sections are linked to in the navigation bar in the home page, as well as in other links throughout the sections.
-This makes it so each section is never more than a click away and results in fast and intuitive navigation.
+JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
+
+    A fixed navbar ensures that all pages available to the specific user are never more than a click away. It also assits users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
 
 ## Design
 * Colour Scheme
-    * The colours used in this project are rgb(0, 105, 78), rgb(68, 153, 94), rgb(201, 197, 197), and white. I found that these shades of green
-    represented the garden design ethos of the site well, while the white gave the text a good contrast. I also found that the light grey provided a sufficient dulling effect to the clickable text while hovered over.
+    * The colourscheme of the site was kept relatively simple. Because most pages were going to be data-focused, I didn't want the colourscheme to distract the user or cause further clutter.
 
-        I chose the colour palette using [coolers.co](https://coolors.co/)
+        The colours used in the site were black, white, and variables of rgb(245, 180, 60), rgb(245, 188, 31), and rgb(245, 180, 60). 
+        
+        I found this orang/yellow colour suited the fun concept of JustJokes The background of each web page of this site in a linear gradient of these three RGB colours. I felt the linear gradient gave the site a bit more depth, making it slightly easier on the eye.
 
-    ![colour palette](assets/images/readme-imgs/coolers.png)
+        Black is the main contrasting colour throughout the site. It tames the vibrancy of the orange/yellow and makes a good colour for headings and navigations elements.
+
+        A slightly dulled white was used for the card elements, inut elements and in buttons.
+
+        I used [coolers.co](https://coolors.co/) as a starting off point for choosing the colours
+
+    ![colour palette](static/images/coolers.png)
 
 * Typography
-    * The fonts used throughout the site are Roboto and Great Vibes.
-    Great Vibes is a cursive font and gives an elegant appearance to the logo.
-    Roboto is used in all other instances and works well with the font of the logo.
+    * The dominant font I chose for JustJokes was Noto Sans. I feel it gave the typography of the site a distinctive, but not distracting, look.
 
-        The fonts were chosen from [Google Fonts](https://fonts.google.com/)
+        The font was sourced from [Google Fonts](https://fonts.google.com/)
 
 * Imagery
     * All images were sourced from websites which provide images for free. These websites are listed below along with the images that were sourced from them, as well as photographer details (where applicable):
