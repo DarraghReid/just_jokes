@@ -153,7 +153,7 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
     
     This information, along with additional information is then inserted into the jokes collection in MongoDB. The additional fields include the user who uploaded the joke, and the "likes", "liked_by", and "favouriter" fields discussed above.
 
-* In their profile, the admin can access the jokes that they have uploaded themselves, as well as the jokes that they have added to their favourited via a dropdown menu. The dropdown menu also allows users to sign out.
+* In their profile, the admin can access the jokes that they have uploaded themselves, as well as the jokes that they have added to their favourites via a dropdown menu. The dropdown menu also allows users to sign out.
 
 * The Admin user also has access to a Users page, where they can view all users who have signed up to the site. They can see all available information about the user, including their ID, username, and date of birth. Here, the admin can also chose to delete a user at their own discretion.
 
@@ -176,15 +176,23 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 
 * Their access to the Home page is similar to the Under 18 user's. Like users under 18 years of age, they may only see jokes suitable for children. However, unlike other users, if they try to take any action, such as trying to see the full joke, liking, or adding the joke to their favourites, the will be presented with a modal providing them with the option of signing in. They can agree or decline.
 
-#### Potential Future Features
-Although the initial goal of creating a platform on which users can create rough garden designs has been achieved, a few possible additional features 
-that could be implemented in future versions of the site came to mind throughout the creation process. These include:
-* A larger selection of garden elements. These would, of course, be subject to the site owners preferences.
-* The ability of the user to rotate images. This would be useful for rectangular elements, such as bushes.
-* The ability of the user to crop images.
-* The ability of the user to increase or decrease the z-index of the elements.
-* The ability of the user to save their work. This could possibly involve the creation of an account.
-* The ability of the user to shape their garden to match their own.
+* If the agree, they are led to the Sign Up page, where they enter their username, password and date of birth. Upon completing this action, they are uploaded to the users collection in the database. They are then considered a general user and redirected to their Profile page.
+
+## Potential Future Features
+#### Categories
+* There are many types of categories that jokes could be grouped into. This features would allow users to search for their favourite jokes based on a category. Possible categories might include: Dad Jokes, One-liners, Blonde jokes, and even memes!
+
+#### Sort By
+* I had originally planned to include this features, but chose to omit it, as discussed above. Users could use this feature to filter jokes based on their popularity, length, upload date, etc. It would allow users more control over what they see.
+
+#### Shuffle
+* An interesting future feature would allow users to shuffle through jokes. The users would press the shuffle button and one random joke would appear on their screen at a time.
+
+#### Originals
+* Another option would be to be allow users specify whether the joke they are uploading is original or not. They could possibly gain a following of users who enjoy their jokes.
+
+#### Possibly Offensive Content
+* Some jokes may be tagged with a warning that it might include contense that some may find offesive.
 
 
 ## Technologies Used 
@@ -193,6 +201,8 @@ that could be implemented in future versions of the site came to mind throughout
 * [HTML5](https://en.wikipedia.org/wiki/HTML5)
 * [CSS3](https://en.wikipedia.org/wiki/CSS)
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+    * [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework))
 
 ### Frameworks, Libraries & Programs Used
 * [Balsamiq](https://balsamiq.com/)
