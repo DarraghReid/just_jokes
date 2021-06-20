@@ -41,6 +41,10 @@ a {
 
 /*---------------------------------------------------header*/
 
+#home {
+    margin-top: 95px;
+}
+
 .navbar {
     background-image: linear-gradient(to right, rgb(245, 180, 60), rgb(245, 188, 31), rgb(245, 180, 60));
     box-shadow: 0 1px 10px;
@@ -64,10 +68,6 @@ a {
     color: black;
 }
 
-.flash {
-    margin-top: 56px;
-}
-
 /*---------------------------------------------------search controls*/
 
 .jj-head {
@@ -78,6 +78,7 @@ a {
 
 .flash {
     background-color: white;
+    margin-top: 56px;
 }
 
 .search-controls {
