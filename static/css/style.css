@@ -26,8 +26,13 @@ body {
     color: black;
 }
 
-a {
-    color: red;
+a:hover {
+    color: black;
+}
+
+.add-one:hover {
+    color: black;
+    font-size: 30px;
 }
 
 .fas {
