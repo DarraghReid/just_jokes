@@ -1,5 +1,5 @@
 ## Contents
-* [Introduction](#Eden)
+* [Introduction](#JustJokes)
 * [UX](#UX)
     * [User Stories](#User-Stories)
         * [First Time User Goals](#First-Time-User-Goals)
@@ -10,17 +10,18 @@
 * [Wireframes](#Wireframes)
     * [Differences Between Wireframes and Final Product](#Differences-Between-Wireframes-and-Final-Product)
 * [Features](#Features)
-    * [Home Page](#Home-Page)
-    * [Studio Section](#Studio-Section)
-    * [Footer](#Footer)
-    * [Potential Future Features](#Potential-Future-Features)
+    * [Admin](#Admin)
+    * [General User](#General)
+    * [Under 18s User](#Under)
+    * [Signed out user](#Signed)
+* [Potential Future Features](#Potential-Future-Features)
 * [Technologies Used](#Technologies-Used)
     * [Languages Used](#Languages-Used)
     * [Frameworks, Libraries & Programs Used](#Frameworks-,-Libraries-&-Programs-Used)
 * [Testing](#Testing)
 * [Deployment](#Deployment)
     * [Project Creation](#Project-Creation)
-    * [GitHub Pages](#GitHub-Pages)
+    * [Connecting to Heroku](#Heroku)
     * [Forking the GitHub Repository](#Forking-the-GitHub-Repository)
     * [Run Locally](#Run-Locally)
 * [Credits](#Credits)
@@ -29,9 +30,9 @@
     * [Media](#Media)
     * [Acknowledgements](#Acknowledgements)
 
-# Eden
+# JustJokes
 
-![Eden Wbsite](static/images/amiresponsive.png)
+![JustJokes](static/images/amiresponsive.png)
 
 View the live project [here](http://just-jokes.herokuapp.com/get_jokes)
 
@@ -75,7 +76,7 @@ The purpose of this site is to provide users with a platform on which they creat
 ## Structure
 JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
 
-    A fixed navbar ensures that all pages available to the specific user are never more than a click away. It also assits users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
+    A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
 
 ## Design
 * Colour Scheme
@@ -108,12 +109,6 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 ## Wireframes
 * Wireframe of Home Page
 ![Wireframe of Home Page](static/images/jj-wireframes.png)
-
-* Wireframe of Studio
-![Wireframe of Studio](assets/images/readme-imgs/wireframe-studio.png)
-
-* Wireframe of Tutorial Section (Not included in final product)
-![Wireframe of Studio](assets/images/readme-imgs/wireframe-tutorial.png)
 
 ### Differences Between Wireframes and Final Product
 * On the home screen, I decided to omit the sort by dropdown as I didn't feel it would contribute to the project according to the guidelines set out in the Assessment Handbook. Also, I had already included a dropdown in the Profile page where users are presented with a range of options.
