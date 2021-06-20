@@ -6,7 +6,7 @@
     <!-- display toggle - toggle between user's own jokes and user's favourites -->
     <section class="display-toggle">
             <div class="dropdown text-center mb-4">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -45,14 +45,14 @@
                                         </div>
                                         <!-- expand button, triggers modal to display full joke -->
                                         <!-- onclick event listener passes card variable to displayModal() function in script.js -->
-                                        <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#seeFull{{ joke._id}}" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
+                                        <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
                                         <!-- bootstrap modal to display full joke -->
-                                        <div class="modal fade" id="seeFull{{ joke._id}}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="seeFull" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <!-- modal: joke title -->
-                                                        <h5 class="modal-joke-title">{{ joke.joke_title }}</h5>
+                                                        <h5 class="modal-joke-title" id="seeFull">{{ joke.joke_title }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -70,14 +70,14 @@
                                         <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                         <!-- only display delete and edit buttons to user who posted joke -->
                                         <!-- delete joke button, triggers modal to display confirmation message -->
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ joke._id}}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                         <!-- modal to display confirmation message -->
-                                        <div class="modal fade" id="deleteModal{{ joke._id}}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="confirmModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <!-- confirmation message -->
-                                                        <h5 class="modal-joke-title">Are you sure you want to delete this joke?</h5>
+                                                        <h5 class="modal-joke-title" id="confirmModal">Are you sure you want to delete this joke?</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -146,14 +146,14 @@
                                     </div>
                                     <!-- expand button, triggers modal to display full joke -->
                                     <!-- onclick event listener passes card variable to displayModal() function in script.js -->
-                                    <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#seeFullM{{ joke._id}}" onclick="displayModal('{{joke.joke_title}}', '{{joke.joke_description}}', '{{joke.joke_teller}}')">Expand</button>
+                                    <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" onclick="displayModal('{{joke.joke_title}}', '{{joke.joke_description}}', '{{joke.joke_teller}}')">Expand</button>
                                     <!-- bootstrap modal to display full joke -->
-                                    <div class="modal fade" id="seeFullM{{ joke._id}}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="seeFull2" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <!-- modal: joke title -->
-                                                    <h5 class="fav-modal-joke-title">{{ joke.joke_title }}</h5>
+                                                    <h5 class="fav-modal-joke-title" id="seeFull2">{{ joke.joke_title }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -191,7 +191,7 @@
                         {% if fav_jokes|length > 0 %}
                             {{ pagination.links }}
                         {% endif %}
-                    {% endfor %}            
+                    {% endfor %}
                 </div>
             </div>
         <!-- if there were no jokes found in the db -->

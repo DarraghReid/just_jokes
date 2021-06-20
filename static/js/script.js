@@ -10,7 +10,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 // ensure correct information is displayed on modals
 // arguments received from onclick function in both profile.html and jokes.html
 function displayModal(title, description, teller) {
-
+debugger;
   // store modal elements in variables
   modalTitle = document.querySelector(".modal-joke-title");
   modalDesc = document.querySelector(".modal-joke-description");
@@ -27,18 +27,19 @@ function displayModal(title, description, teller) {
   postedBy.innerHTML = `Posted by: ${teller}`;
 
   // set innerHTML of favourite modal elements to that of favourite card elemets passed into displayModal()
-  favmodalTitle.innerHTML = title;
-  favmodalDesc.innerHTML = description;
-  favpostedBy.innerHTML = `Posted by: ${teller}`;
+  if (favmodalTitle){
+    favmodalTitle.innerHTML = title;
+    favmodalDesc.innerHTML = description;
+    favpostedBy.innerHTML = `Posted by: ${teller}`;
+  }
 }
-
 
 /*-----------------------------profile*/
 
 // profile toggle
 // set click event listeners on "See Favourites" and "Your Jokes" links, call profileToggle() function
-document.querySelector(".see-own").addEventListener("mousedown", profileToggle);
-document.querySelector(".see-favs").addEventListener("mousedown", profileToggle);
+document.querySelector(".see-own")?.addEventListener("mousedown", profileToggle);
+document.querySelector(".see-favs")?.addEventListener("mousedown", profileToggle);
 
 // See either user's favourites or user's own jokes at a time. "Your Jokes" is the default
 function profileToggle(e) {
