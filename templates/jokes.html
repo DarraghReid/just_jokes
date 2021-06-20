@@ -122,7 +122,7 @@
                                                                 <!-- cancel deletion button -->
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                 <!-- confirm deletion button -->
-                                                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" class="btn btn-primary">Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,7 +134,7 @@
                                                 <!-- only display delete and edit buttons to user who posted joke -->
                                                 {% if session.user|lower == joke.joke_teller|lower or session.user|lower == "admin" %}
                                                     <!-- delete button, triggers modal to confirm deletion -->
-                                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                     <!-- bootstrap modal to confirm deletion -->
                                                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="removeJoke1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -156,7 +156,7 @@
                                                                     <!-- cancel deletion button -->
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                     <!-- confirm deletion button -->
-                                                                    <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                                    <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" class="btn btn-primary">Delete</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -266,7 +266,7 @@
                                                                 <!-- cancel deletion button -->
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                 <!-- confirm deletion button -->
-                                                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" class="btn btn-primary">Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -334,11 +334,11 @@
                                                     <div class="modal-header">
                                                         <!-- modal heading -->
                                                         <h5 class="modal-joke-title" id="seeFull1">Want to see the full joke?</h5>
-                                                        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                                        <a class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- sign in button -->
-                                                        <p class="modal-joke-description"><a href="{{ url_for('sign_in') }}" type="button" class="btn btn-primary">Sign in</a></p>
+                                                        <p class="modal-joke-description"><a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a></p>
                                                         <!-- decline button -->
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
                                                     </div>
@@ -364,7 +364,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- sign in button -->
-                                                        <a href="{{ url_for('sign_in') }}" type="button" class="btn btn-primary">Sign in</a>
+                                                        <a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a>
                                                         <!-- decline button -->
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
                                                     </div>
@@ -386,7 +386,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- sign in button -->
-                                                        <a href="{{ url_for('sign_in') }}" type="button" class="btn btn-primary">Sign in</a>
+                                                        <a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a>
                                                         <!-- decline button -->
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
                                                     </div>
