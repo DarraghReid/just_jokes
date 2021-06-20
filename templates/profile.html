@@ -116,7 +116,7 @@
             </div>
         <!-- if not jokes were found in the db -->
         {% else %}
-                <h3>no results</h3>
+        <h3 class="text-center">No jokes were found. Why not <a href="{{ url_for('add_joke') }}">add a one?</a></h3>
         {% endif %}
     </section>
 
@@ -196,7 +196,7 @@
             </div>
         <!-- if there were no jokes found in the db -->
         {% else %}
-                <h3>no results</h3>
+        <h3 class="text-center">No jokes were found. Why not <a href="{{ url_for('add_joke') }}">add one?</a></h3>
         {% endif %}
     </section>
 {% endblock %}
