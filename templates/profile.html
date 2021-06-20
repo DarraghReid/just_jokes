@@ -148,12 +148,12 @@
                                     <!-- onclick event listener passes card variable to displayModal() function in script.js -->
                                     <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" onclick="displayModal('{{joke.joke_title}}', '{{joke.joke_description}}', '{{joke.joke_teller}}')">Expand</button>
                                     <!-- bootstrap modal to display full joke -->
-                                    <div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="seeFull1" aria-hidden="true">
+                                    <div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="seeFull2" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <!-- modal: joke title -->
-                                                    <h5 class="fav-modal-joke-title" id="seeFull1">{{ joke.joke_title }}</h5>
+                                                    <h5 class="fav-modal-joke-title" id="seeFull2">{{ joke.joke_title }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
