@@ -11,14 +11,15 @@
     * [Differences Between Wireframes and Final Product](#Differences-Between-Wireframes-and-Final-Product)
 * [Features](#Features)
     * [Admin](#Admin)
-    * [General User](#General)
-    * [Under 18s User](#Under)
-    * [Signed out user](#Signed)
+    * [General User](#General-User)
+    * [Under 18s User](#Under-18-User)
+    * [Signed out user](#Signed-Out-User)
 * [Potential Future Features](#Potential-Future-Features)
 * [Technologies Used](#Technologies-Used)
     * [Languages Used](#Languages-Used)
     * [Frameworks, Libraries & Programs Used](#Frameworks-,-Libraries-&-Programs-Used)
 * [Testing](#Testing)
+* [Security](#Security)
 * [Deployment](#Deployment)
     * [Project Creation](#Project-Creation)
     * [Connecting to Heroku](#Heroku)
@@ -248,6 +249,13 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 
 ## Testing
 Information on testing can be found in a separate [TESTING.md](/TESTING.md) file.
+
+## Security
+All sensitive information is stored in an env.py file. This file is referenced in a .gitignore file, and is therefore never pushed to GitHub. 
+
+Any user that registers an account will have their password undergo password hashing as an extra security measure. Various measures are in place to ensure that only the admin and users themselves can access user information. 
+
+These measures, which include function decorators and if statements, also ensure that users that are under 18 years of age cannot access adult content. As well as this, users that aren't signed in are restricted from accessing certain features
 
 ## Deployment
 
