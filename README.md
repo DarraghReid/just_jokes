@@ -252,30 +252,54 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 * [Autoprefixer](http://autoprefixer.github.io/) was used for the same reason as babel. I used Autoprefixer to add vendor prefixes to make it more compatible with various browsers and devices. It was also unsuccessful in addressing the bug. As well as this, as you will see in the Known Bugs section of [TESTING.md](/TESTING.md), it caused errors when put through the W3C CSS Validator. For these reasons, the prefixes were removed.
 
 ## Testing
-Information on testing can be found in a separate [TESTING.md](/TESTING.md) file
+Information on testing can be found in a separate [TESTING.md](/TESTING.md) file.
 
 ## Deployment
 
 ### Project Creation
 This project was created by using the following steps:
 
-1. Log in to GitHub.
+1. Log in to [GitHub](https://github.com/).
 2. In the Repositories section, click the green "New" button.
 3. Under "Repository template", select "Code-Institute-Org/gitpod-full-template".
-4. Enter repository name (eden).
+4. Enter repository name (just_jokes).
 5. Click "Create repository".
-6. When re-directed, select the green "Gitpod" button. 
+6. When re-directed, select the green "Gitpod" button to open workspace. Only do this step once; open workspace from [Gitpod Workspaces](https://gitpod.io/workspaces/) in future. 
 
-### GitHub Pages
-This project was deployed to GitHub Pages using the following steps:
+Use [Git](https://git-scm.com/) CLI commands for version control:
+* To move files to the staging area, use "git add" followed by the name of the file, or "git add -A" for all files.
+* To save your changes to your local repository, use "git commit -m" followed by a short, descriptive message detailing the changes you have made. Ensure the message is wrapped in quotes.
+* To push the changes to the GitHub repo, use "git push".
 
-1. Log in to GitHub.
-2. Select repository.
-3. Navigate to and click the "Settings" button.
-4. When re-directed, scroll down to the "GitHub Pages" section.
-5. Under "Source", click the dropdown named "None" and select "Master Branch".
-6. Click the "Save" button.
-7. Upon page refresh, scroll down and locate the link to the live deployed page.
+### Heroku
+This project was deployed to Deployment to Heroku using the following steps:
+
+1. Set up a requirements.txt file and a Procfile to tell Heroku which applications and dependencies are required.
+    * Type "pip3 freeze --local > requirements.txt" to create a requirements.txt file.
+    * Type "echo web: python app.py > Procfile" to creat a Procfile.
+
+2. Create Heroku App
+    * Log into [Heroku](https://id.heroku.com/login).
+    * Click the "New" button in the top right corner of the page, and select create new app.
+    * Enter app name and select the region closest to you ("Europe" in this case).
+
+3. Connect Heroku to Github
+    * Click on the "Deploy" tab, select "GitHub", and then "Connect to GitHub".
+    * When a prompt appears to find a github repository to connect to, enter the repo name created on Github ("just_jokes" in this case)
+    * Click search, and click the connect button if the correct repository has been found.
+
+4. Set environment variables
+    * Click on the "Settings" tab, then "Reveal Config Vars", and add the following information:
+        * key: IP, value: 0.0.0.0
+        * key: MONGO_DBNAME, value: database name(just_jokes, in this case)
+        * key: MONGO_URI, value: (This value is found in Mongo DB by accessing "clusters" then "connect" then "connect to your application". You will also have to add in your own database name and password.)
+        * key: PORT, value: 5000
+        * key: SECRET_KEY, value: (Custom secret key set up for configuration to keep client-side sessions secure)
+
+5. Enable automatic deployment
+    * Click the "Deploy" tab.
+    * Choose the branch you wish to deploy and" click Enable Automation Deploys".
+
 
 ### Forking the GitHub Repository
 
