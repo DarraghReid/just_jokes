@@ -213,7 +213,9 @@ Although no longer in user, this is how the user-favourites collection functione
 
 * Their access to the Home page is similar to the Under 18 user's. Like users under 18 years of age, they may only see jokes suitable for children. However, unlike other users, if they try to take any action, such as trying to see the full joke, liking, or adding the joke to their favourites, the will be presented with a modal providing them with the option of signing in. They can agree or decline.
 
-* If the agree, they are led to the Sign Up page, where they enter their username, password and date of birth. Upon completing this action, they are uploaded to the users collection in the database. They are then considered a general user and redirected to their Profile page. Thanks to [Werkzeug](https://palletsprojects.com/p/werkzeug/), their password are securely stored and checked upon signing in.
+* If the agree, they are led to the Sign Up page, where they enter their username, password and date of birth. Upon completing this action, they are uploaded to the users collection in the database. They are then considered a general user and redirected to their Profile page. Thanks to [Werkzeug](https://palletsprojects.com/p/werkzeug/), their password are securely stored and.
+
+[Werkzeug's](https://palletsprojects.com/p/werkzeug/) check_password_hash() allows all users to securely sign in again.
 
 ## Potential Future Features
 #### Categories
@@ -285,8 +287,6 @@ Although no longer in user, this is how the user-favourites collection functione
 
 * [Am I Responsive](http://ami.responsivedesign.is/)
     * Am I Responsive was used to produce the image displaying the website on different screen sizes at the beginning of this document.
-
-* [Autoprefixer](http://autoprefixer.github.io/) was used for the same reason as babel. I used Autoprefixer to add vendor prefixes to make it more compatible with various browsers and devices. It was also unsuccessful in addressing the bug. As well as this, as you will see in the Known Bugs section of [TESTING.md](/TESTING.md), it caused errors when put through the W3C CSS Validator. For these reasons, the prefixes were removed.
 
 ## Testing
 Information on testing can be found in a separate [TESTING.md](/TESTING.md) file.

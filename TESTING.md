@@ -24,57 +24,22 @@
 
 ## Validation
 
-The [W3C Markup Validator](https://validator.w3.org/), the [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/) 
-and [JSHint](https://jshint.com/) were used to validate this project's code and to make sure there were no syntax errors in the project.
+[W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/),  [JSHint](https://jshint.com/) and [Pep8 Online](http://pep8online.com/) were used to validate this project's code and to make sure there were no syntax errors in the project.
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to test the site's performance.
 
 ### W3C Markup Validator  
 
-Two warnings arose from the W3C validator:
 
-* Starting with the second warning; it stated that the section element with the id "home-screen" lacked a heading. It didn't seem to recognise that the h1 callout is the heading for this section. 
-
-* Relating to the second warning, the first warning suggested that the callout was not an appropriate use of a h1 tag. However, this is the most important, indeed, the only, heading on the Home Page.
-
-![W3C Markup Validator](assets/images/testing-imgs/html-val.png)
-
-I figured the issue lay in the fact that I had enclosed the callout in article tags. 
-
-![Callout with article tags](assets/images/testing-imgs/callout.png)
-
-I changed the article tags to div tags and ran the site through the validator again. It passed without issue.
-
-![W3C Markup Validator](assets/images/testing-imgs/html-val-1.png)
 
 ### W3C CSS Validator Services
 
-Initially, I put the site URI through the W3C CSS Validator. This flagged 18 errors and hundreds of warnings.
-Most of these were related to the URI "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css".
-However, some were related to the prefixes added by Autoprefixer. 
 
-![W3C Markup Validator](assets/images/testing-imgs/css-val.png)
-
-![W3C Markup Validator](assets/images/testing-imgs/css-val-1.png)
-
-I removed the prefixes added by Autoprefixer, and this 
-time I directly input my CSS code into the validator. It passed without issue.
-
-![W3C Markup Validator](assets/images/testing-imgs/css-val-2.png)
 
 ### JSHint
 
-The JSHint tool flagged 42 warnings which were mostly related to the ES6 syntax I used to write my JavaScript code.
-This included my use of arrow functions as well as 'let' and 'const' variable names.
 
-There were two warnings related to unnecessary semicolons, and two warnings to missing semi-colons. Once the semi-colon 
-issues were addressed, there were 38 warning remaining which all related to ES6 syntax.
-
-![W3C Markup Validator](assets/images/testing-imgs/jshint.png)
-
-![W3C Markup Validator](assets/images/testing-imgs/jshint-1.png)
-
-![W3C Markup Validator](assets/images/testing-imgs/jshint-2.png)
+### Pep8 Online
 
 ### Lighthouse
 The results from Lighthouse were generally good. As expected points were lost on the performance metrics due to the size 
