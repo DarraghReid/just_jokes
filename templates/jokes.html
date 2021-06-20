@@ -100,7 +100,7 @@
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
                                                 <!-- delete button, triggers modal -->
-                                                <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 <!-- bootstrap modal for user to confirm deletion -->
                                                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="removeJoke" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -245,7 +245,7 @@
                                             <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                             <!-- only display delete and edit buttons to user who posted joke -->
                                             {% if session.user|lower == joke.joke_teller|lower %}
-                                                <a data-bs-toggle="modal" data-bs-target="#deleteModal2"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal2"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 <div class="modal fade" id="deleteModal2" tabindex="-1" aria-labelledby="removeJoke2" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                         <div class="modal-content">
@@ -334,7 +334,7 @@
                                                     <div class="modal-header">
                                                         <!-- modal heading -->
                                                         <h5 class="modal-joke-title" id="seeFull1">Want to see the full joke?</h5>
-                                                        <a class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                                        <a href="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- sign in button -->
@@ -350,7 +350,7 @@
                                         <!-- number of people who liked the joke -->
                                         <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                         <!-- like button, triggers modal to display sign in message on on modal -->
-                                        <a data-bs-toggle="modal" data-bs-target="#like-sign-in"><i class="fas fa-grin-squint-tears like-fav" data-bs-toggle="tooltip" title="Like"></i></a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#like-sign-in"><i class="fas fa-grin-squint-tears like-fav" data-bs-toggle="tooltip" title="Like"></i></a>
                                         <!-- bootstrap modal to display sign in message -->
                                         <div class="modal fade" id="like-sign-in" tabindex="-1" aria-labelledby="signInModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -372,7 +372,7 @@
                                             </div>
                                         </div>
                                         <!-- add to favourites button, triggers modal to display sign in message -->
-                                        <a data-bs-toggle="modal" data-bs-target="#fav-sign-in"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#fav-sign-in"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                         <!-- modal to display sign in message -->
                                         <div class="modal fade" id="fav-sign-in" tabindex="-1" aria-labelledby="jokeModal5" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

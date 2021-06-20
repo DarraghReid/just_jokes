@@ -70,7 +70,7 @@
                                         <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                         <!-- only display delete and edit buttons to user who posted joke -->
                                         <!-- delete joke button, triggers modal to display confirmation message -->
-                                        <a data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                         <!-- modal to display confirmation message -->
                                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="confirmModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -91,7 +91,7 @@
                                                     <div class="modal-footer">
                                                         <div class="cancel-confirm">
                                                             <!-- cancel button -->
-                                                            <a class="btn btn-secondary" data-bs-dismiss="modal">Cancel</a>
+                                                            <a href="" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</a>
                                                             <!-- confirm button -->
                                                             <a href="{{ url_for('delete_joke', joke_id=joke._id) }}" class="btn btn-primary">Delete</a>
                                                         </div>
