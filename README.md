@@ -124,6 +124,47 @@ JustJokes includes 10 web pages, with some pages being more versatile and able t
 
 * In sign in form, instead of a switch indicating whether the user was an adult or not, I opted for a calandar input. I sliced the information I needed from the user's DOB string and calculated their ages. Different features are available to users based on their age, as will be discussed in the [Features](#Features) section.
 
+## Database Design
+MongDB was chosen to create the database for this project. Its non-relational structure was suited for the site's needs as there are few relationships between the collections in the just_jokes database.
+
+### Database structure
+![Database Design](static/images/db-structure.png)
+
+There are currently two collections in use; jokes and users. A third, user_favourites, had been used for a period of time, but is now redundant. As will be discussed in the Problems section in [TESTING.md](/TESTING.md), a more efficient means of adding jokes to user's list of favourites was found.
+
+#### Users Collection
+![Users Collection](static/images/users-collection.png)
+
+The Users collection is comprised of three fields, excluding "_id". "username", "password" and "date_of_birth" are all pulled from the sign up form after being entered by the user. 
+
+"username" is the most widely used of the field in the site. It is used to identify if a user has liked a joke or added a joke to their list of favourites. It is also displayed on card of the jokes they have uploaded.
+
+"date_of_birth" is an important field. It is used in the get_age() function in app.py to determine the user's age and, therefore, what content they will be able to see.
+
+As you can see, the user's password is securely stored, hashed and salted for security.
+
+#### Jokes Collection
+![Jokes Collection](static/images/jokes-collection.png)
+
+The number of fields in the jokes collection as grown since its inception at the beginning of the project. Not only does it hold information about the joke, but it also stores information about the popularity of the jokes and the users who have interacted with the joke.
+
+"joke_title", "joke_description", "img_url" and "for_children" are all input by the user via the Add Joke form and add_joke() function in app.py. 
+
+"for_children" is an important field. It is set to "on" or "off" via a switch in the Add Joke form. If it is set to "on", all users will be ablet to see the joke. If it is set to "off", only adult users will be able to see the joke.
+
+"likes", "liked_by" and "favouriter" are automatically added alongside the other fields upon upload. They will be continuously updates as users interact with the joke.
+
+"likes" is an integer and is initialised with 0. This will increase when a user "likes" the joke and will decrease when a user "unlikes" a joke.
+
+"liked_by" is a MongoDB array, and stores the names of users who have liked its respective joke. Usernames will be removed from the array upon the user unliking the joke.
+
+"favouriter" is also a MongoDB array, and stores the names of users who have added its respective joke to their list of favourites. Usernames will be removed from the array upon the user removing the joke from their favourites.
+
+#### User Favourites Collection
+![User Favourites Collection](static/images/user-favourites-collection.png)
+
+Although no longer in user, this is how the user-favourites collection functioned. Each time a user added a joke to their favourites, information about the joke was passed to the add_fav() function, and inserted into the collection along with the name of the user who favourited it.
+
 ## Features
     Different features are available to users based on their age and the type of account they have, ie; a general user, or an admin. I will discuss these features in relation to these criteria.
 
