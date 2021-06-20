@@ -300,31 +300,22 @@ To do this, follow these steps:
 ## Credits
 
 ### Code 
-* I would also like to credit YouTuber [Jonas Grøndahl](https://www.youtube.com/channel/UCVrchtz0z4it4JZjIS1D03A) whose videos on creating moveable and resizable divs I watched. 
+* [Ed Bradley's](https://github.com/Edb83) pagination code was a great template for learning how to implement my own. His code can be found [here](https://github.com/Edb83/self-isolution/blob/master/app.py).
 
-    Jonas' videos can be viewed here:
-    * https://www.youtube.com/watch?v=NyZSIhzz5Do
-    * https://www.youtube.com/watch?v=4qyuNBlc8ho
+* I learned how to make the 404 and 500 error pages from [this resource](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/).
 
-* A YouTube account by the name of [Fl05k8r](https://www.youtube.com/channel/UCQlg1ZNEkVGZ8aUB4gcu-Sg) made a comment on Jonas' [part 1](https://www.youtube.com/watch?v=NyZSIhzz5Do) video which added to my understanding of targeting multiple elements for 
-moving.
+* [This](https://www.youtube.com/watch?v=RjMbCUpvIgw) video from [Socratica](https://www.youtube.com/user/SocraticaStudios) and [this](https://www.youtube.com/watch?v=NWDQDLzqMt8) video from [Irfan Khan](https://www.youtube.com/channel/UCK5QUBOwyE9cAaO0SV1etyQ) were very helpful in understanding how to calculate the user's age.
 
-* [Stack Overflow](https://stackoverflow.com/) member, Jor, contributed some code in the comments of [this post](https://stackoverflow.com/questions/13152578/create-a-draggable-div-in-native-javascript) 
-which greatly helped in my understanding of how to target elements on touch screens.
-
-As is evident from comparing my code to the code from the sources above, my code is very different. 
-
-This is partly because of the complexity of my project as opposed to the explanatory code referenced above. Of course, all functions, variables, classes and ids have been changed. However, much more needed to be done to implement moveable and resizable functionality into my project, as well as to include the removable functionality. Added layers of complexity included the functionality being written for elements that don't yet exist in the DOM and also that the moveable and resizable elements were nested inside other elements.
+Of course, all functions, variables, classes and ids have been changed. However, much more needed to be done to implement moveable and resizable functionality into my project, as well as to include the removable functionality. Added layers of complexity included the functionality being written for elements that don't yet exist in the DOM and also that the moveable and resizable elements were nested inside other elements.
 
 Further details of the bugs encountered in the project can be found in the Known Bugs Section of the [TESTING.md](/TESTING.md).
 
 ### Content 
-* All content was created by the developer.
+* The site was created solely by the developer. All jokes are uploaded by different users.
 
 ### Media
-* As mentioned in the [Features Section](#features), all images on this site were sourced from sites which provide images for free. They are referenced in the Features Section, as well as in [index.html](/index.html). As previously discussed, some images were edited by the developer to suit the needs of the site.
+* All images seen on the site are uploaded by users as urls as part of the process of adding a joke. The site does not own the copyright to these images.
 
 ### Acknowledgements
-I would like to thank my mentor Gurjot Singh for his continuous support throughout the project.
-I would like to thank friend John Brett for his hands-off advice.
-I would like to thank the slack community for their assistance, particularly Daisy Mc Girr who is always willing to share her wisdom and advice.
+
+I would like to thank the slack community for their assistance, particularly Daisy Mc Girr who is always willing to share her wisdom and advice. Igor Busaga's hands-off assistance and patience was also very much appreciated.
