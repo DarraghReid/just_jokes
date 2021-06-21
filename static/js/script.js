@@ -7,33 +7,37 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 /*-----------------------------modals*/
 
-// ensure correct information is displayed on modals
+// ensure correct information is displayed on expand modals
 // arguments received from onclick function in both profile.html and jokes.html
 function displayModal(title, description, teller) {
-debugger;
   // store modal elements in variables
-  modalTitle = document.querySelector(".modal-joke-title");
-  modalDesc = document.querySelector(".modal-joke-description");
-  postedBy = document.querySelector(".modal-joke-teller");
+  let modalTitle = document.querySelector(".modal-joke-title");
+  let modalDesc = document.querySelector(".modal-joke-description");
+  let postedBy = document.querySelector(".modal-joke-teller");
 
-  // store favourites modal elements in variables
-  favmodalTitle = document.querySelector(".fav-modal-joke-title");
-  favmodalDesc = document.querySelector(".fav-modal-joke-description");
-  favpostedBy = document.querySelector(".fav-modal-joke-teller");
+  // store modal elements in variables - for favourites in profile.html
+  let favTitle = document.querySelector(".fav-modal-joke-title");
+  let favDesc = document.querySelector(".fav-modal-joke-description");
+  let favdBy = document.querySelector(".fav-modal-joke-teller");
 
   // set innerHTML of modal elements to that of card elemets passed into displayModal()
   modalTitle.innerHTML = title;
   modalDesc.innerHTML = description;
   postedBy.innerHTML = `Posted by: ${teller}`;
 
-  // set innerHTML of favourite modal elements to that of favourite card elemets passed into displayModal()
-  if (favmodalTitle){
-    favmodalTitle.innerHTML = title;
-    favmodalDesc.innerHTML = description;
-    favpostedBy.innerHTML = `Posted by: ${teller}`;
-  }
+  // set innerHTML of favourites modal elements to that of card elemets passed into displayModal()
+  favTitle.innerHTML = title;
+  favDesc.innerHTML = description;
+  favdBy.innerHTML = `Posted by: ${teller}`;
 }
 
+function deleteModal(id) {
+  // store modal anchor link in a variable
+  let link = document.querySelector(".delete-modal");
+  link.setAttribute("href", `{{ url_for('delete_joke', joke_id=${id}) }}`)
+}
+
+//{{ url_for('delete_joke', joke_id=joke._id) }}
 /*-----------------------------profile*/
 
 // profile toggle
