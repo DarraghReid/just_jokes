@@ -37,6 +37,10 @@ function deleteModal(id) {
   link.setAttribute("href", `{{ url_for('delete_joke', joke_id=${id}) }}`)
 }
 
+function deleteUser(username, id, dob) {
+  
+}
+
 //{{ url_for('delete_joke', joke_id=joke._id) }}
 /*-----------------------------profile*/
 

@@ -76,7 +76,7 @@
                                     <!-- user's date of birth -->
                                     <p class="card-text m-3">DOB: {{ user.date_of_birth }}</p>
                                     <!-- delete user button, triggers modal to confirm deletion -->
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteUser('{{ user.username }}', '{{ user._id }}', '{{ user.date_of_birth }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
                                     
                                 </div>
                             </div>

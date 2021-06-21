@@ -101,7 +101,7 @@
                                         <!-- number of people who liked the joke -->
                                         <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                         <!-- delete joke button, triggers modal to display confirmation message -->
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                         
                                         <!-- edit button -->
                                         <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>

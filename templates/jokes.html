@@ -45,7 +45,7 @@
                     <div class="container">
                         <div class="row">
 
-                            <!-- bootstrap modal to display full joke -->
+                            <!-- bootstrap modal triggered by expand button below to display full joke, info passed in using JavaScript -->
                             <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="jokeModal" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -72,6 +72,14 @@
                                             <!-- confirmation message -->
                                             <h5 class="modal-joke-title" id="removeJoke">Are you sure want to delete this joke?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- modal: joke title -->
+                                            <h5 class="modal-joke-title"></h5>
+                                            <!-- modal: joke description -->
+                                            <p class="modal-joke-description"></p>
+                                            <!-- modal: user who posted joke -->
+                                            <p class="modal-text modal-joke-teller"></p>
                                         </div>
                                         <div class="modal-footer">
                                             <!-- cancel deletion button -->
@@ -122,7 +130,7 @@
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
                                                 <!-- delete button, triggers modal -->
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 
                                                 
                                                 <!-- edit joke button -->
@@ -132,7 +140,7 @@
                                                 <!-- only display delete and edit buttons to user who posted joke -->
                                                 {% if session.user|lower == joke.joke_teller|lower or session.user|lower == "admin" %}
                                                     <!-- delete button, triggers modal to confirm deletion -->
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                     <!-- bootstrap modal to confirm deletion -->
                                                    
                                                     <!-- edit button -->
@@ -250,7 +258,7 @@
                                             <!-- only display delete and edit buttons to user who posted joke -->
                                             {% if session.user|lower == joke.joke_teller|lower %}
                                                 <!-- delete button, triggers modal to confirm deletion -->
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 
                                                 <!-- edit joke button -->
                                                 <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
