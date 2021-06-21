@@ -70,22 +70,24 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <!-- confirmation message -->
-                                            <h5 class="modal-joke-title" id="removeJoke">Are you sure want to delete this joke?</h5>
+                                            <h5 class="modal-joke-title" id="removeJoke">Are you sure you want to delete this joke?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- modal: joke title -->
-                                            <h5 class="modal-joke-title"></h5>
+                                            <h5 class="delete-joke-title text-center"></h5>
                                             <!-- modal: joke description -->
-                                            <p class="modal-joke-description"></p>
+                                            <p class="delete-joke-description text-center"></p>
                                             <!-- modal: user who posted joke -->
-                                            <p class="modal-text modal-joke-teller"></p>
+                                            <p class="modal-text text-center delete-joke-teller"></p>
                                         </div>
                                         <div class="modal-footer">
-                                            <!-- cancel deletion button -->
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <!-- confirm deletion button -->
-                                            <a href="" class="btn btn-primary delete-modal">Delete</a>
+                                            <div class="text-center cancel-confirm">
+                                                <!-- cancel deletion button -->
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <!-- confirm deletion button -->
+                                                <a href="" class="btn btn-primary delete-modal">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +208,8 @@
                                 </div>
                             </div>
 
-                                <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteModal() -->
+                            <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteModal() -->
+                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="removeJoke2" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -216,17 +219,19 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- modal: joke title -->
-                                            <h5 class="modal-joke-title"></h5>
+                                            <h5 class="delete-joke-title text-center"></h5>
                                             <!-- modal: joke description -->
-                                            <p class="modal-joke-description"></p>
+                                            <p class="delete-joke-description text-center"></p>
                                             <!-- modal: user who posted joke -->
-                                            <p class="modal-text modal-joke-teller"></p>
+                                            <p class="modal-text delete-joke-teller text-center"></p>
                                         </div>
                                         <div class="modal-footer">
-                                            <!-- cancel deletion button -->
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <!-- confirm deletion button -->
-                                            <a href="" class="delete-modal btn btn-primary">Delete</a>
+                                            <div class="text-center cancel-confirm">
+                                                <!-- cancel deletion button -->
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <!-- confirm deletion button -->
+                                                <a href="" class="delete-modal btn btn-primary">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -313,10 +318,12 @@
                                         <a href="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- sign in button -->
-                                        <p class="modal-joke-description"><a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a></p>
-                                        <!-- decline button -->
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
+                                        <div class="text-center">
+                                            <!-- sign in button -->
+                                            <p class="modal-joke-description"><a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a></p>
+                                            <!-- decline button -->
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +359,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- modal title -->
-                                        <h5 class="modal-joke-title" id="jokeModal5">Sign in to favoutite this joke</h5>
+                                        <h5 class="modal-joke-title" id="jokeModal5">Sign in to favourite this joke</h5>
                                     </div>
                                     <div class="modal-footer">
                                         <!-- sign in button -->
