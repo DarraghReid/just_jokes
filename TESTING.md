@@ -123,26 +123,13 @@ If the user has liked a joke , this should be indicated by the "like" icon being
 
 ### Site Owner Goals
 1. As the site owner, I want to be able to design gardens in real time for potential customers.
-* The studio provides immediate feedback to user input. Designs can be made quickly and easily.
-
-![Instant Feedback](assets/images/testing-imgs/feedback.png)
-
-2. As the site owner, I want potential customers to be able to design their own gardens and express their own ideas.
-* The software is easy to use, and can therefore be use by both professionals and amateurs.
-
-3. As the site owner, I want to have a selection of garden elements so both I and users can create varying designs.
-* The site currently support garden elements to make dynamic designs. These can easily be updated in line with the owners preferences.
-
-4. As the site owner, I want the garden elements to be able to be manipulated in size and position so both I and the user can create designs with ease.
-* The elements which appear on the canvas can be sufficiently manipulated in size and position for both the owner and the user to create their vision.
-
-5. As the site owner, I want the site to be simple, intuitive, and user-friendly.
-* The studio is designed to be as intuitive as possible. It is image based and all element manipulations have visual cues.
-
-6. As the site owner, I want the design of the site the reflect its purpose.
-* The design of the site, from colours to imagery, reflects nature and garden design.
-
-![Site Design](assets/images/readme-imgs/amiresponsive1.png)
+2. As the site owner, I want to be able to carry out all of the operations available to users.
+3. As the site owner, I want to be able to carry additional operations than other users.
+4. As the site owner, I want to be able to carry out all operations on all jokes, even if they are not my own.
+5. As the site owner, I want to be able to be able to access information on all users.
+6. As the site owner, I want to be able to be able to remove users from the platform, at my own discretion.
+7. As the site owner, I want to be able to be able to restrict access to users who are under 18 years of age.
+8. As the site owner, I want to be able to be able to restrict access to users who are not signed in or registered.
 
 ## Testing Features
 ### Navigation

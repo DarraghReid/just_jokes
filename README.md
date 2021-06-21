@@ -65,14 +65,10 @@ The purpose of this site is to provide users with a platform on which they creat
 7. As a returning user, I want to be able to "unlike" jokes.
 
 #### Site Owner Goals
-1. As the site owner, I want to be able to design gardens in real time for potential customers.
-2. As the site owner, I want to be able to carry out all of the operations available to users.
-3. As the site owner, I want to be able to carry additional operations than other users.
-4. As the site owner, I want to be able to carry out all operations on all jokes, even if they are not my own.
-5. As the site owner, I want to be able to be able to access information on all users.
-6. As the site owner, I want to be able to be able to remove users from the platform, at my own discretion.
-7. As the site owner, I want to be able to be able to restrict access to users who are under 18 years of age.
-8. As the site owner, I want to be able to be able to restrict access to users who are not signed in or registered.
+1. As the site owner/admin, I want to be able to have additional features available to me.
+1. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
+1. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
+2. 
 
 ## Structure
 JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.

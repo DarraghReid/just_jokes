@@ -73,6 +73,15 @@ a:hover {
     color: black;
 }
 
+header {
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: -112px;
+    left: 0;
+    padding: 1rem;
+}
+
 /*---------------------------------------------------search controls*/
 
 .jj-head {
