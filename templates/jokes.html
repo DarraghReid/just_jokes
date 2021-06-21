@@ -45,7 +45,7 @@
                     <div class="container">
                         <div class="row">
 
-                            <!-- bootstrap modal triggered by expand button below to display full joke, info passed in using JavaScript -->
+                            <!-- bootstrap modal triggered by "Expand" button below to display full joke - info passed in using JS function displayModal() -->
                             <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="jokeModal" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
 
-                            <!-- bootstrap modal for user to confirm deletion -->
+                            <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteModal() -->
                             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="removeJoke" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -106,8 +106,8 @@
                                                 <!-- hidden, untruncated for modal reference -->
                                                 <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                             </div>
-                                            <!-- expand button, triggers modal to display full joke -->
-                                            <!-- onclick event listener passes card variable to displayModal() function in script.js -->
+                                            <!-- expand button, triggers modal above to display full joke -->
+                                            <!-- onclick event listener passes card variables to displayModal() function in script.js -->
                                             <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
                                             
                                             <!-- user who posted joke -->
@@ -129,7 +129,8 @@
                                                 {% else %}
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
-                                                <!-- delete button, triggers modal -->
+                                                <!-- delete button, triggers modal above to confirm deletion -->
+                                                <!-- onclick event listener passes card variables to deletModal() function in script.js -->
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 
                                                 
@@ -139,9 +140,9 @@
                                             {% else %}
                                                 <!-- only display delete and edit buttons to user who posted joke -->
                                                 {% if session.user|lower == joke.joke_teller|lower or session.user|lower == "admin" %}
-                                                    <!-- delete button, triggers modal to confirm deletion -->
+                                                    <!-- delete button, triggers modal above to confirm deletion -->
+                                                    <!-- onclick event listener passes card variables to deleteModal() function is script.js -->
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
-                                                    <!-- bootstrap modal to confirm deletion -->
                                                    
                                                     <!-- edit button -->
                                                     <a href="{{ url_for('edit_joke', joke_id=joke._id) }}"><i class="fas fa-edit" data-bs-toggle="tooltip" title="Edit joke"></i></a>
@@ -186,7 +187,7 @@
                     <div class="container">
                         <div class="row">
 
-                            <!-- bootstrap modal to display full joke -->
+                            <!-- bootstrap modal triggered by "Expand" button below to display full joke - info passed in using JS function displayModal() -->
                             <div class="modal fade" id="fullJoke" tabindex="-1" aria-labelledby="seeFull" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -205,8 +206,7 @@
                                 </div>
                             </div>
 
-                            <!-- modal to confirm deletion -->
-                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="removeJoke2" aria-hidden="true">
+                                <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteModal() -->
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -247,7 +247,7 @@
                                                 <!-- hidden, untruncated for modal reference -->
                                                 <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                             </div>
-                                            <!-- expand button, triggers modal to display full joke -->
+                                            <!-- expand button, triggers above modal to display full joke -->
                                             <!-- onclick event listener passes card variable to displayModal() function in script.js -->
                                             <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#fullJoke" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
                                             
@@ -257,7 +257,8 @@
                                             <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
                                             <!-- only display delete and edit buttons to user who posted joke -->
                                             {% if session.user|lower == joke.joke_teller|lower %}
-                                                <!-- delete button, triggers modal to confirm deletion -->
+                                                <!-- delete button, triggers above modal to confirm deletion -->
+                                                <!-- onclick event listener passes card variables to deleteModal function in script.js -->
                                                 <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 
                                                 <!-- edit joke button -->
@@ -302,7 +303,7 @@
                 <div class="container">
                     <div class="row">
 
-                        <!-- bootstrap modal to display sign in message on modal -->
+                        <!-- bootstrap modal triggered by "Expand button" to display sign-in message on modal -->
                         <div class="modal fade" id="expand-sign-in" tabindex="-1" aria-labelledby="seeFull1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -321,7 +322,7 @@
                             </div>
                         </div>
 
-                        <!-- bootstrap modal to display sign in message -->
+                        <!-- bootstrap modal triggered by "like" icon to display sign-in message -->
                         <div class="modal fade" id="like-sign-in" tabindex="-1" aria-labelledby="signInModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -342,7 +343,7 @@
                             </div>
                         </div>
 
-                        <!-- modal to display sign in message -->
+                        <!-- Bootstrap modal triggered by "add to favourites" icon to display sign-in message -->
                         <div class="modal fade" id="fav-sign-in" tabindex="-1" aria-labelledby="jokeModal5" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">

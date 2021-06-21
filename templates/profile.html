@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="row">
 
-                    <!-- bootstrap modal to display full joke -->
+                    <!-- bootstrap modal triggered by "Expand" button below to display full joke - info passed in using JS function displayModal() -->
                     <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="seeFull" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <!-- modal to display confirmation message -->
+                    <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteModal() -->
                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="confirmModal" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -92,7 +92,7 @@
                                             <!-- hidden, untruncated for modal to reference -->
                                             <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                         </div>
-                                        <!-- expand button, triggers modal to display full joke -->
+                                        <!-- expand button, triggers above modal to display full joke -->
                                         <!-- onclick event listener passes card variable to displayModal() function in script.js -->
                                         <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
                                         
@@ -100,7 +100,8 @@
                                         <p class="card-text mt-2">Posted by: {{ joke.joke_teller }}</p>
                                         <!-- number of people who liked the joke -->
                                         <p class="modal-text"><span class="likes">{{ joke.likes }}</span> liked this joke</p>
-                                        <!-- delete joke button, triggers modal to display confirmation message -->
+                                        <!-- delete joke button, triggers above modal to display confirmation message -->
+                                        <!-- onclick event listener passes card variables to deleteModal() function in script.js -->
                                         <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                         
                                         <!-- edit button -->
@@ -128,13 +129,12 @@
     <section class="user-favourites-container" style="display: none;">
         <!-- favourites heading -->
         <h2 class="text-center mb-5">Your Favourites</h2>
-
         <!-- if jokes were found in the db -->
         {% if fav_jokes|length > 0 %}
             <div class="container">
                 <div class="row">
 
-                    <!-- bootstrap modal to display full joke -->
+                    <!-- bootstrap modal triggered by "Expand" button below to display full joke - info passed in using JS function displayModal() -->
                     <div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="seeFull2" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -168,7 +168,7 @@
                                         <!-- hidden, untruncated so modal can display full description -->
                                         <p class="alt-desc" style="display: none;">{{ joke.joke_description }}</p>
                                     </div>
-                                    <!-- expand button, triggers modal to display full joke -->
+                                    <!-- expand button, triggers above modal to display full joke -->
                                     <!-- onclick event listener passes card variable to displayModal() function in script.js -->
                                     <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" onclick="displayModal('{{joke.joke_title}}', '{{joke.joke_description}}', '{{joke.joke_teller}}')">Expand</button>
                                     

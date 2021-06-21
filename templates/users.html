@@ -27,40 +27,41 @@
         </div>
     </div>
 
-    <!-- modal to confirm deletion of user -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- confirmation message -->
-                    <h5 class="modal-joke-title">Are you sure you want to delete this user?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- modal: user name -->
-                    <h5 class="modal-joke-title"></h5>
-                    <!-- modal: user id -->
-                    <p class="modal-joke-description"></p>
-                    <!-- modal: user date of birth -->
-                    <p class="modal-text modal-joke-teller"></p>
-                </div>
-                <div class="modal-footer">
-                    <div class="cancel-confirm">
-                        <!-- cancel deletion button -->
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <!-- confirm deletion button -->
-                        <a href="" class="btn btn-primary">Delete</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section class="users-container">
         <!-- if there were users found in the db -->
         {% if users|length > 0 %}
             <div class="container">
                 <div class="row">
+
+                    <!-- bootstrap modal triggered by delete icon below for user to confirm deletion - info passed in using JS function deleteUser() -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <!-- confirmation message -->
+                                    <h5 class="modal-joke-title">Are you sure you want to delete this user?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- modal: user name -->
+                                    <h5 class="modal-joke-title"></h5>
+                                    <!-- modal: user id -->
+                                    <p class="modal-joke-description"></p>
+                                    <!-- modal: user date of birth -->
+                                    <p class="modal-text modal-joke-teller"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="cancel-confirm">
+                                        <!-- cancel deletion button -->
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <!-- confirm deletion button -->
+                                        <a href="" class="btn btn-primary">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- loop over each user item retrieved in get_users() function, insert in card -->
                     <!-- re-use joke card classes -->                
@@ -75,7 +76,8 @@
                                     <p class="text-center user-card-text">{{ user._id }}</p>
                                     <!-- user's date of birth -->
                                     <p class="card-text m-3">DOB: {{ user.date_of_birth }}</p>
-                                    <!-- delete user button, triggers modal to confirm deletion -->
+                                    <!-- delete user button, triggers above modal to confirm deletion -->
+                                    <!-- onclick passes variables to deleteUser() function in script.js -->
                                     <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteUser('{{ user.username }}', '{{ user._id }}', '{{ user.date_of_birth }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete user"></i></a>
                                     
                                 </div>
