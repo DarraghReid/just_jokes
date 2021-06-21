@@ -59,46 +59,48 @@ More details about the Lighthouse report can be seen below:
 ![W3C Markup Validator](assets/images/testing-imgs/lighthouse-3.png)
 
 ## Testing User Stories
-### First Time User Goals
-
+### First Time User Goals 
 1. As a first time user, I want to immediately understand the purpose of the site.
-* Upon page load, a garden scene builds itself in front of the user. A prominent heading concisely explains the purpose of the site. A call-to-action button displaying "Design Your Eden" leads the user directly to the Studio where they can begin designing.
+* Upon loading of the site, jokes are immediately visible. Even if the user is logged in, intuitive icons allow to users to understand that they can interact with the jokes by liking and favouriting them. 
 
-![First Time User Goals 1](assets/images/testing-imgs/user-stories-2.png)
-
-![First Time User Goals 1](assets/images/testing-imgs/user-stories-1.png)
+    A header informs them that they can sign in to carry out these interections and to see more jokes
 
 2. As a first time user, I want to be able to easily navigate through the site to find what I'm looking for.
-* The Home Page contains two clearly visible and self-explanatory links (one in navigation bar, the other a call-to-action button) that lead to the Studio section. The Home Page also has two links (one in navigation bar, the other the logo) which reaffirm to the user that they are on the Home Page.
+* A sticky navbar ensures that any page available to the user is never more than a click away. Pagination minimises scrolling for smartphone users
 
-* The footer, which shares the viewport with the Studio, contains two clearly visible links which lead directly to the Home Page.
+3. As a first time user, I want to instinctively know what to do in order to get started creating and interacting with jokes
+* Intuitive fontawesome icons ensure users immediately know what to do in order to being liking jokes, adding jokes to their favourites, and adding their own jokes to the site.
 
-![First Time User Goals 2](assets/images/testing-imgs/nav.png)
+4. As a first time user, I want to be able to read jokes.
+* All users, including those who have not signed in, immediately have a range of jokes to read upon entering the site.
 
-![First Time User Goals 2](assets/images/testing-imgs/nav-1.png)
+5. As a first time user, I want to be able upload jokes.
+* Jokes can be uploaded easily from the navbar "Add Joke" menu item, which is always visible to signed in users. Users can also click the "Add joke" icon beside the search bar on the Home page to carry out this action.
 
-3. As a first time user, I want to instinctively know what to do in order to get started on designing my garden.
-* The studio is designed to be maximally intuitive. It was designed with an image-first approach, with minimal text. The user should instinctively know to press the images in the menu to get started on designing their garden.
+6. As a first time user, I want to be able to edit my jokes.
+* If the user has uploaded a joke, the joke will have an edit icon displayed on its card. Upon clicking, it will lead the user to a form where they can edit the joke's details. All the user's jokes can be found in one place in the "Your Jokes" section of their Profile. 
+
+    Admins can also edit any joke they see fit.
+
+7. As a first time user, I want to be able to delete my jokes.
+* If the user has uploaded a joke, the joke will have an delete icon displayed on its card. Upon clicking, it will trigger a modal that will ask the user to confirm the deletion. Upon, confirming, the joke will be removed from the database.. 
+
+8. As a first time user, I want to be able to "like" jokes.
+* All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have a like/laughing face icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the "like" was successful. 
+
+    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who liked this joke. The "likes" count of the joke will also be incremented by 1 in the database.
+
+    The action can be undone upon clicking the icon a second time.
+
+9. As a first time user, I want to be able to add jokes to a list of my favourites.
+All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have an add to favourites/heart icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the joke was successfully added to the user's list of favourites.. 
+
+    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who have added this joke to their list of favourites. 
     
-* The images that appear on the canvas have visual cues for the user to follow in order to manipulate the images, including a dashed border, highlighted corners with specific resizing cursors, and a cancel/delete icon to indicate that the image is removable.
+    All of the jokes in the user's list of favourites can be found in one place in the "Your Favourites" section of the user's profile.
 
-![Intuitive Menu](assets/images/testing-imgs/intu-menu.png)
-![Image Cues](assets/images/testing-imgs/img-cues.png)
+    The action can be undone upon clicking the icon a second time.
 
-4. As a first time user, I want to have a selection of different garden elements to experiment with.
-* There are 14 garden elements to chose from in the Studio menu.
-
-5. As a first time user, I want to be able select and manipulate different garden elements in order to create my own design.
-* Each garden element can be resized by clicking and dragging their corners.
-
-* Each garden element can be moved by clicking and dragging them.
-    
-* Each garden element can be removed by clicking on the cancel/delete icon.
-
-![Manipulate Image](assets/images/testing-imgs/item-hover-1.png)
-
-6. As a first time user, I want to have the choice of adding and removing different garden elements from my design.
-* The user can add and remove as many garden elements as they like.
 
 ### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
