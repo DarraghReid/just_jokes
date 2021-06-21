@@ -104,10 +104,22 @@ All jokes, apart from jokes that have been uploaded by the user themselves (unle
 
 ### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
-* The simple, minimal design is easy to become familiar with.
+* New jokes may be added all the time, but the layout will always have that familiar CRUD functionality. User's should know exactly what to do in order to carry out interactions with the site upon returning.
 
-2. As a returning user, I want to be able to make new designs.
-* Each user can start afresh building new and creative designs.
+2. As a returning user, I want to be able to upload new jokes.
+* There is currently no limit the the amount of jokes a user can add. User's can add a joke whenever they are logged in.
+
+3. As a returning user, I want to be able to access the jokes I have uploaded.
+* All jokes that a user has uploaded can be found in the "Your Jokes" section of their profile.
+
+5. As a returning user, I want to be able to access the jokes in my list of favourites.
+* All jokes that a user has added to their list of favourites can be found in the "Your Favourites" section of their profile.
+
+6. As a returning user, I want to be able to remove jokes from my list of favourites.
+* If the user has added a joke to their list of favourites, this should be indicated by the "add to favourites" icon being yellow. Upon clicking the yellow icon, the joke is removed from their favourites.
+
+7. As a returning user, I want to be able to "unlike" jokes.
+If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
 
 ### Site Owner Goals
 1. As the site owner, I want to be able to design gardens in real time for potential customers.
