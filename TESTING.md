@@ -53,22 +53,32 @@ Finally, it marked by displayModal function as unused, perhaps because it is cal
 Python code from app.py passed through [Pep8 Online](http://pep8online.com/) without issue
 ![Pep8 Online](static/images/pep8-validation.png)
 
+
 ### Lighthouse
-The results from Lighthouse were generally good. As expected points were lost on the performance metrics due to the size 
-of the images and the time it takes to fully load the site.
+jokes.html, profile.html, users.html, add_joke.html, edit_joke.html, sign_in.html, and sign_up.html were all tested for performance using [Lighthouse](https://developers.google.com/web/tools/lighthouse).
+The results were as follows:
 
-Points were also lost in the SEO metrics, partly due to smaller font sizes that are used on smaller screens. Upon personal 
-testing, this didn't appear to be an issue.
+#### Home Page
+![Home Page](static/images/lighthouse-home.png)
 
-More details about the Lighthouse report can be seen below:
+#### Profile Page
+![Profile Page](static/images/lighthouse-profile.png)
 
-![W3C Markup Validator](assets/images/testing-imgs/lighthouse.png)
+#### Users Page
+![Users Page](static/images/lighthouse-users.png)
 
-![W3C Markup Validator](assets/images/testing-imgs/lighthouse-1.png)
+#### Add Joke Page
+![Add Joke Page](static/images/lighthouse-add-joke.png)
 
-![W3C Markup Validator](assets/images/testing-imgs/lighthouse-2.png)
+#### Edit Joke Page
+![Edit Joke Page](static/images/lighthouse-edit-joke.png)
 
-![W3C Markup Validator](assets/images/testing-imgs/lighthouse-3.png)
+#### Sign In Page
+![Sign In Page](static/images/lighthouse-sign-in.png)
+
+#### Sign Up Page
+
+![Sign Up Page](static/images/lighthouse-sign-up.png)
 
 ## Testing User Stories
 ### First Time User Goals 
