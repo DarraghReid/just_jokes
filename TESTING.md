@@ -406,6 +406,11 @@ The following tests were carried out on features specific to the admin:
 2. Hover over all joke-action icons and validate that they rotate.
 3. Hover over all links and validate that they slightly decrease in size.
 3. Hover over all buttons and validate that they change colour.
+4. Enter invalid URL and verify that 404 page displays.
+5. Veruify 500 page by:
+    * Setting debug to False in app.py
+    * Raising an exception in function of choice with string "I am broken"
+    * Navigating to page where function is used
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 

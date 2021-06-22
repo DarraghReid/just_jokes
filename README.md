@@ -77,7 +77,7 @@ The purpose of this site is to provide users with a platform on which they creat
 ## Structure
 JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
 
-    A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
+A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
 
 ## Design
 * Colour Scheme
@@ -166,9 +166,11 @@ The number of fields in the jokes collection as grown since its inception at the
 Although no longer in user, this is how the user-favourites collection functioned. Each time a user added a joke to their favourites, information about the joke was passed to the add_fav() function, and inserted into the collection along with the name of the user who favourited it.
 
 ## Features
-    Different features are available to users based on their age and the type of account they have, ie; a general user, or an admin. I will discuss these features in relation to these criteria.
+Different features are available to users based on their age and the type of account they have, ie; a general user, or an admin. I will discuss these features in relation to these criteria.
 
 #### Admin
+![Admin Featuers](static/images/admin-features.png)
+![Admin Featuers](static/images/admin-features1.png)
 
 * All features are available to the admin. The Home, Profile, Users, Add Jokes, and Sign Out pages are visible on the admin's navbar.
 
@@ -184,20 +186,25 @@ Although no longer in user, this is how the user-favourites collection functione
 
     The admin can also search all jokes from the Home page using the search bar at the top of the page.
 
+![Search Bar/Add Button](static/images/jj-add.png)
 * Beside the search bar, there is an "add" icon which will lead them to the Add Joke page, where they can upload a joke to the site. This page can also be accessed from the sticky navbar at any time.
 
     As seen in the [Wireframes](#Wireframes) section, the Add Joke page is comprised of a form that takes information about the joke. This information includes the jokes, title, description, an images, related to the joke, and whether or not it is suitable for under 18s. 
     
     This information, along with additional information is then inserted into the jokes collection in MongoDB. The additional fields include the user who uploaded the joke, and the "likes", "liked_by", and "favouriter" fields discussed above.
 
+![Your Jokes](static/images/jj-your-jokes.png)
+![Your Jokes](static/images/jj-favourites.png)
 * In their profile, the admin can access the jokes that they have uploaded themselves, as well as the jokes that they have added to their favourites via a dropdown menu. The dropdown menu also allows users to sign out.
 
+![Users](static/images/jj-your-jokes.png)
 * The Admin user also has access to a Users page, where they can view all users who have signed up to the site. They can see all available information about the user, including their ID, username, and date of birth. Here, the admin can also chose to delete a user at their own discretion.
 
 #### General User
 
 * The general user has a more restricted version of the site available to them. They can access all the pages available to the admin user, except for the Users page
 
+![Delete Joke](static/images/jj-delete-joke.png)
 * All other pages are identical to the admin's version, except for the actions available to them. They can only edit or deleted a joke that they have uploaded themselves. 
 
     If the joke as been uploaded by another user, the only options available to them is the ability to like a joke or add a joke to their favourites.
@@ -205,10 +212,10 @@ Although no longer in user, this is how the user-favourites collection functione
     If they have uploaded the joke themselves, the only available options are to edit or delete the joke
 
 #### Under 18 User
-
 * Users under 18 years of age have an almost identical account as a general user. The only difference between the accounts is that users that are under 18 years of age may only see jokes that were marked "Suitable for children" in the Add Joke form.
 
 #### Signed Out User
+![Your Jokes](static/images/jj-signed-out.png)
 * A user who has not signed up or has not signed in, can access the most restricted version of the site. They have the Home, Sign up and Sign in pages available to them.
 
 * Their access to the Home page is similar to the Under 18 user's. Like users under 18 years of age, they may only see jokes suitable for children. However, unlike other users, if they try to take any action, such as trying to see the full joke, liking, or adding the joke to their favourites, the will be presented with a modal providing them with the option of signing in. They can agree or decline.
