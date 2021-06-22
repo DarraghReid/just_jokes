@@ -28,8 +28,27 @@
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to test the site's performance.
 
-### W3C Markup Validator  
+Below, you will see the final results from the validators. More details about problems that arose while validating will be found in the problems section,
 
+### W3C Markup Validator
+#### Home Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Home page by URI. The W3C Markup Validator warned me that the flash section doesn't have a heading. The flash section extends from the base template. Therefore, all pages came with this warning, when validated. I inserted a heading into the flash section. However, the warning remained.
+
+#### Profile Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Profile page by direct input, due to the Profile being only being available is the user is signed in. 
+
+No issues arose apart from the flash warning.
+
+#### Profile Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Profile page by direct input, due to the Profile being only being available is the user is signed in. 
+
+No issues arose apart from the flash warning.
 
 
 ### W3C CSS Validator Services
@@ -122,14 +141,23 @@ All jokes, apart from jokes that have been uploaded by the user themselves (unle
 If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
 
 ### Site Owner Goals
-1. As the site owner, I want to be able to design gardens in real time for potential customers.
-2. As the site owner, I want to be able to carry out all of the operations available to users.
-3. As the site owner, I want to be able to carry additional operations than other users.
-4. As the site owner, I want to be able to carry out all operations on all jokes, even if they are not my own.
-5. As the site owner, I want to be able to be able to access information on all users.
-6. As the site owner, I want to be able to be able to remove users from the platform, at my own discretion.
-7. As the site owner, I want to be able to be able to restrict access to users who are under 18 years of age.
-8. As the site owner, I want to be able to be able to restrict access to users who are not signed in or registered.
+1. As the site owner/admin, I want to be able to have additional features available to me.
+* The site owner, has complete control over the content of the site as well as the users who access it.
+
+1. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
+* All jokes uploaded to the database are visible from the admin's account. 
+
+1. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
+* The delete icon will be available to the admin on all jokes.
+
+1. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
+* The edit icon will be available to the admin on all jokes.
+
+1. As the site owner/admin, I want to be able to access the information of all users of the site.
+* The admin can access the Users tab in the navbar where they can see all users that have signed up to the site.
+
+1. As the site owner/admin, I want to be able to remove any user I see fit from the site.
+* Each card displaying a user in the Users page will have a delete icon. When clicked, the user will be removed from the database.
 
 ## Testing Features
 ### Navigation
@@ -138,8 +166,7 @@ If the user has liked a joke , this should be indicated by the "like" icon being
 
 * On the Home Page, click to logo and validate that it navigates to the Home page.
 * On the Home Page, click the "Home" button in the menu and validate that it navigates to the Home Page.
-* On the Home Page, click the "Design" button in the menu and validate that it navigates to the Studio.
-* On the Home Page, click the "Design Your Eden" call-to-action button and validate that it navigates to the Studio.
+
 * On the Home Page, on smaller screens, click the burger icon to validate that the navigation links drop down.
 * On the Home Page, on smaller screens, click the burger icon, then click the "Home" button and validate that it navigates to the Home Page.
 * On the Home Page, on smaller screens, click the burger icon, then click the "Design" button and validate that it navigates to the Studio.
