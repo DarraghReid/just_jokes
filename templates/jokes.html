@@ -25,11 +25,39 @@
                 </form>
             </div>
             <!-- add joke button -->
-            <div class="col-3">
-                <a href="{{ url_for('add_joke') }}" class="add-icon">
-                    <i class="fas fa-plus-circle" data-bs-toggle="tooltip" title="Add joke"></i>
-                </a>
-            </div>
+            {% if "user" in session %}
+                <div class="col-3">
+                    <a href="{{ url_for('add_joke') }}" class="add-icon">
+                        <i class="fas fa-plus-circle" data-bs-toggle="tooltip" title="Add joke"></i>
+                    </a>
+                </div>
+            {% elif user_age|int == -1  %}
+                <div class="col-3">
+                    <a href="{{ url_for('add_joke') }}" class="add-icon" data-bs-toggle="modal" data-bs-target="#addJoke">
+                        <i class="fas fa-plus-circle" data-bs-toggle="tooltip" title="Add joke"></i>
+                    </a>
+                </div>
+                <!-- bootstrap modal Add Joke icon -->
+                <div class="modal fade" id="addJoke" tabindex="-1" aria-labelledby="signInModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- modal: joke title -->
+                                <h5 class="modal-joke-title" id="signInModal">Sign in to add a joke</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- sign in button -->
+                                <a href="{{ url_for('sign_in') }}" class="btn btn-primary">Sign in</a>
+                                <!-- decline button -->
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nah</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 

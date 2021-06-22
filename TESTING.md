@@ -172,6 +172,8 @@ If the user has liked a joke , this should be indicated by the "like" icon being
 ## Testing Features
 ### Features Available to Adult Users, Underage Users, and Admin Users
 #### Base Template Features
+The following tests were carried out on features available to all users, bar signed out users:
+
 1. Click the logo and validate that it navigates to the Home page.
 2. Click the Home button in the navbar and validate that it navigates to the Home page.
 3. Click the Profile button in the navbar and validate that it navigates to the Profile page.
@@ -180,57 +182,166 @@ If the user has liked a joke , this should be indicated by the "like" icon being
 4. Click the Facebook logo in the the footer and validate that it navigates to Facebook.
 4. Click the YouTube logo in the the footer and validate that it navigates to YouTube.
 4. Click the Instagram logo in the the footer and validate that it navigates to Instagram.
+2. Click the Sign out button in the navbar and validate that it signs the user out navigates to the Sign In page.
+
 
 #### Home Page Features
-The following tests were carried out on features available to all users bar signed out users:
+The following tests were carried out on features available to all users, bar signed out users:
+
 1. Click the Add Joke icon in beside the search bar and validate that it navigates to the Add Joke page.
-2. Click the Sign out button in the navbar and validate that it signs the user out navigates to the Sign In page.
 3. If the user is an adult or admin, check to see that all jokes are displaying on the page.
-4, If the user is under 18 or the user is not signed, validate that only jokes marked suitable for children are displaying.
-4. If the user is an adult or is under 18, locate a joke that has not been uploaded by the user and validate that the joke is displaying the "Like" and "Add to favourites" icons.
-5. If the user is an adult or is under 18, locate a joke that has been uploaded by the user and validate that the joke is displaying the "Delete joke" and "Edit joke" icons.
-6. If the user is under 18, validate that only jokes marked suitable for children are displaying.
-7. Validate that each joke is displaying the correct information.
-8. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
-9. Click the "Expand" button and validate that a modal is triggered displaying the joke's details in full.
-10. If the user is an admin, locate any joke, or, if the user is not an admin, locate a joke that has not been added by the user. Click the "Like" icon and verify:
-* That the page redirects to back to the Home page.
-* That a flash message displays "You've liked this joke!" at the top of the page.
-* That the joke's "likes" field in MongoDB has been incremented by 1.
-* That the user's name has been added to the joke's "liked_by" array field in MongoDB.
-* That the colour of the "Like" icon has changed to yellow.
-11. Choosing the same joke as before, click the "Like" icon again and verify:
-* That the page redirects back to the Home page.
-* That a flash message display "You've unliked this joke" at the top of the page.
-* That the joke's "likes" field in MongoDB has been decremented by 1.
-* That the user's name has been removed from the joke's "liked_by" array field in MongoDB.
-* That the colour of the "Add to favourites" icon has changed back to black.
-12. If the user is an admin, locate any joke, or, If the user is not an admin, locate a joke that has not been added by the user. Click the "Add to favourites" icon and verify:
-* That the page redirects to back to the Home page.
-* That a flash message displays "Joke favourited!" at the top of the page.
-* That the user's name has been added to the joke's "favouriters" array field in MongoDB.
-* That the colour of the "Add to favourites" icon has changed to yellow.
-13. Choosing the same joke as before, click the "Add to favourites" icon again and verify:
-* That the page redirects back to the Home page.
-* That a flash message display "Joke removed from your favourites" at the top of the page.
-* That the user's name has been removed from the joke's "favouriters" array field in MongoDB.
-* That the colour of the "Add to favourites" icon has changed back to black
-14. If the user is not an admin, locate a joke that has been uploaded by the user, click the "Delete joke" icon and verify:
-* That a confirmation modal is triggered, asking the user if they are sure they want to delete the joke.
-* That the modal displays the joke details.
-* That the modal provides "Cancel" and "Delete" buttons.
-* That the "Cancel" button closes the modal.
-* That the "Delete" button:
-    * Removes the joke from the database
-    * Redirects back to the Home Page
-    * Displays the flash message "Joke removed" at the top of the page
-15. If the user is an admin, locate any joke, or, if the user is not an admin, locate a joke that has been uploaded by the user. Click the "Edit joke" icon and verify:
-* That it redirects to the Edit Joke page.
+4. If the user is under 18 or the user is not signed, validate that only jokes marked suitable for children are displaying.
+5. If the user is an adult or is under 18, locate a joke that has not been uploaded by the user and validate that the joke is displaying the "Like" and "Add to favourites" icons.
+6. If the user is an adult or is under 18, locate a joke that has been uploaded by the user and validate that the joke is displaying the "Delete joke" and "Edit joke" icons.
+7. If the user is under 18, validate that only jokes marked suitable for children are displaying.
+8. Validate that each joke is displaying the correct information.
+9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
+10. Click the "Expand" button and validate that:
+    * A modal is triggered displaying the joke's details in full
+    * The modal is canceled by clicking the cancel button in the top right of the modal
+    * The modal is canceled by clicking outside of the modal
+11. If the user is an admin, locate any joke that has not been liked, or, if the user is not an admin, locate a joke that has not been added by the user and has not been liked. Click the "Like" icon and verify:
+    * That the page redirects to back to the Home page.
+    * That a flash message displays "You've liked this joke!" at the top of the page.
+    * That the joke's "likes" field in MongoDB has been incremented by 1.
+    * That the user's name has been added to the joke's "liked_by" array field in MongoDB.
+    * That the colour of the "Like" icon has changed to yellow.
+12. Choosing the same joke as before, click the "Unlike" icon and verify:
+    * That the page redirects back to the Home page.
+    * That a flash message display "You've unliked this joke" at the top of the page.
+    * That the joke's "likes" field in MongoDB has been decremented by 1.
+    * That the user's name has been removed from the joke's "liked_by" array field in MongoDB.
+    * That the colour of the "Add to favourites" icon has changed back to black.
+13. If the user is an admin, locate any joke that has not been added to the user's favourites, or, If the user is not an admin, locate a joke that has not been added by the user and has not been added to the user's favourites. Click the "Add to favourites" icon and verify:
+    * That the page redirects to back to the Home page.
+    * That a flash message displays "Joke favourited!" at the top of the page.
+    * That the user's name has been added to the joke's "favouriters" array field in MongoDB.
+    * That the colour of the "Add to favourites" icon has changed to yellow.
+14. Choosing the same joke as before, click the "Remove from favourites" icon  and verify:
+    * That the page redirects back to the Home page.
+    * That a flash message display "Joke removed from your favourites" at the top of the page.
+    * That the user's name has been removed from the joke's "favouriters" array field in MongoDB.
+    * That the colour of the "Add to favourites" icon has changed back to black
+15. If the user is not an admin, locate a joke that has been uploaded by the user, click the "Delete joke" icon and verify:
+    * That a confirmation modal is triggered, asking the user if they are sure they want to delete the joke.
+    * That the modal displays the joke details.
+    * That the modal provides "Cancel" and "Delete" buttons.
+    * That the "Cancel" button closes the modal.
+    * That the "Delete" button:
+        * Removes the joke from the database
+        * Redirects back to the Home Page
+        * Displays the flash message "Joke removed" at the top of the page
+16. If the user is an admin, locate any joke, or, if the user is not an admin, locate a joke that has been uploaded by the user. Click the "Edit joke" icon and verify:
+    * That it redirects to the Edit Joke page.
+17. Type a word found in a joke into the search bar and validate that a the corresponding joke is returned below upon clicking "Search".
+18. Click "Clear" and verify that it redirects back to the Home page.
 
+#### Profile Page Features
+The following tests were carried out on features available to all users, bar signed out users:
 
+1. Validate that the user's username is displayed at the top of the page.
+1. Validate that a dropdown menu is displayed beneath the username.
+1. Validate that the dropdown menu contains:
+* See favourites
+* See your Jokes
+* Sign out
+1. Validate that, upon clicking "See favourites":
+    * The jokes in the user's favourites list are displayed below
+    * The correct information is displayed on the jokes
+    * The "Like" and "Add to favourites" icons are displayed on the joke card
+1. Validate that, upon clicking "See your jokes":
+    * The jokes the user has uploaded are displayed below
+    * The correct information is displayed on the jokes.
+    * The "Delete joke" and "Edit joke" icons are displayed on the jokes.
+1. Validate that, upon clicking "Sign out":
+    * The user is signed out and redirected to the Sign In page.
+    * A flash displays the message "Signed out" at the top of the page
+9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
+10. Click the "Expand" button and validate that:
+    * A modal is triggered displaying the joke's details in full
+    * The modal is canceled by clicking the cancel button in the top right of the modal
+    * The modal is canceled by clicking outside of the modal
+11. Under "Your Favourites", if any jokes are present, locate any joke that has not been liked. Click the "Like" icon and verify:
+    * That the page redirects to back to the Home page.
+    * That a flash message displays "You've liked this joke!" at the top of the page.
+    * That the joke's "likes" field in MongoDB has been incremented by 1.
+    * That the user's name has been added to the joke's "liked_by" array field in MongoDB.
+    * That the colour of the "Like" icon has changed to yellow.
+14. Under "Your Favourites" "Remove from favourites" icon and verify:
+    * That the page redirects back to the Home page.
+    * That a flash message display "Joke removed from your favourites" at the top of the page
+    * That the user's name has been removed from the joke's "favouriters" array field in MongoDB
+    * That the colour of the "Add to favourites" icon has changed back to black
+    * That the joke no longer appears under "Your Favourites"
+15. Under "Your Jokes", if jokes are present, locate any joke. Click the "Delete joke" icon and verify:
+    * That a confirmation modal is triggered, asking the user if they are sure they want to delete the joke.
+    * That the modal displays the joke details.
+    * That the modal provides "Cancel" and "Delete" buttons.
+    * That the "Cancel" button closes the modal.
+    * That the "Delete" button:
+        * Removes the joke from the database
+        * Redirects back to the Home Page
+        * Displays the flash message "Joke removed" at the top of the page
+    * That the joke no longer appears under "Your Jokes"
+16. Under "Your Jokes", if jokes are present, locate any joke. Click the "Edit joke" icon and verify:
+    * That it redirects to the Edit Joke page.
+
+#### Add Joke Page Features
+1. Validate that a form appears upon loading the page.
+2. Validate that the form has the following fields:
+    * Joke Title
+    * Joke
+    * Image URL
+    * Suitable for children switch
+3. Fill in the form with invalid information and validate the form does not submit:
+    * Valid information for Joke Title:
+        * minlength="3" maxlength="20"
+    * Valid information for Joke Description:
+        * minlength="4" maxlength="200"
+    * Valid information for Image URL:
+        * Currently no validation, but must be filled out.
+4. Fill out the form with correct information and validate:
+    * That the page redirects back to the Add Joke page
+    * That a flash message displaying "Joked Added!" appears at the top of the page
+    * That the joke appears somewhere in the Home page
+    * That the joke appears under "Your Jokes" in the user's profile.
+5. Fill out the form and click "Cancel" and verify that the form resets"
+6. Upload two jokes, one with the Suitable for children switch "on", and one with the Suitable for children switch "off". Verify that:
+    * Both jokes are visible when signed into an adult account.
+    * The joke with the Suitable for children switch set to "off" is not visible when signed into an account that belongs to a user under 18 years of age.
+
+#### Edit Joke Page Features
+1. Validate that a form appears upon loading the page.
+2. Validate that the form has the following fields:
+    * Joke Title
+    * Joke
+    * Image URL
+    * Suitable for children switch
+1. Validate that the above fields are populated with the details of the joke that was clicked.
+1. Click "Cancel" and verify that it redirects to the Home page.
+3. Edit the pre populated fields, press "Clear" and validate that the form resets.
+3. Edit the pre populated fields, press "Edit" and validate that:
+    * It redirects to the Home page.
+    * The joke appears somewhere in the Home page with its details changed.
+    * The joke appears in "Your Jokes" in the user's profile with its details changed.
+
+#### Sign In Page Features
+1. Validate that a form appears upon loading the page.
+2. Validate that the form has the following fields:
+    * Usersname
+    * Password
+1. Validate that there is a solitary "Sign in" button below the form.
+1. Validate that there is a link that leads to the "Sign up" page below that "Sign in" button.
+3. Fill out the form with invalid details and verify that:
+    * The page reloads
+    * A flash message displaying "Incorrect username and/or password" appears at the top of the page.
+4. Fill out the form with valid details and validate that:
+    * It redirects to the user's profile
+    * A flash message displaying "Welcome, 'username'" appears at the top of the page.
 
 ### Features Specific to Admin
 The following tests were carried out on features specific to the admin:
+
 1. On the Home page, click the "Users" tab on the navbar and validate that it navigates to the Users Page.
 2. On the Home page, validate that all jokes display all options available to the admin; "Like", "Add to favourites", "Delete joke", "Edit joke".
 3. On the Users page, check to see that all users are displaying.
@@ -239,6 +350,59 @@ The following tests were carried out on features specific to the admin:
 6. Click the "Delete user" icon again, and this time click the delete button. Validate that the user is removed from the database, that the flash message "User removed" appears at the top of the screen and that the user is redirected back to the User's page.
 7. On the Users page, type a username into the search bar and validate that a matching user is returned below.
 8. On the Users page, type a date into the search bar and validate that users matching that date of birth are returned below.
+9. Click "Clear" and verify that it redirects back to the Users page.
+
+### Features Specific to Not-Signed-In Users:
+1. Validate that the only options in the navbar are:
+    * Home
+    * Sign in
+    * Sign up
+
+#### Home Page
+2. Validate that all jokes displaying have their for_children field in the database set to "on".
+3. Locate any joke:
+    * Click the "Expand" button and validate that:
+        * It triggers a modal
+        * The modal displays the message: "Want to see the full joke?"
+        * The modal provides a "Sign in" button that leads to the Sign in page
+        * The modal provides a "Nah" button that closes the modal
+        * The modal closes when the close button at the top right hand corner of the modal is clicked
+        * The modal closes when anywhere outside of the modal is clicked
+    * Click the "Like" button and validate that:
+        * It triggers a modal
+        * The modal displays the message: "Sign in the like this joke"
+        * The modal provides a "Sign in" button that leads to the Sign in page
+        * The modal provides a "Nah" button that closes the modal
+        * The modal closes when the close button at the top right hand corner of the modal is clicked
+        * The modal closes when anywhere outside of the modal is clicked
+    * Click the "Add to favourites" button and validate that:
+        * It triggers a modal
+        * The modal displays the message: "Sign in to favourite this joke"
+        * The modal provides a "Sign in" button that leads to the Sign in page
+        * The modal provides a "Nah" button that closes the modal
+        * The modal closes when the close button at the top right hand corner of the modal is clicked
+        * The modal closes when anywhere outside of the modal is clicked
+
+#### Sign Up Page
+1. Validate that a form appears upon loading the page.
+2. Validate that the form has the following fields:
+    * Username
+    * Password
+    * Date of birth
+3. Fill in the form with invalid information and validate the form does not submit:
+    * Valid information is outlined in form labels for Username and Password
+    * No specific validation is implemented, this will be addressed in future versions.
+4. Fill out the form with correct information and validate:
+    * That the page redirects to the Home page
+    * That a flash message displaying "You're sign up!" appears at the top of the page
+
+### Features Specific to Smaller Screens
+1. Click the burger icon to validate that the navigation links drop down.
+2. Validate that the dropdown menu displays the same menu items and the menu on larger screens.
+3. Validate that all menu items work correctly
+
+### Other Features
+1. Validate that, if there are more than 8 items to be displayed, they will be paginated, with a maximum of 8 items being displayed at a time.
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 
