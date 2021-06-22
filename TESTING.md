@@ -171,21 +171,74 @@ If the user has liked a joke , this should be indicated by the "like" icon being
 
 ## Testing Features
 ### Features Available to Adult Users, Underage Users, and Admin Users
+#### Base Template Features
+1. Click the logo and validate that it navigates to the Home page.
+2. Click the Home button in the navbar and validate that it navigates to the Home page.
+3. Click the Profile button in the navbar and validate that it navigates to the Profile page.
+4. Click the Add Joke button in the navbar and validate that it navigates to the Add Joke page.
+4. Click the logo in the the footer and validate that it navigates to the Home page.
+4. Click the Facebook logo in the the footer and validate that it navigates to Facebook.
+4. Click the YouTube logo in the the footer and validate that it navigates to YouTube.
+4. Click the Instagram logo in the the footer and validate that it navigates to Instagram.
+
+#### Home Page Features
 The following tests were carried out on features available to all users bar signed out users:
-* On the Home page, click the logo and validate that it navigated to the Home page
+1. Click the Add Joke icon in beside the search bar and validate that it navigates to the Add Joke page.
+2. Click the Sign out button in the navbar and validate that it signs the user out navigates to the Sign In page.
+3. If the user is an adult or admin, check to see that all jokes are displaying on the page.
+4, If the user is under 18 or the user is not signed, validate that only jokes marked suitable for children are displaying.
+4. If the user is an adult or is under 18, locate a joke that has not been uploaded by the user and validate that the joke is displaying the "Like" and "Add to favourites" icons.
+5. If the user is an adult or is under 18, locate a joke that has been uploaded by the user and validate that the joke is displaying the "Delete joke" and "Edit joke" icons.
+6. If the user is under 18, validate that only jokes marked suitable for children are displaying.
+7. Validate that each joke is displaying the correct information.
+8. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
+9. Click the "Expand" button and validate that a modal is triggered displaying the joke's details in full.
+10. If the user is an admin, locate any joke, or, if the user is not an admin, locate a joke that has not been added by the user. Click the "Like" icon and verify:
+* That the page redirects to back to the Home page.
+* That a flash message displays "You've liked this joke!" at the top of the page.
+* That the joke's "likes" field in MongoDB has been incremented by 1.
+* That the user's name has been added to the joke's "liked_by" array field in MongoDB.
+* That the colour of the "Like" icon has changed to yellow.
+11. Choosing the same joke as before, click the "Like" icon again and verify:
+* That the page redirects back to the Home page.
+* That a flash message display "You've unliked this joke" at the top of the page.
+* That the joke's "likes" field in MongoDB has been decremented by 1.
+* That the user's name has been removed from the joke's "liked_by" array field in MongoDB.
+* That the colour of the "Add to favourites" icon has changed back to black.
+12. If the user is an admin, locate any joke, or, If the user is not an admin, locate a joke that has not been added by the user. Click the "Add to favourites" icon and verify:
+* That the page redirects to back to the Home page.
+* That a flash message displays "Joke favourited!" at the top of the page.
+* That the user's name has been added to the joke's "favouriters" array field in MongoDB.
+* That the colour of the "Add to favourites" icon has changed to yellow.
+13. Choosing the same joke as before, click the "Add to favourites" icon again and verify:
+* That the page redirects back to the Home page.
+* That a flash message display "Joke removed from your favourites" at the top of the page.
+* That the user's name has been removed from the joke's "favouriters" array field in MongoDB.
+* That the colour of the "Add to favourites" icon has changed back to black
+14. If the user is not an admin, locate a joke that has been uploaded by the user, click the "Delete joke" icon and verify:
+* That a confirmation modal is triggered, asking the user if they are sure they want to delete the joke.
+* That the modal displays the joke details.
+* That the modal provides "Cancel" and "Delete" buttons.
+* That the "Cancel" button closes the modal.
+* That the "Delete" button:
+    * Removes the joke from the database
+    * Redirects back to the Home Page
+    * Displays the flash message "Joke removed" at the top of the page
+15. If the user is an admin, locate any joke, or, if the user is not an admin, locate a joke that has been uploaded by the user. Click the "Edit joke" icon and verify:
+* That it redirects to the Edit Joke page.
 
 
 
 ### Features Specific to Admin
 The following tests were carried out on features specific to the admin:
-* On the Home page, click the "Users" tab on the navbar and validate that it navigates to the Users Page.
-* On the Home page, validate that all jokes display all options available to the admin; "Like", "Add to favourites", "Delete joke", "Edit joke".
-* On the Users page, check to see that all users are displaying.
-* On the Users page, click the "Delete user" icon and validate that a confirmation modal appears.
-* After the confirmation modal appears, click the cancel button and validate that the action is canceled.
-* Click the "Delete user" icon again, and this time click the delete button. Validate that the user is removed from the database, that the flash message "User removed" appears at the top of the screen and that the user is redirected back to the User's page.
-* On the Users page, type a username into the search bar and validate that a matching user is returned below.
-* On the Users page, type a date into the search bar and validate that users matching that date of birth are returned below.
+1. On the Home page, click the "Users" tab on the navbar and validate that it navigates to the Users Page.
+2. On the Home page, validate that all jokes display all options available to the admin; "Like", "Add to favourites", "Delete joke", "Edit joke".
+3. On the Users page, check to see that all users are displaying.
+4. On the Users page, click the "Delete user" icon and validate that a confirmation modal appears.
+5. After the confirmation modal appears, click the cancel button and validate that the action is canceled.
+6. Click the "Delete user" icon again, and this time click the delete button. Validate that the user is removed from the database, that the flash message "User removed" appears at the top of the screen and that the user is redirected back to the User's page.
+7. On the Users page, type a username into the search bar and validate that a matching user is returned below.
+8. On the Users page, type a date into the search bar and validate that users matching that date of birth are returned below.
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 

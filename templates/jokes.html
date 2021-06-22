@@ -104,9 +104,8 @@
                                                 {% else %}
                                                     <a href="{{ url_for('add_fav', joke_id=joke._id) }}"><i class="fas fa-heart" data-bs-toggle="tooltip" title="Add to favourites"></i></a>
                                                 {% endif %}
-                                                <!-- delete button, triggers modal above to confirm deletion -->
-                                                <!-- onclick event listener passes card variables to deletModal() function in script.js -->
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}', '{{ joke._id }}')"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
+                                                <!-- delete button, triggers modal below to confirm deletion -->
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ joke._id }}"><i class="fas fa-trash-alt" data-bs-toggle="tooltip" title="Delete joke"></i></a>
                                                 
                                                 
                                                 <!-- edit joke button -->
@@ -269,11 +268,11 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- modal: joke title -->
-                                                <h5 class="delete-joke-title text-center"></h5>
+                                                <h5 class="delete-joke-title text-center">{{ joke.joke_title }}</h5>
                                                 <!-- modal: joke description -->
-                                                <p class="delete-joke-description text-center"></p>
+                                                <p class="delete-joke-description text-center">{{ joke.joke_description }}</p>
                                                 <!-- modal: user who posted joke -->
-                                                <p class="modal-text delete-joke-teller text-center"></p>
+                                                <p class="modal-text delete-joke-teller text-center">{{ joke.joke_teller }}</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <div class="text-center cancel-confirm">
