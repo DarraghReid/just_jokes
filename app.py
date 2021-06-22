@@ -231,6 +231,28 @@ def search():
             )
 
 
+# takes search word from search input, display list of users with that word
+@app.route("/search_users", methods=["GET", "POST"])
+# take user_age from get_jokes() view
+def search_users():
+    # retrieve the search work from the form
+    search = request.form.get("search")
+    
+    # find all docs from users collection in MongoDB
+    users = list(mongo.db.users.find({"$text": {"$search": search}}))
+
+    # pagination of users
+    users_paginated = paginated(users)
+    pagination = pagination_args(users)
+
+    # render jokes.html template, pass jokes variable into it
+    return render_template(
+        "users.html",
+        users=users_paginated,
+        pagination=pagination
+        )
+
+
 # signs a user up
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
