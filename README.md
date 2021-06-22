@@ -55,6 +55,7 @@ The purpose of this site is to provide users with a platform on which they creat
 7. As a first time user, I want to be able to delete my jokes.
 8. As a first time user, I want to be able to "like" jokes.
 9. As a first time user, I want to be able to add jokes to a list of my favourites.
+10. As a first time user, I want to be able to search for specific jokes.
 
 #### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
@@ -66,11 +67,12 @@ The purpose of this site is to provide users with a platform on which they creat
 
 #### Site Owner Goals
 1. As the site owner/admin, I want to be able to have additional features available to me.
-1. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
-1. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
-1. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
-1. As the site owner/admin, I want to be able to access the information of all users of the site.
-1. As the site owner/admin, I want to be able to remove any user I see fit from the site.
+2. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
+3. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
+4. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
+5. As the site owner/admin, I want to be able to access the information of all users of the site.
+6. As the site owner/admin, I want to be able to remove any user I see fit from the site.
+7. As the site owner/admin, I want to be able to search for specific users.
 
 ## Structure
 JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.

@@ -90,7 +90,7 @@ The results were as follows:
 2. As a first time user, I want to be able to easily navigate through the site to find what I'm looking for.
 * A sticky navbar ensures that any page available to the user is never more than a click away. Pagination minimises scrolling for smartphone users
 
-3. As a first time user, I want to instinctively know what to do in order to get started creating and interacting with jokes
+3. As a first time user, I want to instinctively know what to do in order to get started creating and interacting with jokes.
 * Intuitive fontawesome icons ensure users immediately know what to do in order to being liking jokes, adding jokes to their favourites, and adding their own jokes to the site.
 
 4. As a first time user, I want to be able to read jokes.
@@ -123,6 +123,9 @@ All jokes, apart from jokes that have been uploaded by the user themselves (unle
 
     The action can be undone upon clicking the icon a second time.
 
+10. As a first time user, I want to be able to search for specific jokes.
+* The Home page includes a seach bar that will return jokes that match the input of the user. Only the joke title and joke description are searchable.
+
 
 ### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
@@ -143,27 +146,48 @@ All jokes, apart from jokes that have been uploaded by the user themselves (unle
 7. As a returning user, I want to be able to "unlike" jokes.
 If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
 
+
 ### Site Owner Goals
 1. As the site owner/admin, I want to be able to have additional features available to me.
 * The site owner, has complete control over the content of the site as well as the users who access it.
 
-1. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
+2. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
 * All jokes uploaded to the database are visible from the admin's account. 
 
-1. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
+3. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
 * The delete icon will be available to the admin on all jokes.
 
-1. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
+4. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
 * The edit icon will be available to the admin on all jokes.
 
-1. As the site owner/admin, I want to be able to access the information of all users of the site.
+5. As the site owner/admin, I want to be able to access the information of all users of the site.
 * The admin can access the Users tab in the navbar where they can see all users that have signed up to the site.
 
-1. As the site owner/admin, I want to be able to remove any user I see fit from the site.
+6. As the site owner/admin, I want to be able to remove any user I see fit from the site.
 * Each card displaying a user in the Users page will have a delete icon. When clicked, the user will be removed from the database.
 
+7. As the site owner/admin, I want to be able to search for specific users.
+* The Users page includes a seach bar that will return users that match the input of the admin. The username and the date of birth of the user are both searchable.
+
 ## Testing Features
-### Navigation
+### Features Available to Adult Users, Underage Users, and Admin Users
+The following tests were carried out on features available to all users bar signed out users:
+* On the Home page, click the logo and validate that it navigated to the Home page
+
+
+
+### Features Specific to Admin
+The following tests were carried out on features specific to the admin:
+* On the Home page, click the "Users" tab on the navbar and validate that it navigates to the Users Page.
+* On the Home page, validate that all jokes display all options available to the admin; "Like", "Add to favourites", "Delete joke", "Edit joke".
+* On the Users page, check to see that all users are displaying.
+* On the Users page, click the "Delete user" icon and validate that a confirmation modal appears.
+* After the confirmation modal appears, click the cancel button and validate that the action is canceled.
+* Click the "Delete user" icon again, and this time click the delete button. Validate that the user is removed from the database, that the flash message "User removed" appears at the top of the screen and that the user is redirected back to the User's page.
+* On the Users page, type a username into the search bar and validate that a matching user is returned below.
+* On the Users page, type a date into the search bar and validate that users matching that date of birth are returned below.
+
+The above tests were carried out on both smaller and larger screens and resulted in a pass.
 
 ![Navigation Links](assets/images/testing-imgs/burger.png)
 
