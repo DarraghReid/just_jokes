@@ -1,8 +1,8 @@
 // initialise Bootstrap tooltip functionality
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});
 
 
 /*-----------------------------modals*/
@@ -31,45 +31,12 @@ function displayModal(title, description, teller) {
   favdBy.innerHTML = `Posted by: ${teller}`;
 }
 
-// display correct information on the confirm joke deletion modal - insert python url to carry out deletion
-// arguments received from onclick function in both profile.html and jokes.html
-function deleteModal(title, description, teller, id) {
-  // store modal elements in variables
-  let deleteTitle = document.querySelector(".delete-joke-title");
-  let deleteDesc = document.querySelector(".delete-joke-description");
-  let deleteTeller = document.querySelector(".delete-joke-teller");
-  let link = document.querySelector(".delete-modal");
-
-  // insert argument variables into modal
-  deleteTitle.innerHTML = title;
-  deleteDesc.innerHTML = description;
-  deleteTeller.innerHTML = `Posted by: ${teller}`;
-  link.setAttribute("href", `{{ url_for('delete_joke', joke_id=${id}) }}`)
-}
-
-// display correct information on the confirm user deletion modal - insert python url to carry out deletion
-// arguments received from onclick function in users.html
-function deleteUser(username, id, dob) {
-  // store modal elements in variables
-  let usernName = document.querySelector(".modal-username");
-  let userId = document.querySelector(".modal-id");
-  let dateOfBirth = document.querySelector(".modal-dob");
-  let deleteLink = document.querySelector(".delete-user");
-
-  // insert argument variables into modal
-  usernName.innerHTML = `Username: ${username}`;
-  userId.innerHTML = `ID: ${id}`;
-  dateOfBirth.innerHTML = `DOB: ${dob}`;
-  deleteLink.setAttribute("href", `{{ url_for('delete_user', user_id=${id}) }}`)
-  
-}
-
 /*-----------------------------profile*/
 
 // profile toggle
 // set click event listeners on "See Favourites" and "Your Jokes" links, call profileToggle() function
-document.querySelector(".see-own")?.addEventListener("mousedown", profileToggle);
-document.querySelector(".see-favs")?.addEventListener("mousedown", profileToggle);
+document.querySelector(".see-own").addEventListener("mousedown", profileToggle);
+document.querySelector(".see-favs").addEventListener("mousedown", profileToggle);
 
 // See either user's favourites or user's own jokes at a time. "Your Jokes" is the default
 function profileToggle(e) {

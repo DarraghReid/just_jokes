@@ -300,13 +300,14 @@ def sign_in():
         if user:
             # check if input password matches user's password in the database
             if check_password_hash(
-                user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    # if passwords match, put user into session
-                    flash("Welcome, {}!".format(request.form.get("username")))
-                    # redirect user to their profile
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                user["password"], request.form.get(
+                    "password")):
+                session["user"] = request.form.get("username").lower()
+                # if passwords match, put user into session
+                flash("Welcome, {}!".format(request.form.get("username")))
+                # redirect user to their profile
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             # if passwords don't match, inform user and have them try again
             else:
                 flash("Incorrect username and/or password")

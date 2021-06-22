@@ -28,58 +28,30 @@
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to test the site's performance.
 
-Below, you will see the final results from the validators. More details about problems that arose while validating will be found in the problems section,
-
 ### W3C Markup Validator
-#### Home Page
+More information about issues that arose when validating my HTML can be found in the Problems section. As of writing, all errors have been resolved, and each HTML page passes throught the validator without any errors. However, they do come with the following warning: 
 ![W3C Markup Validator](static/images/heading-warning.png)
 
-I validated the Home page by URI. The W3C Markup Validator warned me that the flash section doesn't have a heading. The flash section extends from the base template. Therefore, all pages came with this warning, when validated. I inserted a heading into the flash section. However, the warning remained.
-
-#### Profile Page
-![W3C Markup Validator](static/images/heading-warning.png)
-
-I validated the Profile page by direct input, due to the Profile being only being available if the user is signed in. 
-
-No issues arose apart from the flash warning.
-
-#### Users Page
-![W3C Markup Validator](static/images/heading-warning.png)
-
-I validated the Profile page by URI. 
-
-No issues arose apart from the flash warning.
-
-#### Add Joke Page
-![W3C Markup Validator](static/images/heading-warning.png)
-
-I validated the Add Joke page by URI. 
-
-No issues arose apart from the flash warning.
-
-#### Sign In Page
-![W3C Markup Validator](static/images/heading-warning.png)
-
-I validated the Sign In page by URI. 
-
-No issues arose apart from the flash warning.
-
-#### Sign Up Page
-![W3C Markup Validator](static/images/heading-warning.png)
-
-I validated the Sign Up page by URI. 
-
-No issues arose apart from the flash warning.
+The W3C Markup Validator warned me that the flash section doesn't have a heading. The flash section extends from the base template. Therefore, all pages came with this warning, when validated. I inserted a heading into the flash section. However, the warning remained.
 
 
 ### W3C CSS Validator Services
-
+CSS code from style.css passed through the [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/) without issue.
+![W3C CSS Validator Services](static/images/css-validation.png)
 
 
 ### JSHint
+[JSHint](https://jshint.com/) flagged 10 warnings, which related to use of ES6 syntax:
+![JSHint](static/images/jshint-validation.png)
+
+It also noted that the Bootstrap tooltip initialisation code included an undefined variable and an unused variable.
+
+Finally, it marked by displayModal function as unused, perhaps because it is called inside the HTML using an onclick attribute.
 
 
 ### Pep8 Online
+Python code from app.py passed through [Pep8 Online](http://pep8online.com/) without issue
+![Pep8 Online](static/images/pep8-validation.png)
 
 ### Lighthouse
 The results from Lighthouse were generally good. As expected points were lost on the performance metrics due to the size 
