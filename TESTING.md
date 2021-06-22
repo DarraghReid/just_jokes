@@ -403,108 +403,19 @@ The following tests were carried out on features specific to the admin:
 
 ### Other Features
 1. Validate that, if there are more than 8 items to be displayed, they will be paginated, with a maximum of 8 items being displayed at a time.
+2. Hover over all joke-action icons and validate that they rotate.
+3. Hover over all links and validate that they slightly decrease in size.
+3. Hover over all buttons and validate that they change colour.
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 
-![Navigation Links](assets/images/testing-imgs/burger.png)
 
-* On the Home Page, click to logo and validate that it navigates to the Home page.
-* On the Home Page, click the "Home" button in the menu and validate that it navigates to the Home Page.
-
-* On the Home Page, on smaller screens, click the burger icon to validate that the navigation links drop down.
-* On the Home Page, on smaller screens, click the burger icon, then click the "Home" button and validate that it navigates to the Home Page.
-* On the Home Page, on smaller screens, click the burger icon, then click the "Design" button and validate that it navigates to the Studio.
-* In the footer, click the logo and validate that it navigates to the Home Page.
-* In the footer, click the "back to top" button and validate that it navigates to the Home Page.
-
-    Each of the above tests resulted in a pass.
-
-### Home Page Functionality
-
-![Swoop Functionality](assets/images/testing-imgs/swoop-1.png)
-
-* Load the page and validate that the elements of the Home Page are brought onto the screen in stages.
-
-    The above test resulted in a pass.
-
-### Hover Effects
-
-![Logo](assets/images/testing-imgs/feat-logo-1.png)
-
-![Back-to-top ](assets/images/testing-imgs/feat-top-1.png)
-
-![Menu](assets/images/testing-imgs/menu-hover-1.png)
-![Item](assets/images/testing-imgs/item-hover-1.png)
-
-* On the Home Page, hover over the logo and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, hover over the "Home" button and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, hover over the "Design" and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, hover over the "Design Your Eden" call-to-action button and validate that it changes its background image to "linear-gradient(to bottom right, rgb(68, 153, 94), rgb(0, 105, 78) 75%)".
-* On the Home Page, on smaller screens, tap the burger icon and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, on smaller screens, tap the "Home" button and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, on smaller screens, tap the "Design" button and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* On the Home Page, on smaller screens, tap the "Design Your Eden" call-to-action button and validate that it changes its background image to "linear-gradient(to bottom right, rgb(68, 153, 94), rgb(0, 105, 78) 75%)".
-* In the Studio, hover over each of the menu items, and validate that the label and image overlay appear.
-* In the Studio, hover over an image on the canvas and validate that the border, and ".mover" divs appear.
-* In the Studio, hover over the ".tl", ".tr", ".bl" and ".br" divs and validate that the appropriate cursor appears
-* In the Studio, on smaller screens, tap an image on the canvas and validate that the border, and ".mover" divs appear.
-* In the Studio, on smaller screens, tap each of the menu items, and validate that the label and image overlay appear.
-* In the footer, hover over the logo and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* In the footer, hover over the "back-to-top" button and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* In the footer, on smaller screens, tap the logo and validate that it dulls to the expected rgb(201, 197, 197) colour.
-* In the footer, on smaller screens, tap the "back-to-top" button and validate that it dulls to the expected rgb(201, 197, 197) colour.
-
-    Each of the above tests resulted in a pass.
-
-### Click and Appear Functionality
-
-![Click-and-Appear](assets/images/testing-imgs/click-appear.png)
-
-* In the studio, click each of the menu items and validate the the image of the clicked menu item appears on the canvas below.
-* In the studio, on smaller screens, tap each of the menu items and validate the the image of the clicked menu item appears on the canvas below.
-
-    Both of the above tests resulted in a pass.
-
-### Removable Functionality 
-
-![Removable](assets/images/testing-imgs/removable.png)
-
-* In the studio, click the cancel/delete icon on an image on the canvas and validate that it is removed from the canvas.
-* In the studio, on smaller screens, tap the cancel/delete icon on an image on the canvas and validate that it is removed from the canvas.
-
-    Both of the above tests resulted in a pass.
-
-### Moveable Functionality 
-
-![Moveable](assets/images/testing-imgs/moveable.png)
-
-
-* In the Studio, click and drag an image on the canvas and validate that it moves along with the cursor.
-* In the Studio, on smaller screens, tap and drag an image on the canvas and validate that it moves along with your finger.
-
-    Both of the above tests resulted in a pass.
-
-    NOTE: 
-    * The image makes an initial "jump" downwards before it follows the direction of the cursor/finger.
-    * When clicking an image that is placed on top of another image, it can happen that the "mouseup"/"touchend" functionality is not registered. In this case, the user must tap or click anywhere on the screen to stop the image from following the cursor/finger.
-
-### Resizable Functionality 
-
-![Resizable](assets/images/testing-imgs/resizable.png)
-
-* In the studio, click and drag each of the ".tl", ".tr", ".bl" and ".br" divs of an image on the canvas and verify that the image resizes along with the movement of the cursor.
-* In the studio, on smaller screens, tap and drag each of the ".tl", ".tr", ".bl" and ".br" divs of an image on the canvas and verify that the image resizes along with the movement of your finger.
-
-    Both of the above tests resulted in a pass.
 
 ## Site Responsiveness
 
 ![Responsive](assets/images/testing-imgs/responsive-1.png)
 
-[Eden](https://darraghreid.github.io/eden/) was tested across a range of devices and internet browsers to assess the responsiveness of the site. The site was also tested on all available devices in Google Dev Tools to ensure it was visually appropriate on all screen sizes.
-
-NOTE:
-* Each element in the Home Screen has its own transition period set in [style.css](assets/css/style.css). Please allow a few seconds for each element to transition to its appropriate size and position when inspecting it Dev Tools.
+[JustJokes](http://just-jokes.herokuapp.com/get_jokes) was tested across a range of devices and internet browsers to assess the responsiveness of the site. The site was also tested on all available devices in Google Dev Tools to ensure it was visually appropriate on all screen sizes.
 
 The site was tested on the following devices: 
 
@@ -524,40 +435,95 @@ And on the following browsers:
 
 ## User Testing
 
-The site was tested by the landscape gardening student who inspired the idea for the site. He appreciated the simplicity of the site, its accessibility, that the software uses coloured elements, and noted that there would be demand for such software.
-
-The site was also tested by members of the Slack community who also expressed appreciation for the project and confirmed some bugs that had been appearing. For more details on bugs, please see the [Known Bugs and Issues Section](#known-bugs-and-issues).
+The site was tested by various peers and family members throughout the building process. Known bug were confirmed and some new ones pointed out. Appreciation was expressed for the functionality of the site.
 
 ## Known Bugs and Issues
+* When trying to implement a search engine for jokes, I would get the following error: 'Cursor' has no len()
+I realised that I had to convert the jokes retrieved from the database to a list using list()
 
-* The biggest and most persistent bug encountered in this project involved some CSS and JS features and functionality not working on Apple Devices (specifically Safari on Mac, all browsers on iPad and iPhone). When the page loaded on one of these devices, the images of the Home Page were already on the screen and did not transition on from outside of the viewport. Also, in the Studio, the images wouldn't appear on the canvas when the menu items were clicked.
+* Upon implementing the Bootstrap modal on each card element to display the full joke, I discovered that, no matter what card was selected, the modal would always display the joke of the first card (which was the chicken joke). I tried various methods to rectify this.
 
-    To remedy this, I used [Autoprefixer](http://autoprefixer.github.io/) to add prefixes to my CSS to ensure that my code was as readable on all browsers as possible. I also transpiled my code to ES5 using [babel](https://babeljs.io/) to ensure that my JavaScript code was maximally readable across all browsers. Neither of these fixes worked.
+    I started by setting the id of the modal and the data-target of the Expand button, to the joke id ( {{joke._id}} ). I thought this would help as I assumed that the problem stemmed from each modal having an identical ID. However, this did not work.
 
-    I consulted my mentor, tutor support, the Slack community and Apple Support multiple times. I also posted in Apple developer forums and consulted other developers. I was unsuccessful in finding an answer. After about a week and a half of failed attempts to address the bug, I finally solved the issue.
+    I then attempted to rectify the issue by using variables inside the jinga for loop. I wrote {% set modal_description = joke.joke_description %} and used these variables in the both the modal and card to ensure that both the modal and card details would always be the same. Unfortunately, this produced the same result.
 
-    The bug turned out to be two separate issues. The first issue seems to be that the "load" event listener that was put on each of the elements in the home page wasn't being read on Mac browsers. The .swoop class, which is designed to bring the elements onto the page was automatically being added to the elements, before the "load" event listener was read. To address this, I put all of the code associated with the Home Page functionality into a setTimeout() function, with a 500ms timeout. The issue was resolved after this.
+    To examine the problem further, I used the JavaScript and the chrome console to see if I could spot the problem. Interestingly, when I used JavaScript to console.log() the contents of both card and modal, the text of both the card and the modal were always identical.
 
-    The second issue had to do with how I was targeting elements in my functions. I was using the path property of events to target specific elements (eg: el = e.path[1]). It turns out that events in Safari don't have the path property. Instead, I used properties such as srcElement and offsetParent to target elements. This resolved the issue.
+    I didn’t understand why the modal presented to the user displayed different information to what was printed to the console.
 
-* Another issue involved the resize() function. After initially completing the resize() function, I realised that all of the images on the canvas would be resized along with the image that was being targeted. To remedy this, I specifically set the element to e.target.parentElement.
+    I then used JavaScript to set the innerHTML of the modal elements to the innerHTML of the card elements. Again, everything was displaying fine on the console, but not on the modal on the screen.
 
-* While this next bug didn’t affect the function it was located, move(), it prevented the function that followed it. resize(), from running, which is how I discovered it. After writing the resize() function and not being able to make it work, I checked the console for errors. One error that repeatedly popped up was that moveImg and rectVal could not be read. 
+    To my surprise, when I built my own modal from scratch, the same problem occurred! Each modal would still display the text from the first joke, no matter what joke had been selected.
+
+    The next step I took was to insert an onclick event listener directly into the button element that triggered the modal. It called the displayModal() function I had created before, but I passed in the jinja values from the for-loop. When I assigned the values of the modal to the values of the jinja values, and logged them to the console, I saw that the chicken joke would log to the console perfectly. Every other joke would get the error: “Uncaught SyntaxError: Invalid or unexpected token”
+
+    I then thought the problem then lay with the jokes themselves. Upon inspection in MongoDB, the chicken joke was the only joke that was written on one line. I edited the fish joke to ensure it was also all on one line. When I refreshed the page, the fish joke logged to the console and was successfully inserted into the modal.
+
+    I then reinstated the Bootstrap modal to see if it would work on the newly formatted jokes. Alas, it had the same issues as before. Only the chicken joke was displayed on the modal, no matter what card was clicked.
+
+    I decided I would combine the Bootstrap modal with my onclick function, to see if I could could pass the card’s jinja values into the modal. This worked with the jokes that had been reformatted in MongoDB. However, if an unformatted joke was clicked, the modal would display the last correctly formatted joke that had been clicked.
+
+    I decided that I would include a note for the user in the Add Joke form, telling them to ensure that their joke is one line only. This is a remaining bug that will have to be addressed in future versions.
+
+
+    Just when I thought I was done with the problem, after I created the “add to favourites” functionality, I discovered that modals of the favourited jokes were not displaying any information other than the user who posted the joke. I speculated that the cause could be the duplication of ids on the "jokes" for loop and "fav_jokes" for loop on the one profile page.
+
+    After addressing that, our friend, the chicken, once again appeared on every modal, and only the title. I went about changing the names of the "fav_jokes" modal classes and updating the displayModal() function to target them as well as the "jokes" modal classes. The problem was solved. 
+
+
+* Another major problem I had occurred after I had implemented the age restrictions. I changed the names and ages of two accounts I had created to reflect an over 18 user and and under 18 user, for testing purposes. When trying to log back in with these user details (I hadn’t changed passwords) I was greeted with errors. 
+
+    I manually typed in the url for the sign up page and created a new account for an adult. When I was logged in, everything was displaying correctly. I attempted to add a few jokes to my favourites. The first 4 went fine, until I got to the 5th where I got an error: “TypeError: 'NoneType' object is not subscriptable”. 
+
+    I pressed the back arrow and went to my profile. The jokes that seemed to be successfully favourited were not in my profile. I tried to favourite them again. I started with the first 4 and each time the flash said “joke already favourited”. I tried with the next few and got the same errors as before. I saw that the jokes that didn’t caused the error were all in the database (under the previous account I had been using, under the old name). 
+
+    The variables in the add_fav() view must have been read, otherwise the flash telling me that the jokes has already been favourited would not be displayed. I noticed that the joke_teller and joke_favouriter of these jokes were the two accounts whose details I changed. I changed the usernames back and was able to log in with them. 
+
+    However, the problem remained. Getting more familiar with how to problem solve, I printed the values of both "joke" and "already_favd" variables to see which one was giving the error. I realised that already_favd was None because it didn’t exist in the database at the time of favouriting. Although, this wasn’t a problem when I first wrote the code and was adding jokes into the user_favourites collection. Nonetheless, I changed my if statements from 'if jokes[“joke_description”] ==  already_favd[“joke_description”]' to 'if already_favd', and the system was back working.
+
+
+* Another issue occurred when I implemented the “like” functionality. I wanted to ensure that users could only like a joke once. Thinking this would be a quick feature to implement, I created two like buttons for each card. One would display if the user hadn’t liked the joke, and the other would be hidden. If the user liked the joke, the like would be recorded in the database and a JavaScript function would swap the buttons. If the second button was pressed, the like would be removed from the database the the JS function would swap the buttons back.
+
+* This didn’t work. I spent a long time trying to figure out why, redesigning the functions, redoing the HTML, etc. When logging the event listeners of the buttons to the console, nothing was showing up. I changed the event listener to be on the document, rather than on the buttons, and set the event.target.classname to the buttons.
+
+* This proved slightly more useful, as the event would log to the console, but only for a split second. I realised this was because of the "redirect" return statement in the like_joke() view in app.py. It reloaded the page every time the like button was clicked. I supposed that the script.js function didn’t have time to carry out its functionality before the page was loaded. I decided to redesign by like_joke() view and simply inform users if they had already liked the joke. Eventually, it was redesigned again to its current state, where pressing the "Like" button a second time would reverse the "liking" process.
+
+* I had initially designed the add_fav() view to add the joke, along with the user’s name as an identifier, to a new collection named “user_favourites”. This system seemed to be working fine while I continued building the project. However, upon logging in under another user, I realised that this would just add multiple versions of the same joke to the collection, each with its own “favouriter”. This resulted in the user being told they had already liked the joke, when they hadn’t. 
+
+    I had since created the like_joke() view with a more effective method, by adding a “liked_by” field to the jokes collection, which was an array of users who had liked the joke. So, I decided to re-do the add_fav() view using a similar method. This turned out to be a bigger undertaking than expected, and resulted in me having to update several other functions accordingly.
+
+* Calculating the user’s age proved to be a major challenge. I painstakingly designed my own method of calculating wether the user was over 18 or not. It didn’t work effectively. Then, I discovered datetime, and the rest is history!
+
+* Another issue I was having was passing variables between views. I couldn’t seem to call views inside other views to get their values. One particular value that I needed in multiple views was the user’s age. I decided to created an external function with no decorators that only returned the user’s age. I was able to call this function and assign it to variables inside other functions to access the user’s age.
+
+* Implementing age restrictions was another task that proved bigger than expected, and multiple other views had to be updated to accommodate it
+
+    Implementing the age restrictions caused errors, also. For example, jinja if statements had to be modified because they were now causing errors if there was no user in session. This is because the age restriction were based off the user’s age. If there was no user, the if statements (eg: if user.age >= 18) would cause errors.
+
+
+* A big bug arose while validating my code. When put through the validator, 85 errors appeared concerning duplicate IDs. I went through the code and gave new names to the data-targets and corresponding modal IDs to ensure each one was unique. This didn’t rectify the issue. I then realised the issue came from the fact that there were multiple cards on the html page, rather than any issues with my code.
+
+    I went about adding the joke id to each of the data targets and corresponding modal IDs with jinja, like I had done earlier in the project (as mentioned above). This resulted in the modals not working. Upon inspection in Chrome, I could see that the data targets and ids were perfectly fine, but the modals were still not displaying. 
+
+    After a considerable amount of time experimenting with the code, I found that, even though the jinja joke IDs were displaying on the html, the modals would not respond. I would even copy and paste the jinja IDs directly from the dev tools and paste it into my own code. If I did this, it would work. However, I obviously could not do this for every joke on the webpage.
+
+    A friend suggested I move the modals outside of the for loop. This way, there would only be one modal and I would not have to worry about duplicate ids. This worked fantastic for the expand modal, which displayed the full joke. However, when it came to the delete modal, more time consuming issues arose. 
     
-    Although this didn’t affect the running of the function in which it was located, I tried to remedy it to see if it would help the resize() function to work. I nested my if statements inside the onContact() function (which is inside the move() function). After this, the resize() function began to work.
+    Nothing would display on the modals. A separate onclick function was written for the delete modal, almost identical to the one for the expand function, with the additional parameter of “id”. “Id” was for the url_for "href" that passed the joke id to python for it to be deleted.
 
-![mouse touch bug](assets/images/testing-imgs/mouse-touch.png)
+    Nothing would display on the modal, however, only the “posted by”, which seemed to display whether I inserted it into the modal or not. The HTML message that was written jokes.html would also display. I tried creating the elements within the Javascript. I created all the h and p elements needed, appended the correct content, and then inserted them into the modal. This worked. However, it would duplicate the code every time I would click the delete icon. After three clicks, there would be three jokes displayed on the modal, etc.
 
-* The insertImg() function caused an issue on smaller screens where two images were being inserted onto the canvas at once. This was because the browser was registering both "mousedown" and "touchend" events. I thought it would be possible to simply insert the || operator in the if statement so the browser would choose one or the other. In the end I had to write the following code to erase the bug.
+    After much experimenting, I decided to move it back to its original position in the for loop, only to find that it was displaying incorrect information. It was just displaying the joke title multiple times, instead of the other details. 
+    
+    I moved it back outside the loop and decided that I didn’t need to display the joke on the modal. I only needed the confirmation message and include the delete button. I redesigned the javascript function to take in the joke's id, create the url_for('delete_joke') href, and insert it into the modal. Again, it looked fine on dev tools, but would lead to a 404 error. 
 
-* Another persistent bug arose in the resize() function. The images would not resize on touch screens. I realised that I had to create separate variables for the cursor position and finger position. After much trial and error, the following code succeeded in creating separate variables for both the cursor and finger.
+    The see full jokes were working fine outside the loop, so I decided to move the delete modals back inside the loop, again. However, this time I kept them outside of the card, but still inside the loop. Before they had been placed directly under the button that triggered. Then, I removed the onclick functions and reinstated all the jinja variables. I also put {{joke._id}} back as the data-target of the button and matching modal ID. Finally, the bug was solved.
 
-* An early bug that I discovered was the moveable functionality not working on the elements inserted into the canvas. I quickly discovered that this was because the JavaScript code had been read before these new elements had been inserted into the DOM. To remedy this, I called the move() and resize() functions inside the insertImg() function so the JavaScript code would run on the new elements.
+    Modals and chickens are now my enemies.
 
-![Cursor Finger Bug](assets/images/testing-imgs/cursor-finger.png)
+## Known Bugs and Issues
+* As mentioned above, jokes that are not uploaded to the database on one line, don't display correctly on the modals. While I find a fix for this, users are asked to upload jokes on one line, only.
 
-* A bug where the #canvas element moved when trying to resize an image was caused by the user selecting the border of the .img-container, rather than a .mover element. This meant that the moveImg variable in the onContact() function became the canvas. To remedy this. I removed "e.target.className == "img-container" from the "if(e.target.className == "canvas-img" || e.target.className == "img-container")" condition. This issue was resolved.
+* The reloading of the pages after clicking the "Like" or "Add to favourites" buttons isn't great user experience. It leads to users having to scroll back to where they previously were. Future versions would ensure the page doesn't reload when clicking joke action buttons.
 
-    See [index.js](assets/js/index.js) for more details on the onContact() function.
-
-![Border bug](assets/images/testing-imgs/border.png)
+* Currently the calendar in the sign up form will submit without a value. This could potentially be a problem as the age restriction aspect of this site is very central to the code. Future versions would find a better alternative to this calendar.

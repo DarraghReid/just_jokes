@@ -310,6 +310,13 @@ footer {
     justify-content: center;
 }
 
+/*---------------------------------------------------Sign in/Sign up pages*/
+
+.sign-in-up:hover {
+    font-size: 27px;
+}
+
+
 /*---------------------------------------------------error pages*/
 
 .error-body {
