@@ -39,14 +39,35 @@ I validated the Home page by URI. The W3C Markup Validator warned me that the fl
 #### Profile Page
 ![W3C Markup Validator](static/images/heading-warning.png)
 
-I validated the Profile page by direct input, due to the Profile being only being available is the user is signed in. 
+I validated the Profile page by direct input, due to the Profile being only being available if the user is signed in. 
 
 No issues arose apart from the flash warning.
 
-#### Profile Page
+#### Users Page
 ![W3C Markup Validator](static/images/heading-warning.png)
 
-I validated the Profile page by direct input, due to the Profile being only being available is the user is signed in. 
+I validated the Profile page by URI. 
+
+No issues arose apart from the flash warning.
+
+#### Add Joke Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Add Joke page by URI. 
+
+No issues arose apart from the flash warning.
+
+#### Sign In Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Sign In page by URI. 
+
+No issues arose apart from the flash warning.
+
+#### Sign Up Page
+![W3C Markup Validator](static/images/heading-warning.png)
+
+I validated the Sign Up page by URI. 
 
 No issues arose apart from the flash warning.
 

@@ -180,11 +180,10 @@ def delete_user(user_id):
     return redirect(url_for("get_users"))
 
 
-# takes search word from search input, display list of jokes with that word
+# takes search word from search input, displays list of jokes with that word
 @app.route("/search", methods=["GET", "POST"])
-# take user_age from get_jokes() view
 def search():
-    # retrieve the search work from the form
+    # retrieve the search word from the form
     search = request.form.get("search")
 
     # get user's age from get_age()
@@ -192,7 +191,7 @@ def search():
 
     # if the user is over 18, all jokes are available to them
     if int(user_age) >= 18:
-        # find all docs from jokes collection in MongoDB
+        # find all docs with search word from jokes collection in MongoDB
         jokes = list(mongo.db.jokes.find({"$text": {"$search": search}}))
 
         # pagination of jokes
@@ -231,14 +230,13 @@ def search():
             )
 
 
-# takes search word from search input, display list of users with that word
+# takes search word from search input, displays list of users with that word
 @app.route("/search_users", methods=["GET", "POST"])
-# take user_age from get_jokes() view
 def search_users():
-    # retrieve the search work from the form
+    # retrieve the search word from the form
     search = request.form.get("search")
-    
-    # find all docs from users collection in MongoDB
+
+    # find all docs with search word from users collection in MongoDB
     users = list(mongo.db.users.find({"$text": {"$search": search}}))
 
     # pagination of users
