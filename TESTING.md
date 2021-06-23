@@ -29,7 +29,7 @@
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to test the site's performance.
 
 ### W3C Markup Validator
-More information about issues that arose when validating my HTML can be found in the Problems section. As of writing, all errors have been resolved, and each HTML page passes throught the validator without any errors. However, they do come with the following warning: 
+More information about issues that arose when validating my HTML can be found in the Problems section. As of writing, all errors have been resolved, and each HTML page passes through the validator without any errors. However, they do come with the following warning: 
 ![W3C Markup Validator](static/images/heading-warning.png)
 
 The W3C Markup Validator warned me that the flash section doesn't have a heading. The flash section extends from the base template. Therefore, all pages came with this warning, when validated. I inserted a heading into the flash section. However, the warning remained.
@@ -85,7 +85,7 @@ The results were as follows:
 1. As a first time user, I want to immediately understand the purpose of the site.
     * Upon loading of the site, jokes are immediately visible. Even if the user is logged in, intuitive icons allow to users to understand that they can interact with the jokes by liking and favouriting them. 
 
-    A header informs them that they can sign in to carry out these interections and to see more jokes
+    A header informs them that they can sign in to carry out these interactions and to see more jokes
 ![Intuitive Design](static/images/jj-intuition.png)
 
 2. As a first time user, I want to be able to easily navigate through the site to find what I'm looking for.
@@ -108,12 +108,12 @@ The results were as follows:
     Admins can also edit any joke they see fit.
 
 7. As a first time user, I want to be able to delete my jokes.
-    * If the user has uploaded a joke, the joke will have an delete icon displayed on its card. Upon clicking, it will trigger a modal that will ask the user to confirm the deletion. Upon, confirming, the joke will be removed from the database.. 
+    * If the user has uploaded a joke, the joke will have a delete icon displayed on its card. Upon clicking, it will trigger a modal that will ask the user to confirm the deletion. Upon, confirming, the joke will be removed from the database.. 
 
 8. As a first time user, I want to be able to "like" jokes.
     * All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have a like/laughing face icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the "like" was successful. 
 
-    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who liked this joke. The "likes" count of the joke will also be incremented by 1 in the database.
+    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names of all the user's who liked this joke. The "likes" count of the joke will also be incremented by 1 in the database.
 
     The action can be undone upon clicking the icon a second time.
 
@@ -121,7 +121,7 @@ The results were as follows:
 ![Your Favourites](static/images/jj-favourites.png)
     * All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have an add to favourites/heart icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the joke was successfully added to the user's list of favourites.. 
 
-    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who have added this joke to their list of favourites. 
+    The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names of all the user's who have added this joke to their list of favourites. 
     
     All of the jokes in the user's list of favourites can be found in one place in the "Your Favourites" section of the user's profile.
 
@@ -129,7 +129,7 @@ The results were as follows:
 
 10. As a first time user, I want to be able to search for specific jokes.
 ![Search](static/images/jj-add.png)
-    * The Home page includes a seach bar that will return jokes that match the input of the user. Only the joke title and joke description are searchable.
+    * The Home page includes a search bar that will return jokes that match the input of the user. Only the joke title and joke description are searchable.
 
 
 ### Returning User Goals
@@ -175,7 +175,7 @@ The results were as follows:
     * Each card displaying a user in the Users page will have a delete icon. When clicked, the user will be removed from the database.
 
 7. As the site owner/admin, I want to be able to search for specific users.
-    * The Users page includes a seach bar that will return users that match the input of the admin. The username and the date of birth of the user are both searchable.
+    * The Users page includes a search bar that will return users that match the input of the admin. The username and the date of birth of the user are both searchable.
 
 ## Testing Features
 ### Features Available to Adult Users, Underage Users, and Admin Users
@@ -205,7 +205,7 @@ The following tests were carried out on features available to all users, bar sig
 6. If the user is an adult or is under 18, locate a joke that has been uploaded by the user and validate that the joke is displaying the "Delete joke" and "Edit joke" icons.
 7. If the user is under 18, validate that only jokes marked suitable for children are displaying.
 8. Validate that each joke is displaying the correct information.
-9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
+9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke description.
 10. Click the "Expand" button and validate that:
     * A modal is triggered displaying the joke's details in full
     * The modal is canceled by clicking the cancel button in the top right of the modal
@@ -267,7 +267,7 @@ The following tests were carried out on features available to all users, bar sig
 1. Validate that, upon clicking "Sign out":
     * The user is signed out and redirected to the Sign In page.
     * A flash displays the message "Signed out" at the top of the page
-9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke discription.
+9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke description.
 10. Click the "Expand" button and validate that:
     * A modal is triggered displaying the joke's details in full
     * The modal is canceled by clicking the cancel button in the top right of the modal
@@ -559,7 +559,7 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
 
 ## Remaining Bugs and Issues
-* With the project now complete, I can see I could have reduced both my HTML and Python code by writing my views more efficently. For example, in get_jokes():
+* With the project now complete, I can see I could have reduced both my HTML and Python code by writing my views more efficiently. For example, in get_jokes():
 
     if user >= 18:
         jokes = mongo.db.jokes.find()
@@ -568,7 +568,7 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
     Would have saved me writing so much HTML code, and shortened the get_jokes() view itself.
 
-    That said, the code that I have written works. Future versions will have more condenced code.
+    That said, the code that I have written works. Future versions will have more condensed code.
 
 
 * As mentioned above, jokes that are not uploaded to the database on one line, don't display correctly on the modals. While I find a fix for this, users are asked to upload jokes on one line, only.

@@ -77,11 +77,11 @@ The purpose of this site is to provide users with a platform on which they creat
 ## Structure
 JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
 
-A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid exessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
+A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid excessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
 
 ## Design
 * Colour Scheme
-    * The colourscheme of the site was kept relatively simple. Because most pages were going to be data-focused, I didn't want the colourscheme to distract the user or cause further clutter.
+    * The colour scheme of the site was kept relatively simple. Because most pages were going to be data-focused, I didn't want the colour scheme to distract the user or cause further clutter.
 
         The colours used in the site were black, white, and variables of rgb(245, 180, 60), rgb(245, 188, 31), and rgb(245, 180, 60). 
         
@@ -89,7 +89,7 @@ A fixed navbar and a footer ensure that all pages available to the specific user
 
         Black is the main contrasting colour throughout the site. It tames the vibrancy of the orange/yellow and makes a good colour for headings and navigations elements.
 
-        A slightly dulled white was used for the card elements, inut elements and in buttons.
+        A slightly dulled white was used for the card elements, input elements and in buttons.
 
         I used [coolers.co](https://coolors.co/) as a starting off point for choosing the colours
 
@@ -116,13 +116,13 @@ A fixed navbar and a footer ensure that all pages available to the specific user
 
 * Having dropped the dropdown, I decided I would include the number of user's who had liked a particular joke in the card display. This feature adds to the UX of the site.
 
-* I had orginally planned on manipulating the card to show the full joke, if the joke's characters exeeded the characters able to be displayed on the card. I felt a modal displaying the full joke would be a better design a lead to a better user experience. Bootstrap modals are a prominant feature throughout the site.
+* I had originally planned on manipulating the card to show the full joke, if the joke's characters exceeded the characters able to be displayed on the card. I felt a modal displaying the full joke would be a better design a lead to a better user experience. Bootstrap modals are a prominent feature throughout the site.
 
 * As discussed above, the links to toggle between the user's uploaded jokes and the user's favourite jokes, were replaced with a dropdown menu with the additional option to sign out. I felt this was more of an intuitive layout that users would be used to from social media platforms.
 
 * Icons were omitted from the forms. I had intentionally left them to do if I had time, as I didn't think they were very important. In the end, time didn't allow to include them.
 
-* In sign in form, instead of a switch indicating whether the user was an adult or not, I opted for a calandar input. I sliced the information I needed from the user's DOB string and calculated their ages. Different features are available to users based on their age, as will be discussed in the [Features](#Features) section.
+* In sign in form, instead of a switch indicating whether the user was an adult or not, I opted for a calendar input. I sliced the information I needed from the user's DOB string and calculated their ages. Different features are available to users based on their age, as will be discussed in the [Features](#Features) section.
 
 ## Database Design
 MongDB was chosen to create the database for this project. Its non-relational structure was suited for the site's needs as there are few relationships between the collections in the just_jokes database.
@@ -150,7 +150,7 @@ The number of fields in the jokes collection as grown since its inception at the
 
 "joke_title", "joke_description", "img_url" and "for_children" are all input by the user via the Add Joke form and add_joke() function in app.py. 
 
-"for_children" is an important field. It is set to "on" or "off" via a switch in the Add Joke form. If it is set to "on", all users will be ablet to see the joke. If it is set to "off", only adult users will be able to see the joke.
+"for_children" is an important field. It is set to "on" or "off" via a switch in the Add Joke form. If it is set to "on", all users will be able to see the joke. If it is set to "off", only adult users will be able to see the joke.
 
 "likes", "liked_by" and "favouriter" are automatically added alongside the other fields upon upload. They will be continuously updates as users interact with the joke.
 
@@ -238,7 +238,7 @@ Different features are available to users based on their age and the type of acc
 * Another option would be to be allow users specify whether the joke they are uploading is original or not. They could possibly gain a following of users who enjoy their jokes.
 
 #### Possibly Offensive Content
-* Some jokes may be tagged with a warning that it might include contense that some may find offesive.
+* Some jokes may be tagged with a warning that it might include content that some may find offensive.
 
 
 ## Technologies Used 
@@ -261,7 +261,7 @@ Different features are available to users based on their age and the type of acc
 
         Initialized with [jQuery](https://jquery.com/), the tooltips on all icons throughout the site are Bootstrap features 
 
-        More prominantly it was used to create the card elements that the jokes were displayed on. Bootstrap is also responsible for all modals seen throughout the site. Bootstrap classes were often used instead of CSS on other elements to assist with centering and positioning.
+        More prominently it was used to create the card elements that the jokes were displayed on. Bootstrap is also responsible for all modals seen throughout the site. Bootstrap classes were often used instead of CSS on other elements to assist with centering and positioning.
 
         Of course, extensive editing had to be carried out on all Bootstrap elements throughout the site to get it functioning a looking the way it currently is. 
 
@@ -281,7 +281,7 @@ Different features are available to users based on their age and the type of acc
     * Noto Sans, the font used throughout the site, was sourced from Google Fonts.
 
 * [jQuery](https://jquery.com/)
-    * jQuery was used in conjunction with Bootstrap on various elements througout the site.
+    * jQuery was used in conjunction with Bootstrap on various elements throughout the site.
 
 * [MongoDB](https://www.mongodb.com/)
     * MongoDB was used to creates collections within a database to store data about the sites registered users and jokes uploaded by them.
