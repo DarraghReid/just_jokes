@@ -35,7 +35,7 @@
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to test the site's performance.
 
 ### W3C Markup Validator
-More information about issues that arose when validating my HTML can be found in the Problems section. As of writing, all errors have been resolved, and each HTML page passes through the validator without any errors. However, they do come with the following warning: 
+More information about issues that arose when validating my HTML can be found in the [Bugs section](#known-bugs-and-issues). As of writing, all errors have been resolved, and each HTML page passes through the validator without any errors. However, they do come with the following warning: 
 ![W3C Markup Validator](static/images/heading-warning.png)
 
 The W3C Markup Validator warned me that the flash section doesn't have a heading. The flash section extends from the base template. Therefore, all pages came with this warning, when validated. I inserted a heading into the flash section. However, the warning remained.

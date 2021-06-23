@@ -9,6 +9,7 @@
 * [Design](#Design)
 * [Wireframes](#Wireframes)
     * [Differences Between Wireframes and Final Product](#Differences-Between-Wireframes-and-Final-Product)
+* [Database Design](#Database-Design)
 * [Features](#Features)
     * [Admin](#Admin)
     * [General User](#General-User)
@@ -124,13 +125,15 @@ A fixed navbar and a footer ensure that all pages available to the specific user
 
 * In sign in form, instead of a switch indicating whether the user was an adult or not, I opted for a calendar input. I sliced the information I needed from the user's DOB string and calculated their ages. Different features are available to users based on their age, as will be discussed in the [Features](#Features) section.
 
+* The 404 and 500 error pages were created towards the end of the project. They were not included in the initial planning of the project.
+
 ## Database Design
 MongDB was chosen to create the database for this project. Its non-relational structure was suited for the site's needs as there are few relationships between the collections in the just_jokes database.
 
 ### Database structure
 ![Database Design](static/images/db-structure.png)
 
-There are currently two collections in use; jokes and users. A third, user_favourites, had been used for a period of time, but is now redundant. As will be discussed in the Problems section in [TESTING.md](/TESTING.md), a more efficient means of adding jokes to user's list of favourites was found.
+There are currently two collections in use; jokes and users. A third, user_favourites, had been used for a period of time, but is now redundant. As will be discussed in the Bugs section in [TESTING.md](/TESTING.md), a more efficient means of adding jokes to user's list of favourites was found.
 
 #### Users Collection
 ![Users Collection](static/images/users-collection.png)
