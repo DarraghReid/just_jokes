@@ -54,8 +54,9 @@ def pagination_args(jokes):
     return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
-# calculates user's age
 def get_age():
+    """calculates user's age"""
+
     # default user's age
     user_age = -1
     # if the user is signed in
@@ -94,10 +95,10 @@ def get_age():
         return user_age
 
 
-# gets all jokes, age appropriate jokes, renders jokes.html
 @app.route("/")
 @app.route("/get_jokes")
 def get_jokes():
+    """gets all jokes, age appropriate jokes, renders jokes.html"""
     # if joke is liked, like button is styled with CSS "liked" class
     like_button = "liked"
 
@@ -150,9 +151,10 @@ def get_jokes():
             )
 
 
-# gets all users from the db
 @app.route("/get_users")
 def get_users():
+    """gets all users from the db"""
+
     # find all users from users collection in MongoDB
     users = list(mongo.db.users.find())
 
@@ -168,9 +170,10 @@ def get_users():
         )
 
 
-# deletes selected user from db
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
+    """deletes selected user from db"""
+
     # remove user from the database
     mongo.db.users.remove({"_id": ObjectId(user_id)})
 
@@ -180,9 +183,10 @@ def delete_user(user_id):
     return redirect(url_for("get_users"))
 
 
-# takes search word from search input, displays list of jokes with that word
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """takes search word from input, displays list of jokes with that word"""
+
     # retrieve the search word from the form
     search = request.form.get("search")
 
@@ -230,9 +234,10 @@ def search():
             )
 
 
-# takes search word from search input, displays list of users with that word
 @app.route("/search_users", methods=["GET", "POST"])
 def search_users():
+    """takes search word from input, displays list of jokes with that word"""
+
     # retrieve the search word from the form
     search = request.form.get("search")
 
@@ -251,9 +256,10 @@ def search_users():
         )
 
 
-# signs a user up
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
+    """signs a user up"""
+
     # if request is POST, sign user up
     if request.method == "POST":
         # check database for input username
@@ -287,9 +293,10 @@ def sign_up():
     return render_template("sign_up.html")
 
 
-# signs a user in
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
+    """signs a user in"""
+
     # if request is POST, sign user in
     if request.method == "POST":
         # check mongodb for input username
@@ -322,9 +329,10 @@ def sign_in():
     return render_template("sign_in.html")
 
 
-# displays user's profile, their own jokes, and favourite jokes
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    """displays user's profile, own jokes, and favourite jokes"""
+
     # if joke is liked, like button styled is with CSS "liked" class
     like_button = "liked"
 
@@ -366,9 +374,10 @@ def profile(username):
             )
 
 
-# allows user to add joke to / remove joke from their favourites
 @app.route("/add_fav/<joke_id>", methods=["GET", "POST"])
 def add_fav(joke_id):
+    """allows user to add joke to / remove joke from their favourites"""
+
     # search jokes for joke passed into view
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
 
@@ -420,9 +429,9 @@ def add_fav(joke_id):
     return render_template("jokes.html")
 
 
-# allows user to like and unlike a joke
 @app.route("/like_joke/<joke_id>", methods=["GET", "POST"])
 def like_joke(joke_id):
+    """allows user to like and unlike a joke"""
     # search users for joke passed into view
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
 
@@ -494,9 +503,10 @@ def like_joke(joke_id):
     return render_template("jokes.html")
 
 
-# signs user out
 @app.route("/sign_out")
 def sign_out():
+    """signs user out"""
+
     # remove user from session cookies
     session.pop("user")
 
@@ -507,9 +517,10 @@ def sign_out():
     return redirect(url_for("sign_in"))
 
 
-# allows user to add a joke to the db
 @app.route("/add_joke", methods=["GET", "POST"])
 def add_joke():
+    """allows user to add a joke to the db"""
+
     # if request is POST, add joke to db
     if request.method == "POST":
         # set for_children to "on" in db if for_children switch is truthy
@@ -537,9 +548,9 @@ def add_joke():
     return render_template("add_joke.html")
 
 
-# allows user to edit their jokes
 @app.route("/edit_joke/<joke_id>", methods=["GET", "POST"])
 def edit_joke(joke_id):
+    """allows user to edit their jokes"""
 
     # find joke by id key in db
     joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
@@ -574,9 +585,10 @@ def edit_joke(joke_id):
         )
 
 
-# allows user to delete their jokes
 @app.route("/delete_joke/<joke_id>")
 def delete_joke(joke_id):
+    """allows user to delete their jokes"""
+
     # remove joke from db
     mongo.db.jokes.remove({"_id": ObjectId(joke_id)})
     # confirmation message
@@ -585,16 +597,17 @@ def delete_joke(joke_id):
     return redirect(url_for("get_jokes"))
 
 
-# handles 404 error
 @app.errorhandler(404)
 def error_not_found(error):
+    """handles 404 errors"""
+
     # if a 404 error occuers, render 404.html
     return render_template("404.html", error=error), 404
 
 
-# handles 500 error
 @app.errorhandler(500)
 def server_error(error):
+    """handles 500 errors"""
     # if a 500 error occuers, render 500.html
     return render_template("500.html", error=error), 500
 

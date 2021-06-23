@@ -83,39 +83,43 @@ The results were as follows:
 ## Testing User Stories
 ### First Time User Goals 
 1. As a first time user, I want to immediately understand the purpose of the site.
-* Upon loading of the site, jokes are immediately visible. Even if the user is logged in, intuitive icons allow to users to understand that they can interact with the jokes by liking and favouriting them. 
+    * Upon loading of the site, jokes are immediately visible. Even if the user is logged in, intuitive icons allow to users to understand that they can interact with the jokes by liking and favouriting them. 
 
     A header informs them that they can sign in to carry out these interections and to see more jokes
+![Intuitive Design](static/images/jj-intuition.png)
 
 2. As a first time user, I want to be able to easily navigate through the site to find what I'm looking for.
-* A sticky navbar ensures that any page available to the user is never more than a click away. Pagination minimises scrolling for smartphone users
+    * A sticky navbar ensures that any page available to the user is never more than a click away. Pagination minimises scrolling for smartphone users
 
 3. As a first time user, I want to instinctively know what to do in order to get started creating and interacting with jokes.
-* Intuitive fontawesome icons ensure users immediately know what to do in order to being liking jokes, adding jokes to their favourites, and adding their own jokes to the site.
+    * Intuitive fontawesome icons ensure users immediately know what to do in order to being liking jokes, adding jokes to their favourites, and adding their own jokes to the site.
 
 4. As a first time user, I want to be able to read jokes.
-* All users, including those who have not signed in, immediately have a range of jokes to read upon entering the site.
+    * All users, including those who have not signed in, immediately have a range of jokes to read upon entering the site.
+![See Full](static/images/jj-see-full.png)
 
 5. As a first time user, I want to be able upload jokes.
-* Jokes can be uploaded easily from the navbar "Add Joke" menu item, which is always visible to signed in users. Users can also click the "Add joke" icon beside the search bar on the Home page to carry out this action.
+    * Jokes can be uploaded easily from the navbar "Add Joke" menu item, which is always visible to signed in users. Users can also click the "Add joke" icon beside the search bar on the Home page to carry out this action.
+![Add Joke](static/images/jj-add-joke.png)
 
 6. As a first time user, I want to be able to edit my jokes.
-* If the user has uploaded a joke, the joke will have an edit icon displayed on its card. Upon clicking, it will lead the user to a form where they can edit the joke's details. All the user's jokes can be found in one place in the "Your Jokes" section of their Profile. 
+    * If the user has uploaded a joke, the joke will have an edit icon displayed on its card. Upon clicking, it will lead the user to a form where they can edit the joke's details. All the user's jokes can be found in one place in the "Your Jokes" section of their Profile. 
 
     Admins can also edit any joke they see fit.
 
 7. As a first time user, I want to be able to delete my jokes.
-* If the user has uploaded a joke, the joke will have an delete icon displayed on its card. Upon clicking, it will trigger a modal that will ask the user to confirm the deletion. Upon, confirming, the joke will be removed from the database.. 
+    * If the user has uploaded a joke, the joke will have an delete icon displayed on its card. Upon clicking, it will trigger a modal that will ask the user to confirm the deletion. Upon, confirming, the joke will be removed from the database.. 
 
 8. As a first time user, I want to be able to "like" jokes.
-* All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have a like/laughing face icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the "like" was successful. 
+    * All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have a like/laughing face icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the "like" was successful. 
 
     The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who liked this joke. The "likes" count of the joke will also be incremented by 1 in the database.
 
     The action can be undone upon clicking the icon a second time.
 
 9. As a first time user, I want to be able to add jokes to a list of my favourites.
-All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have an add to favourites/heart icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the joke was successfully added to the user's list of favourites.. 
+![Your Favourites](static/images/jj-favourites.png)
+    * All jokes, apart from jokes that have been uploaded by the user themselves (unless the user in an admin), will have an add to favourites/heart icon displayed on their cards. Upon clicking, the colour of the icon will change, indicating that the joke was successfully added to the user's list of favourites.. 
 
     The joke will be updated in the database, where the user's name will be added to a MongoDB array that displays the names off all the user's who have added this joke to their list of favourites. 
     
@@ -124,55 +128,60 @@ All jokes, apart from jokes that have been uploaded by the user themselves (unle
     The action can be undone upon clicking the icon a second time.
 
 10. As a first time user, I want to be able to search for specific jokes.
-* The Home page includes a seach bar that will return jokes that match the input of the user. Only the joke title and joke description are searchable.
+![Search](static/images/jj-add.png)
+    * The Home page includes a seach bar that will return jokes that match the input of the user. Only the joke title and joke description are searchable.
 
 
 ### Returning User Goals
 1. As a returning user, I want to be immediately familiar with the layout of the site.
-* New jokes may be added all the time, but the layout will always have that familiar CRUD functionality. User's should know exactly what to do in order to carry out interactions with the site upon returning.
+    * New jokes may be added all the time, but the layout will always have that familiar CRUD functionality. User's should know exactly what to do in order to carry out interactions with the site upon returning.
 
 2. As a returning user, I want to be able to upload new jokes.
-* There is currently no limit the the amount of jokes a user can add. User's can add a joke whenever they are logged in.
+    * There is currently no limit the the amount of jokes a user can add. User's can add a joke whenever they are logged in.
 
 3. As a returning user, I want to be able to access the jokes I have uploaded.
-* All jokes that a user has uploaded can be found in the "Your Jokes" section of their profile.
+![Your Jokes](static/images/jj-your-jokes.png)
+    * All jokes that a user has uploaded can be found in the "Your Jokes" section of their profile.
 
 5. As a returning user, I want to be able to access the jokes in my list of favourites.
-* All jokes that a user has added to their list of favourites can be found in the "Your Favourites" section of their profile.
+    * All jokes that a user has added to their list of favourites can be found in the "Your Favourites" section of their profile.
 
 6. As a returning user, I want to be able to remove jokes from my list of favourites.
-* If the user has added a joke to their list of favourites, this should be indicated by the "add to favourites" icon being yellow. Upon clicking the yellow icon, the joke is removed from their favourites.
+    * If the user has added a joke to their list of favourites, this should be indicated by the "add to favourites" icon being yellow. Upon clicking the yellow icon, the joke is removed from their favourites.
 
 7. As a returning user, I want to be able to "unlike" jokes.
-If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
+    * If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
 
 
 ### Site Owner Goals
 1. As the site owner/admin, I want to be able to have additional features available to me.
-* The site owner, has complete control over the content of the site as well as the users who access it.
+![Additional Features](static/images/admin-features.png)
+    * The site owner, has complete control over the content of the site as well as the users who access it.
 
 2. As the site owner/admin, I want to be able to see all jokes that have been uploaded by users.
-* All jokes uploaded to the database are visible from the admin's account. 
+    * All jokes uploaded to the database are visible from the admin's account. 
 
 3. As the site owner/admin, I want to be able to delete any joke on the platform that I see fit.
-* The delete icon will be available to the admin on all jokes.
+    * The delete icon will be available to the admin on all jokes.
 
 4. As the site owner/admin, I want to be able to edit any joke on the platform that I see fit.
-* The edit icon will be available to the admin on all jokes.
+    * The edit icon will be available to the admin on all jokes.
 
 5. As the site owner/admin, I want to be able to access the information of all users of the site.
-* The admin can access the Users tab in the navbar where they can see all users that have signed up to the site.
+![Additional Features](static/images/admin-features1.png)
+    * The admin can access the Users tab in the navbar where they can see all users that have signed up to the site.
 
 6. As the site owner/admin, I want to be able to remove any user I see fit from the site.
-* Each card displaying a user in the Users page will have a delete icon. When clicked, the user will be removed from the database.
+    * Each card displaying a user in the Users page will have a delete icon. When clicked, the user will be removed from the database.
 
 7. As the site owner/admin, I want to be able to search for specific users.
-* The Users page includes a seach bar that will return users that match the input of the admin. The username and the date of birth of the user are both searchable.
+    * The Users page includes a seach bar that will return users that match the input of the admin. The username and the date of birth of the user are both searchable.
 
 ## Testing Features
 ### Features Available to Adult Users, Underage Users, and Admin Users
 #### Base Template Features
 The following tests were carried out on features available to all users, bar signed out users:
+![Base Features](static/images/jj-base.png)
 
 1. Click the logo and validate that it navigates to the Home page.
 2. Click the Home button in the navbar and validate that it navigates to the Home page.
@@ -187,6 +196,7 @@ The following tests were carried out on features available to all users, bar sig
 
 #### Home Page Features
 The following tests were carried out on features available to all users, bar signed out users:
+![Home Tests](static/images/jj-home-test.png)
 
 1. Click the Add Joke icon in beside the search bar and validate that it navigates to the Add Joke page.
 3. If the user is an adult or admin, check to see that all jokes are displaying on the page.
@@ -238,6 +248,7 @@ The following tests were carried out on features available to all users, bar sig
 
 #### Profile Page Features
 The following tests were carried out on features available to all users, bar signed out users:
+![Profile Test](static/images/jj-profile-test.png)
 
 1. Validate that the user's username is displayed at the top of the page.
 1. Validate that a dropdown menu is displayed beneath the username.
@@ -287,6 +298,7 @@ The following tests were carried out on features available to all users, bar sig
     * That it redirects to the Edit Joke page.
 
 #### Add Joke Page Features
+![Add Joke](static/images/jj-add-joke.png)
 1. Validate that a form appears upon loading the page.
 2. Validate that the form has the following fields:
     * Joke Title
@@ -311,6 +323,8 @@ The following tests were carried out on features available to all users, bar sig
     * The joke with the Suitable for children switch set to "off" is not visible when signed into an account that belongs to a user under 18 years of age.
 
 #### Edit Joke Page Features
+![Edit Joke](static/images/jj-edit-joke.png)
+
 1. Validate that a form appears upon loading the page.
 2. Validate that the form has the following fields:
     * Joke Title
@@ -326,6 +340,7 @@ The following tests were carried out on features available to all users, bar sig
     * The joke appears in "Your Jokes" in the user's profile with its details changed.
 
 #### Sign In Page Features
+![Sign In](static/images/jj-sign-in.png)
 1. Validate that a form appears upon loading the page.
 2. Validate that the form has the following fields:
     * Usersname
@@ -359,6 +374,7 @@ The following tests were carried out on features specific to the admin:
     * Sign up
 
 #### Home Page
+![Signed Out](static/images/jj-signed-out.png)
 2. Validate that all jokes displaying have their for_children field in the database set to "on".
 3. Locate any joke:
     * Click the "Expand" button and validate that:
@@ -384,6 +400,7 @@ The following tests were carried out on features specific to the admin:
         * The modal closes when anywhere outside of the modal is clicked
 
 #### Sign Up Page
+![Sign Up](static/images/jj-sign-up.png)
 1. Validate that a form appears upon loading the page.
 2. Validate that the form has the following fields:
     * Username
@@ -397,17 +414,23 @@ The following tests were carried out on features specific to the admin:
     * That a flash message displaying "You're sign up!" appears at the top of the page
 
 ### Features Specific to Smaller Screens
+![Your Jokes](static/images/jj-small-screens.jpeg)
 1. Click the burger icon to validate that the navigation links drop down.
 2. Validate that the dropdown menu displays the same menu items and the menu on larger screens.
 3. Validate that all menu items work correctly
 
 ### Other Features
+![Pagination](static/images/jj-pagination.png)
 1. Validate that, if there are more than 8 items to be displayed, they will be paginated, with a maximum of 8 items being displayed at a time.
 2. Hover over all joke-action icons and validate that they rotate.
 3. Hover over all links and validate that they slightly decrease in size.
 3. Hover over all buttons and validate that they change colour.
-4. Enter invalid URL and verify that 404 page displays.
-5. Veruify 500 page by:
+4. Enter invalid URL and verify that:
+    * A 404 page displays
+    * The laughing emoji link brings the user back home
+    * The logos in the header and footer bring the user back home
+    * All menu items in the nav bar work.
+5. Validate that 500 page works by:
     * Setting debug to False in app.py
     * Raising an exception in function of choice with string "I am broken"
     * Navigating to page where function is used
@@ -526,7 +549,7 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
     Modals and chickens are now my enemies.
 
-## Known Bugs and Issues
+## Remaining Bugs and Issues
 * As mentioned above, jokes that are not uploaded to the database on one line, don't display correctly on the modals. While I find a fix for this, users are asked to upload jokes on one line, only.
 
 * The reloading of the pages after clicking the "Like" or "Add to favourites" buttons isn't great user experience. It leads to users having to scroll back to where they previously were. Future versions would ensure the page doesn't reload when clicking joke action buttons.
