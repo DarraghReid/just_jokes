@@ -5,19 +5,26 @@
     * [W3C Markup Validator](#W3C-Markup-Validator)
     * [W3C CSS Validator Services](#W3C-CSS-Validator-Services)
     * [JSHint](#JSHint)
+    * [Pep8 Online](#Pep8-Online)
     * [Lighthouse](#lighthouse)
 * [Testing User Stories](#Testing-User-Stories)
     * [First Time User Goals](#First-Time-User-Goals)
     * [Returning User Goals](#Returning-User-Goals)
     * [Site Owner Goals](#Site-Owner-Goals)
 * [Testing Features](#Testing-Features)
-    * [Navigation](#Navigation)
-    * [Home Page Functionality](#Home-Page-Functionality)
-    * [Hover Effects](#Hover-Effects)
-    * [Click and Appear Functionality](#Click-and-Appear-Functionality)
-    * [Removable Functionality](#Removable-Functionality)
-    * [Moveable Functionality](#Moveable-Functionality)
-    * [Resizable Functionality](#Resizable-Functionality)
+    * [Features Available to Adult Users, Underage Users, and Admin Users](#Features-Available-to-Adult-Users-,-Underage-Users-,-and-Admin-Users)
+        * [Base Template Features](#Base-Template-Features)
+        * [Home Page Features](#Home-Page-Features)
+        * [Profile Page Features](#Profile-Page-Features)
+        * [Add Joke Page Features](#Add-Joke-Page-Features)
+        * [Edit Joke Page Features](#Edit-Joke-Page-Features)
+        * [Sign In Page Features](#Sign-In-Page-Features)
+    * [Features Specific to Admin](#Features-Specific-to-Admin)
+    * [Features Specific to Not Signed In Users](#Features-Specific-to-Not-Signed-In-Users)
+        * [Home Page](#Home-Page)
+        * [Sign Up Page](#Sign-Up-Page)
+    * [Features Specific to Smaller Screens](#Features-Specific-to-Smaller-Screens)
+    * [Other Features](#Other-Features)
 * [Site Responsiveness](#Site-Responsiveness)
 * [User Testing](#User-Testing)
 * [Known Bugs and Issues Section](#known-bugs-and-issues)
@@ -143,13 +150,13 @@ The results were as follows:
 ![Your Jokes](static/images/jj-your-jokes.png)
     * All jokes that a user has uploaded can be found in the "Your Jokes" section of their profile.
 
-5. As a returning user, I want to be able to access the jokes in my list of favourites.
+4. As a returning user, I want to be able to access the jokes in my list of favourites.
     * All jokes that a user has added to their list of favourites can be found in the "Your Favourites" section of their profile.
 
-6. As a returning user, I want to be able to remove jokes from my list of favourites.
+5. As a returning user, I want to be able to remove jokes from my list of favourites.
     * If the user has added a joke to their list of favourites, this should be indicated by the "add to favourites" icon being yellow. Upon clicking the yellow icon, the joke is removed from their favourites.
 
-7. As a returning user, I want to be able to "unlike" jokes.
+6. As a returning user, I want to be able to "unlike" jokes.
     * If the user has liked a joke , this should be indicated by the "like" icon being yellow. Upon clicking the yellow icon, the joke is "unliked".
 
 
@@ -187,11 +194,11 @@ The following tests were carried out on features available to all users, bar sig
 2. Click the Home button in the navbar and validate that it navigates to the Home page.
 3. Click the Profile button in the navbar and validate that it navigates to the Profile page.
 4. Click the Add Joke button in the navbar and validate that it navigates to the Add Joke page.
-4. Click the logo in the the footer and validate that it navigates to the Home page.
-4. Click the Facebook logo in the the footer and validate that it navigates to Facebook.
-4. Click the YouTube logo in the the footer and validate that it navigates to YouTube.
-4. Click the Instagram logo in the the footer and validate that it navigates to Instagram.
-2. Click the Sign out button in the navbar and validate that it signs the user out navigates to the Sign In page.
+5. Click the logo in the the footer and validate that it navigates to the Home page.
+6. Click the Facebook logo in the the footer and validate that it navigates to Facebook.
+7. Click the YouTube logo in the the footer and validate that it navigates to YouTube.
+8. Click the Instagram logo in the the footer and validate that it navigates to Instagram.
+9. Click the Sign out button in the navbar and validate that it signs the user out navigates to the Sign In page.
 
 
 #### Home Page Features
@@ -251,40 +258,40 @@ The following tests were carried out on features available to all users, bar sig
 ![Profile Test](static/images/jj-profile-test.png)
 
 1. Validate that the user's username is displayed at the top of the page.
-1. Validate that a dropdown menu is displayed beneath the username.
-1. Validate that the dropdown menu contains:
+2. Validate that a dropdown menu is displayed beneath the username.
+3. Validate that the dropdown menu contains:
 * See favourites
 * See your Jokes
 * Sign out
-1. Validate that, upon clicking "See favourites":
+4. Validate that, upon clicking "See favourites":
     * The jokes in the user's favourites list are displayed below
     * The correct information is displayed on the jokes
     * The "Like" and "Add to favourites" icons are displayed on the joke card
-1. Validate that, upon clicking "See your jokes":
+5. Validate that, upon clicking "See your jokes":
     * The jokes the user has uploaded are displayed below
     * The correct information is displayed on the jokes.
     * The "Delete joke" and "Edit joke" icons are displayed on the jokes.
-1. Validate that, upon clicking "Sign out":
+6. Validate that, upon clicking "Sign out":
     * The user is signed out and redirected to the Sign In page.
     * A flash displays the message "Signed out" at the top of the page
-9. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke description.
-10. Click the "Expand" button and validate that:
+7. If the joke is over 50 characters, validate that the joke is displaying a truncated version of the joke description.
+8. Click the "Expand" button and validate that:
     * A modal is triggered displaying the joke's details in full
     * The modal is canceled by clicking the cancel button in the top right of the modal
     * The modal is canceled by clicking outside of the modal
-11. Under "Your Favourites", if any jokes are present, locate any joke that has not been liked. Click the "Like" icon and verify:
+9. Under "Your Favourites", if any jokes are present, locate any joke that has not been liked. Click the "Like" icon and verify:
     * That the page redirects to back to the Home page.
     * That a flash message displays "You've liked this joke!" at the top of the page.
     * That the joke's "likes" field in MongoDB has been incremented by 1.
     * That the user's name has been added to the joke's "liked_by" array field in MongoDB.
     * That the colour of the "Like" icon has changed to yellow.
-14. Under "Your Favourites" "Remove from favourites" icon and verify:
+10. Under "Your Favourites" "Remove from favourites" icon and verify:
     * That the page redirects back to the Home page.
     * That a flash message display "Joke removed from your favourites" at the top of the page
     * That the user's name has been removed from the joke's "favouriters" array field in MongoDB
     * That the colour of the "Add to favourites" icon has changed back to black
     * That the joke no longer appears under "Your Favourites"
-15. Under "Your Jokes", if jokes are present, locate any joke. Click the "Delete joke" icon and verify:
+11. Under "Your Jokes", if jokes are present, locate any joke. Click the "Delete joke" icon and verify:
     * That a confirmation modal is triggered, asking the user if they are sure they want to delete the joke.
     * That the modal displays the joke details.
     * That the modal provides "Cancel" and "Delete" buttons.
@@ -294,7 +301,7 @@ The following tests were carried out on features available to all users, bar sig
         * Redirects back to the Home Page
         * Displays the flash message "Joke removed" at the top of the page
     * That the joke no longer appears under "Your Jokes"
-16. Under "Your Jokes", if jokes are present, locate any joke. Click the "Edit joke" icon and verify:
+12. Under "Your Jokes", if jokes are present, locate any joke. Click the "Edit joke" icon and verify:
     * That it redirects to the Edit Joke page.
 
 #### Add Joke Page Features
@@ -331,10 +338,10 @@ The following tests were carried out on features available to all users, bar sig
     * Joke
     * Image URL
     * Suitable for children switch
-1. Validate that the above fields are populated with the details of the joke that was clicked.
-1. Click "Cancel" and verify that it redirects to the Home page.
-3. Edit the pre populated fields, press "Clear" and validate that the form resets.
-3. Edit the pre populated fields, press "Edit" and validate that:
+3. Validate that the above fields are populated with the details of the joke that was clicked.
+4. Click "Cancel" and verify that it redirects to the Home page.
+5. Edit the pre populated fields, press "Clear" and validate that the form resets.
+6. Edit the pre populated fields, press "Edit" and validate that:
     * It redirects to the Home page.
     * The joke appears somewhere in the Home page with its details changed.
     * The joke appears in "Your Jokes" in the user's profile with its details changed.
@@ -345,12 +352,12 @@ The following tests were carried out on features available to all users, bar sig
 2. Validate that the form has the following fields:
     * Usersname
     * Password
-1. Validate that there is a solitary "Sign in" button below the form.
-1. Validate that there is a link that leads to the "Sign up" page below that "Sign in" button.
-3. Fill out the form with invalid details and verify that:
+3. Validate that there is a solitary "Sign in" button below the form.
+4. Validate that there is a link that leads to the "Sign up" page below that "Sign in" button.
+5. Fill out the form with invalid details and verify that:
     * The page reloads
     * A flash message displaying "Incorrect username and/or password" appears at the top of the page.
-4. Fill out the form with valid details and validate that:
+6. Fill out the form with valid details and validate that:
     * It redirects to the user's profile
     * A flash message displaying "Welcome, 'username'" appears at the top of the page.
 
@@ -367,7 +374,7 @@ The following tests were carried out on features specific to the admin:
 8. On the Users page, type a date into the search bar and validate that users matching that date of birth are returned below.
 9. Click "Clear" and verify that it redirects back to the Users page.
 
-### Features Specific to Not-Signed-In Users:
+### Features Specific to Not Signed In Users
 1. Validate that the only options in the navbar are:
     * Home
     * Sign in
@@ -375,8 +382,8 @@ The following tests were carried out on features specific to the admin:
 
 #### Home Page
 ![Signed Out](static/images/jj-signed-out.png)
-2. Validate that all jokes displaying have their for_children field in the database set to "on".
-3. Locate any joke:
+1. Validate that all jokes displaying have their for_children field in the database set to "on".
+2. Locate any joke:
     * Click the "Expand" button and validate that:
         * It triggers a modal
         * The modal displays the message: "Want to see the full joke?"
@@ -424,13 +431,13 @@ The following tests were carried out on features specific to the admin:
 1. Validate that, if there are more than 8 items to be displayed, they will be paginated, with a maximum of 8 items being displayed at a time.
 2. Hover over all joke-action icons and validate that they rotate.
 3. Hover over all links and validate that they slightly decrease in size.
-3. Hover over all buttons and validate that they change colour.
-4. Enter invalid URL and verify that:
+4. Hover over all buttons and validate that they change colour.
+5. Enter invalid URL and verify that:
     * A 404 page displays
     * The laughing emoji link brings the user back home
     * The logos in the header and footer bring the user back home
     * All menu items in the nav bar work.
-5. Validate that 500 page works by:
+6. Validate that 500 page works by:
     * Setting debug to False in app.py
     * Raising an exception in function of choice with string "I am broken"
     * Navigating to page where function is used
