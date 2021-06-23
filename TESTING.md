@@ -12,7 +12,7 @@
     * [Returning User Goals](#Returning-User-Goals)
     * [Site Owner Goals](#Site-Owner-Goals)
 * [Testing Features](#Testing-Features)
-    * [Features Available to Adult Users, Underage Users, and Admin Users](#Features-Available-to-Adult-Users-,-Underage-Users-,-and-Admin-Users)
+    * [Features Available to Adult Users, Underage Users, and Admin Users](#Base-Template-Features)
         * [Base Template Features](#Base-Template-Features)
         * [Home Page Features](#Home-Page-Features)
         * [Profile Page Features](#Profile-Page-Features)
@@ -21,13 +21,12 @@
         * [Sign In Page Features](#Sign-In-Page-Features)
     * [Features Specific to Admin](#Features-Specific-to-Admin)
     * [Features Specific to Not Signed In Users](#Features-Specific-to-Not-Signed-In-Users)
-        * [Home Page](#Home-Page)
-        * [Sign Up Page](#Sign-Up-Page)
     * [Features Specific to Smaller Screens](#Features-Specific-to-Smaller-Screens)
     * [Other Features](#Other-Features)
 * [Site Responsiveness](#Site-Responsiveness)
 * [User Testing](#User-Testing)
-* [Known Bugs and Issues Section](#known-bugs-and-issues)
+    * [Known Bugs and Issues Section](#known-bugs-and-issues)
+    * [Remaining Bugs and Issues Section](#Remaining-Bugs-and-Issues)
 
 ## Validation
 
@@ -541,27 +540,26 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
 ![Responsive](static/images/modal-ids.png)
 
-
-    I went about adding the joke id to each of the data targets and corresponding modal IDs with jinja, like I had done earlier in the project (as mentioned above). This resulted in the modals not working. Upon inspection in Chrome, I could see that the data targets and ids were perfectly fine, but the modals were still not displaying. 
+I went about adding the joke id to each of the data targets and corresponding modal IDs with jinja, like I had done earlier in the project (as mentioned above). This resulted in the modals not working. Upon inspection in Chrome, I could see that the data targets and ids were perfectly fine, but the modals were still not displaying. 
 
 ![Responsive](static/images/modal-id-dev.png)
 
 
-    After a considerable amount of time experimenting with the code, I found that, even though the jinja joke IDs were displaying on the html, the modals would not respond. I would even copy and paste the jinja IDs directly from the dev tools and paste it into my own code. If I did this, it would work. However, I obviously could not do this for every joke on the webpage.
+After a considerable amount of time experimenting with the code, I found that, even though the jinja joke IDs were displaying on the html, the modals would not respond. I would even copy and paste the jinja IDs directly from the dev tools and paste it into my own code. If I did this, it would work. However, I obviously could not do this for every joke on the webpage.
 
-    A friend suggested I move the modals outside of the for loop. This way, there would only be one modal and I would not have to worry about duplicate ids. This worked fantastic for the expand modal, which displayed the full joke. However, when it came to the delete modal, more time consuming issues arose. 
+A friend suggested I move the modals outside of the for loop. This way, there would only be one modal and I would not have to worry about duplicate ids. This worked fantastic for the expand modal, which displayed the full joke. However, when it came to the delete modal, more time consuming issues arose. 
     
-    Nothing would display on the modals. A separate onclick function was written for the delete modal, almost identical to the one for the expand function, with the additional parameter of “id”. “Id” was for the url_for "href" that passed the joke id to python for it to be deleted.
+Nothing would display on the modals. A separate onclick function was written for the delete modal, almost identical to the one for the expand function, with the additional parameter of “id”. “Id” was for the url_for "href" that passed the joke id to python for it to be deleted.
 
-    Nothing would display on the modal, however, only the “posted by”, which seemed to display whether I inserted it into the modal or not. The HTML message that was written jokes.html would also display. I tried creating the elements within the Javascript. I created all the h and p elements needed, appended the correct content, and then inserted them into the modal. This worked. However, it would duplicate the code every time I would click the delete icon. After three clicks, there would be three jokes displayed on the modal, etc.
+Nothing would display on the modal, however, only the “posted by”, which seemed to display whether I inserted it into the modal or not. The HTML message that was written jokes.html would also display. I tried creating the elements within the Javascript. I created all the h and p elements needed, appended the correct content, and then inserted them into the modal. This worked. However, it would duplicate the code every time I would click the delete icon. After three clicks, there would be three jokes displayed on the modal, etc.
 
-    After much experimenting, I decided to move it back to its original position in the for loop, only to find that it was displaying incorrect information. It was just displaying the joke title multiple times, instead of the other details. 
+After much experimenting, I decided to move it back to its original position in the for loop, only to find that it was displaying incorrect information. It was just displaying the joke title multiple times, instead of the other details. 
     
-    I moved it back outside the loop and decided that I didn’t need to display the joke on the modal. I only needed the confirmation message and include the delete button. I redesigned the javascript function to take in the joke's id, create the url_for('delete_joke') href, and insert it into the modal. Again, it looked fine on dev tools, but would lead to a 404 error. 
+I moved it back outside the loop and decided that I didn’t need to display the joke on the modal. I only needed the confirmation message and include the delete button. I redesigned the javascript function to take in the joke's id, create the url_for('delete_joke') href, and insert it into the modal. Again, it looked fine on dev tools, but would lead to a 404 error. 
 
-    The see full jokes were working fine outside the loop, so I decided to move the delete modals back inside the loop, again. However, this time I kept them outside of the card, but still inside the loop. Before they had been placed directly under the button that triggered. Then, I removed the onclick functions and reinstated all the jinja variables. I also put {{joke._id}} back as the data-target of the button and matching modal ID. Finally, the bug was solved.
+The see full jokes were working fine outside the loop, so I decided to move the delete modals back inside the loop, again. However, this time I kept them outside of the card, but still inside the loop. Before they had been placed directly under the button that triggered. Then, I removed the onclick functions and reinstated all the jinja variables. I also put {{joke._id}} back as the data-target of the button and matching modal ID. Finally, the bug was solved.
 
-    Modals and chickens are now my enemies.
+Modals and chickens are now my enemies.
 
 
 
