@@ -76,7 +76,7 @@ The purpose of this site is to provide users with a platform on which they creat
 7. As the site owner/admin, I want to be able to search for specific users.
 
 ## Structure
-JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inhered html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
+JustJokes includes 10 web pages, with some pages being more versatile and able to show a variety of information depending on the user's age, account type, and preferences. All web pages inherit html, head, and body elements from a base.html template using jinja. They also inherit the navbar and footer from base.html.
 
 A fixed navbar and a footer ensure that all pages available to the specific user are never more than a click away. This also assists users on smaller devices to avoid excessive scrolling when navigating the site. Pagination has also been implemented to reduce scrolling for users. More on what each page does and how it functions will be discussed in the [Features](#Features) of the README.md.
 
@@ -200,7 +200,7 @@ Different features are available to users based on their age and the type of acc
 ![Your Jokes](static/images/jj-favourites.png)
 * In their profile, the admin can access the jokes that they have uploaded themselves, as well as the jokes that they have added to their favourites via a dropdown menu. The dropdown menu also allows users to sign out.
 
-![Users](static/images/jj-your-jokes.png)
+![Users](static/images/jj-profile-test.png)
 * The Admin user also has access to a Users page, where they can view all users who have signed up to the site. They can see all available information about the user, including their ID, username, and date of birth. Here, the admin can also chose to delete a user at their own discretion.
 
 #### General User
