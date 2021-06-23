@@ -437,11 +437,9 @@ The following tests were carried out on features specific to the admin:
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 
-
-
 ## Site Responsiveness
 
-![Responsive](assets/images/testing-imgs/responsive-1.png)
+![Responsive](static/images/amiresponsive.png)
 
 [JustJokes](http://just-jokes.herokuapp.com/get_jokes) was tested across a range of devices and internet browsers to assess the responsiveness of the site. The site was also tested on all available devices in Google Dev Tools to ensure it was visually appropriate on all screen sizes.
 
@@ -470,6 +468,7 @@ The site was tested by various peers and family members throughout the building 
 I realised that I had to convert the jokes retrieved from the database to a list using list()
 
 * Upon implementing the Bootstrap modal on each card element to display the full joke, I discovered that, no matter what card was selected, the modal would always display the joke of the first card (which was the chicken joke). I tried various methods to rectify this.
+![Responsive](static/images/modal-ids.png)
 
     I started by setting the id of the modal and the data-target of the Expand button, to the joke id ( {{joke._id}} ). I thought this would help as I assumed that the problem stemmed from each modal having an identical ID. However, this did not work.
 
@@ -491,8 +490,10 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
     I decided I would combine the Bootstrap modal with my onclick function, to see if I could could pass the card’s jinja values into the modal. This worked with the jokes that had been reformatted in MongoDB. However, if an unformatted joke was clicked, the modal would display the last correctly formatted joke that had been clicked.
 
-    I decided that I would include a note for the user in the Add Joke form, telling them to ensure that their joke is one line only. This is a remaining bug that will have to be addressed in future versions.
+![Responsive](static/images/modal-full-insert.png)
+![Responsive](static/images/modal-js-insert.png)
 
+    I decided that I would include a note for the user in the Add Joke form, telling them to ensure that their joke is one line only. This is a remaining bug that will have to be addressed in future versions.
 
     Just when I thought I was done with the problem, after I created the “add to favourites” functionality, I discovered that modals of the favourited jokes were not displaying any information other than the user who posted the joke. I speculated that the cause could be the duplication of ids on the "jokes" for loop and "fav_jokes" for loop on the one profile page.
 
@@ -531,7 +532,13 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
 * A big bug arose while validating my code. When put through the validator, 85 errors appeared concerning duplicate IDs. I went through the code and gave new names to the data-targets and corresponding modal IDs to ensure each one was unique. This didn’t rectify the issue. I then realised the issue came from the fact that there were multiple cards on the html page, rather than any issues with my code.
 
+![Responsive](static/images/modal-ids.png)
+
+
     I went about adding the joke id to each of the data targets and corresponding modal IDs with jinja, like I had done earlier in the project (as mentioned above). This resulted in the modals not working. Upon inspection in Chrome, I could see that the data targets and ids were perfectly fine, but the modals were still not displaying. 
+
+![Responsive](static/images/modal-id-dev.png)
+
 
     After a considerable amount of time experimenting with the code, I found that, even though the jinja joke IDs were displaying on the html, the modals would not respond. I would even copy and paste the jinja IDs directly from the dev tools and paste it into my own code. If I did this, it would work. However, I obviously could not do this for every joke on the webpage.
 
@@ -549,7 +556,21 @@ I realised that I had to convert the jokes retrieved from the database to a list
 
     Modals and chickens are now my enemies.
 
+
+
 ## Remaining Bugs and Issues
+* With the project now complete, I can see I could have reduced both my HTML and Python code by writing my views more efficently. For example, in get_jokes():
+
+    if user >= 18:
+        jokes = mongo.db.jokes.find()
+    elif user < 18:
+        jokes = mongo.db.jokes.find({for_children: "on"})
+
+    Would have saved me writing so much HTML code, and shortened the get_jokes() view itself.
+
+    That said, the code that I have written works. Future versions will have more condenced code.
+
+
 * As mentioned above, jokes that are not uploaded to the database on one line, don't display correctly on the modals. While I find a fix for this, users are asked to upload jokes on one line, only.
 
 * The reloading of the pages after clicking the "Like" or "Add to favourites" buttons isn't great user experience. It leads to users having to scroll back to where they previously were. Future versions would ensure the page doesn't reload when clicking joke action buttons.

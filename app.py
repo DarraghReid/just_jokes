@@ -99,6 +99,7 @@ def get_age():
 @app.route("/get_jokes")
 def get_jokes():
     """gets all jokes, age appropriate jokes, renders jokes.html"""
+    
     # if joke is liked, like button is styled with CSS "liked" class
     like_button = "liked"
 
