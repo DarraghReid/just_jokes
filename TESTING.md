@@ -436,10 +436,16 @@ The following tests were carried out on features specific to the admin:
     * The laughing emoji link brings the user back home
     * The logos in the header and footer bring the user back home
     * All menu items in the nav bar work.
+    * All links in the footer work
 6. Validate that 500 page works by:
     * Setting debug to False in app.py
-    * Raising an exception in function of choice with string "I am broken"
-    * Navigating to page where function is used
+    * Returning 1 / 0 in get_jokes() view
+    * Navigating to page where function is used and validate that:
+        * A 500 page displays
+        * The laughing emoji link brings the user back home
+        * The logos in the header and footer bring the user back home
+        * All menu items in the nav bar work
+        * All links in the footer work
 
 The above tests were carried out on both smaller and larger screens and resulted in a pass.
 

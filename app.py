@@ -99,7 +99,7 @@ def get_age():
 @app.route("/get_jokes")
 def get_jokes():
     """gets all jokes, age appropriate jokes, renders jokes.html"""
-    
+
     # if joke is liked, like button is styled with CSS "liked" class
     like_button = "liked"
 
@@ -618,4 +618,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             # set to false prior to submission
-            debug=True)
+            debug=False)
