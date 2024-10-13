@@ -36,7 +36,7 @@
 
 ![JustJokes](static/images/amiresponsive.png)
 
-View the live project [here](http://just-jokes.herokuapp.com/get_jokes)
+View the live project [here](https://web-production-ce3e4.up.railway.app/get_jokes)
 
 This website was created for Code Institute's Milestone 3 Project as part of the Diploma in Full Stack Web Development. The purpose of this project is to demonstrate the student's knowledge and skills acquired thus far in the course. This includes skills in HTML, CSS, JavaScript, Python, Flask as well as other technologies as outlined in the [Technologies Used](#Technologies-Used) section. The focus of this project is to demonstrate the student's ability to carry out CRUD functionality
 This project marks the developer's first time writing Python and working with databases.
