@@ -616,6 +616,6 @@ def server_error(error):
 # tell app how and where to run application
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
+            port=int(os.environ.get("PORT", 5000)),
             # set to false prior to submission
             debug=False)
