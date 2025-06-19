@@ -34,6 +34,16 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # to ensure app is communicating with database
 mongo = PyMongo(app)
 
+from pymongo import TEXT # import TEXT to create text index for search functionality. Needed for search functionality because MongoDB does not support full-text search by default. so this allows us to create a text index on specific fields in the collection, enabling efficient text search capabilities.
+
+# Create a text index for search functionality
+mongo.db.jokes.create_index([
+    ("joke_title", TEXT),
+    ("joke_description", TEXT),
+    ("joke_teller", TEXT)
+])
+
+
 
 # Pagination
 # credit to Ed B, whose code I referenced

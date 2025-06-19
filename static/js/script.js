@@ -35,8 +35,11 @@ function displayModal(title, description, teller) {
 
 // profile toggle
 // set click event listeners on "See Favourites" and "Your Jokes" links, call profileToggle() function
-document.querySelector(".see-own").addEventListener("mousedown", profileToggle);
-document.querySelector(".see-favs").addEventListener("mousedown", profileToggle);
+const seeOwn = document.querySelector(".see-own");
+const seeFavs = document.querySelector(".see-favs");
+
+if(seeOwn) seeOwn.addEventListener("mousedown", profileToggle);
+if(seeFavs) seeFavs.addEventListener("mousedown", profileToggle);
 
 // See either user's favourites or user's own jokes at a time. "Your Jokes" is the default
 function profileToggle(e) {
