@@ -111,7 +111,17 @@
                                             </div>
                                             <!-- expand button, triggers modal above to display full joke -->
                                             <!-- onclick event listener passes card variables to displayModal() function in script.js -->
-                                            <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="displayModal('{{ joke.joke_title }}', '{{ joke.joke_description }}', '{{joke.joke_teller}}')">Expand</button>
+                                            <button 
+                                                type="button" 
+                                                class="btn modal-btn" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#staticBackdrop" 
+                                                onclick="displayModal(
+                                                    `{{ joke.joke_title | escape }}`, 
+                                                    `{{ joke.joke_description | escape }}`, 
+                                                    `{{joke.joke_teller | escape}}`)">
+                                                Expand
+                                            </button>
                                             
                                             <!-- user who posted joke -->
                                             <p class="card-text mt-2 modal-joke-teller">Posted by: {{ joke.joke_teller }}</p>
